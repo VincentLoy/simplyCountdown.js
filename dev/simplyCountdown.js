@@ -14,20 +14,23 @@
         simplyCountdown;
 
     extend = function (out) {
+        var i,
+            obj,
+            key;
         out = out || {};
 
-        for (var i = 1; i < arguments.length; i++) {
-            var obj = arguments[i];
+        for (i = 1; i < arguments.length; i += 1) {
+            obj = arguments[i];
 
-            if (!obj)
-                continue;
-
-            for (var key in obj) {
-                if (obj.hasOwnProperty(key)) {
-                    if (typeof obj[key] === 'object')
-                        extend(out[key], obj[key]);
-                    else
-                        out[key] = obj[key];
+            if (obj) {
+                for (key in obj) {
+                    if (obj.hasOwnProperty(key)) {
+                        if (typeof obj[key] === 'object') {
+                            extend(out[key], obj[key]);
+                        } else {
+                            out[key] = obj[key];
+                        }
+                    }
                 }
             }
         }
@@ -80,14 +83,14 @@
             secondsLeft = (targetDate - currentDate) / 1000;
 
             if (secondsLeft > 0) {
-                days = parseInt(secondsLeft / 86400);
+                days = parseInt(secondsLeft / 86400, 10);
                 secondsLeft = secondsLeft % 86400;
 
-                hours = parseInt(secondsLeft / 3600);
+                hours = parseInt(secondsLeft / 3600, 10);
                 secondsLeft = secondsLeft % 3600;
 
-                minutes = parseInt(secondsLeft / 60);
-                seconds = parseInt(secondsLeft % 60);
+                minutes = parseInt(secondsLeft / 60, 10);
+                seconds = parseInt(secondsLeft % 60, 10);
             } else {
                 days = 0;
                 hours = 0;
@@ -163,7 +166,7 @@
     exports.simplyCountdown = simplyCountdown;
 }(window));
 
-/*global $, jQuery*/
+/*global $, jQuery, simplyCountdown*/
 (function ($, simplyCountdown) {
     'use strict';
 
