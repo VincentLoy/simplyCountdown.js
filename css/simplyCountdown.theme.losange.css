@@ -1,0 +1,54 @@
+/**
+* Project : simply-countdown
+* File : simplyCountdown.theme.losange
+* Date : 27/06/2015
+* Author : Vincent Loy <vincent.loy1@gmail.com>
+*/
+.simply-countdown-losange {
+  overflow: visible;
+  display: table;
+  font-family: 'Arial', sans-serif;
+}
+.simply-countdown-losange > .simply-section {
+  width: 100px;
+  height: 100px;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+  float: left;
+  margin: 30px;
+  background: #024772;
+}
+.simply-countdown-losange > .simply-section > div {
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+.simply-countdown-losange > .simply-section > div .simply-amount,
+.simply-countdown-losange > .simply-section > div .simply-word {
+  display: block;
+  color: #fff;
+  font-weight: bold;
+  text-align: center;
+}
+
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiIiwic291cmNlcyI6WyJzaW1wbHlDb3VudGRvd24udGhlbWUubG9zYW5nZS5jc3MiXSwic291cmNlc0NvbnRlbnQiOlsiLyoqXG4qIFByb2plY3QgOiBzaW1wbHktY291bnRkb3duXG4qIEZpbGUgOiBzaW1wbHlDb3VudGRvd24udGhlbWUubG9zYW5nZVxuKiBEYXRlIDogMjcvMDYvMjAxNVxuKiBBdXRob3IgOiBWaW5jZW50IExveSA8dmluY2VudC5sb3kxQGdtYWlsLmNvbT5cbiovXG4uc2ltcGx5LWNvdW50ZG93bi1sb3NhbmdlIHtcbiAgb3ZlcmZsb3c6IHZpc2libGU7XG4gIGRpc3BsYXk6IHRhYmxlO1xuICBmb250LWZhbWlseTogJ0FyaWFsJywgc2Fucy1zZXJpZjtcbn1cbi5zaW1wbHktY291bnRkb3duLWxvc2FuZ2UgPiAuc2ltcGx5LXNlY3Rpb24ge1xuICB3aWR0aDogMTAwcHg7XG4gIGhlaWdodDogMTAwcHg7XG4gIGRpc3BsYXk6IC13ZWJraXQtYm94O1xuICBkaXNwbGF5OiAtbW96LWJveDtcbiAgZGlzcGxheTogLXdlYmtpdC1mbGV4O1xuICBkaXNwbGF5OiAtbXMtZmxleGJveDtcbiAgZGlzcGxheTogZmxleDtcbiAgLXdlYmtpdC1ib3gtcGFjazogY2VudGVyO1xuICAtbW96LWJveC1wYWNrOiBjZW50ZXI7XG4gIC1tcy1mbGV4LXBhY2s6IGNlbnRlcjtcbiAgLXdlYmtpdC1qdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbiAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gIC13ZWJraXQtYm94LWFsaWduOiBjZW50ZXI7XG4gIC1tb3otYm94LWFsaWduOiBjZW50ZXI7XG4gIC13ZWJraXQtYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAgLW1zLWZsZXgtYWxpZ246IGNlbnRlcjtcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAgLXdlYmtpdC10cmFuc2Zvcm06IHJvdGF0ZSg0NWRlZyk7XG4gIC1tb3otdHJhbnNmb3JtOiByb3RhdGUoNDVkZWcpO1xuICAtby10cmFuc2Zvcm06IHJvdGF0ZSg0NWRlZyk7XG4gIC1tcy10cmFuc2Zvcm06IHJvdGF0ZSg0NWRlZyk7XG4gIHRyYW5zZm9ybTogcm90YXRlKDQ1ZGVnKTtcbiAgZmxvYXQ6IGxlZnQ7XG4gIG1hcmdpbjogMzBweDtcbiAgYmFja2dyb3VuZDogIzAyNDc3Mjtcbn1cbi5zaW1wbHktY291bnRkb3duLWxvc2FuZ2UgPiAuc2ltcGx5LXNlY3Rpb24gPiBkaXYge1xuICAtd2Via2l0LXRyYW5zZm9ybTogcm90YXRlKC00NWRlZyk7XG4gIC1tb3otdHJhbnNmb3JtOiByb3RhdGUoLTQ1ZGVnKTtcbiAgLW8tdHJhbnNmb3JtOiByb3RhdGUoLTQ1ZGVnKTtcbiAgLW1zLXRyYW5zZm9ybTogcm90YXRlKC00NWRlZyk7XG4gIHRyYW5zZm9ybTogcm90YXRlKC00NWRlZyk7XG59XG4uc2ltcGx5LWNvdW50ZG93bi1sb3NhbmdlID4gLnNpbXBseS1zZWN0aW9uID4gZGl2IC5zaW1wbHktYW1vdW50LFxuLnNpbXBseS1jb3VudGRvd24tbG9zYW5nZSA+IC5zaW1wbHktc2VjdGlvbiA+IGRpdiAuc2ltcGx5LXdvcmQge1xuICBkaXNwbGF5OiBibG9jaztcbiAgY29sb3I6ICNmZmY7XG4gIGZvbnQtd2VpZ2h0OiBib2xkO1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG59XG4iXSwiZmlsZSI6InNpbXBseUNvdW50ZG93bi50aGVtZS5sb3NhbmdlLmNzcyIsInNvdXJjZVJvb3QiOiIvc291cmNlLyJ9 */

@@ -1,0 +1,37 @@
+/**
+* Project : simply-countdown
+* File : simplyCountdown.theme.losange
+* Date : 27/06/2015
+* Author : Vincent Loy <vincent.loy1@gmail.com>
+*/
+
+@import '../../bower_components/lesshat/build/lesshat';
+
+
+.simply-countdown-losange {
+  overflow: visible;
+  display: table;
+  font-family: 'Arial', sans-serif;
+
+  & > .simply-section {
+    .size(100px);
+    .display(flex);
+    .justify-content(center);
+    .align-items(center);
+    .rotate(45deg);
+    float: left;
+    margin: 30px;
+    background: #024772;
+
+    & > div {
+      .rotate(-45deg);
+      .simply-amount,
+      .simply-word {
+        display: block;
+        color: #fff;
+        font-weight: bold;
+        text-align: center;
+      }
+    }
+  }
+}

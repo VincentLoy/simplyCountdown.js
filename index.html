@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>simplyCountdown.js</title>
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400italic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css"/>
+
+    <link rel="stylesheet" href="css/simplyCountdown.theme.losange.css"/>
+    <link rel="stylesheet" href="css/simplyCountdown.theme.default.css"/>
+    <link rel="stylesheet" href="css/demo.css"/>
+</head>
+<body>
+<header class="row center-xs">
+    <div class="header-content">
+        <h1>simplyCountdown.js</h1>
+        <h2>A Tiny Javascript Countdown Library</h2>
+
+        <div class="repo-buttons">
+            <a href="https://github.com/VincentLoy/simplyCountdown.js" class="button">
+                <i class="fa fa-github"></i> View on GitHub
+            </a>
+            <a href="https://github.com/VincentLoy/simplyCountdown.js" class="button">
+                <i class="fa fa-github"></i> Download Sources
+            </a>
+        </div>
+    </div>
+</header>
+<div class="simply-countdown" id="simply-countdown"></div>
+<div class="simply-countdown-losange" id="simply-countdown-losange"></div>
+
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="dev/simplyCountdown.js"></script>
+<script>
+    var d = new Date();
+
+    $('#simply-countdown').simplyCountdown({
+        year: d.getFullYear(),
+        month: d.getMonth() + 2,
+        day: 25
+    });
+
+    simplyCountdown('simply-countdown-losange', {
+        year: d.getFullYear(),
+        month: d.getMonth() + 2,
+        day: 25
+    });
+</script>
+</body>
+</html>

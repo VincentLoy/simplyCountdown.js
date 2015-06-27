@@ -1,0 +1,32 @@
+{
+  "name": "simplycountdown.js",
+  "version": "1.0.0",
+  "homepage": "https://github.com/VincentLoy/simplyCountdown.js",
+  "authors": [
+    "VincentLoy <vincent.loy1@gmail.com>"
+  ],
+  "description": "Tiny Javascript Countdown",
+  "main": [
+    "dist/simplyCountdown.min.js",
+    "dev/simplyCountdown.js"
+  ],
+  "keywords": [
+    "simplyCountdown",
+    "countdown",
+    "clock",
+    "under construction",
+    "jquery",
+    "plugin"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "node_modules",
+    "bower_components",
+    "*.md"
+  ],
+  "devDependencies": {
+    "jquery": "~2.1.2",
+    "lesshat": "~3.0.0",
+    "prism": "*"
+  }
+}
