@@ -8,6 +8,13 @@ This is a very (very) basic Javascript CountDown.
 
 ## Getting Started
 
+install via npm or bower
+
+```
+$ bower install simplycountdown.js
+$ npm install simplycountdown.js
+```
+
 ### Insert simplyCountdown to your HTML
 
 ```html 
