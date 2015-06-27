@@ -14,7 +14,8 @@
     "simplyCountdown",
     "countdown",
     "clock",
-    "under construction",
+    "under",
+    "construction",
     "jquery",
     "plugin"
   ],
@@ -22,7 +23,10 @@
   "ignore": [
     "node_modules",
     "bower_components",
-    "*.md"
+    "*.md",
+    "**/.*",
+    "test",
+    "tests"
   ],
   "devDependencies": {
     "jquery": "~2.1.2",
