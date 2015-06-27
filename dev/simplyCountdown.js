@@ -1,4 +1,4 @@
-/**
+/*!
  * Project : simply-countdown
  * File : simplyCountdown
  * Date : 27/06/2015

@@ -10,6 +10,7 @@
 @color-blue-lighten: #0387A5;
 @color-gray: #BFB6AE;
 @color-gray-lighten: #F2E6DC;
+@color-white: #fff;
 
 @spacing: 20px;
 
@@ -18,6 +19,12 @@ a,abbr,acronym,address,applet,article,aside,audio,b,big,blockquote,body,canvas,c
 body, html {
   font-family: 'Lato', sans-serif;
   font-weight: 400;
+}
+
+p {
+  font-size: 18px;
+  line-height: 22px;
+  margin: @spacing 0;
 }
 
 header {
@@ -35,18 +42,15 @@ header {
       font-size: 60px;
       font-weight: 400;
       color: @color-gray-lighten;
-      margin-bottom: @spacing;
     }
 
     h2 {
       font-size: 25px;
       color: @color-gray-lighten;
-      margin-bottom: @spacing;
+      margin: (@spacing * 2) 0 (@spacing * 3) 0;
     }
 
     .repo-buttons {
-      padding: @spacing;
-
       .button {
         margin: 0 @spacing;
       }
@@ -56,13 +60,47 @@ header {
 
 .button {
   color: @color-gray-lighten;
-  background: @color-blue-lighten;
+  border:2px solid @color-gray-lighten;
   .border-radius(2px);
   text-decoration: none;
   padding: @spacing / 2;
-  .transition(0.2s ease-in-out all);
+  .transition(0.1s ease-in-out all);
+
+  > i {
+    margin-right: @spacing / 2;
+  }
 
   &:hover {
-    background: darken(@color-blue-lighten, 3%);
+    background: @color-gray-lighten;
+    color: @color-blue-darken;
+  }
+}
+
+.container {
+  width: 960px;
+  margin: auto;
+}
+
+.note {
+  background: @color-blue-lighten;
+  color: @color-white;
+  font-style: italic;
+  .border-radius(2px);
+  padding: (@spacing / 3) @spacing;
+}
+
+main {
+  h2 {
+    font-size: 33px;
+    color: @color-blue;
+    font-weight: 700;
+    margin: @spacing * 2 0;
+  }
+
+  h3 {
+    font-size: 25px;
+    color: @color-blue;
+    font-weight: 700;
+    margin: @spacing * 2 0;
   }
 }

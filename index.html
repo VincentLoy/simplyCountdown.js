@@ -8,6 +8,7 @@
 
     <link rel="stylesheet" href="css/simplyCountdown.theme.losange.css"/>
     <link rel="stylesheet" href="css/simplyCountdown.theme.default.css"/>
+    <link rel="stylesheet" href="css/demo-only/prism.css"/>
     <link rel="stylesheet" href="css/demo.css"/>
 </head>
 <body>
@@ -20,27 +21,152 @@
             <a href="https://github.com/VincentLoy/simplyCountdown.js" class="button">
                 <i class="fa fa-github"></i> View on GitHub
             </a>
-            <a href="https://github.com/VincentLoy/simplyCountdown.js" class="button">
-                <i class="fa fa-github"></i> Download Sources
+            <a href="https://github.com/VincentLoy/simplyCountdown.js/archive/master.zip" class="button">
+                <i class="fa fa-download"></i> Download Sources
             </a>
         </div>
     </div>
 </header>
-<div class="simply-countdown" id="simply-countdown"></div>
-<div class="simply-countdown-losange" id="simply-countdown-losange"></div>
+
+<main class="container">
+    <section class="intro">
+        <h2>Why another countdown ?</h2>
+
+        <p>
+            I developed this little library in a boring day. I regularly use this kind of Javascript's
+            libraries to display countdowns on websites and this one exactly meets the needs that I have.
+            It is perfect to make 'under construction' pages, etc.
+        </p>
+
+        <p>
+            This is a very (very) basic Javascript CountDown.
+        </p>
+    </section>
+
+    <section class="getting-started">
+        <h2>Getting Started</h2>
+
+        <h3>Insert simplyCountdown to your HTML</h3>
+        <pre>
+<code class="language-html">
+    &lt;link rel="stylesheet" href="css/simplyCountdown.theme.default.css"/&gt;
+    &lt;script src="dist/simplyCountdown.min.js"&gt;$lt;/script&gt;
+</code>
+        </pre>
+<pre>
+<code class="language-javascript">
+    // This is an example with default parameters
+    // You'll always have to call simplyCountdown using ID's, no classes.
+
+    simplyCountdown('elementId', {
+            year: 2015, // required
+            month: 6, // required
+            day: 28, // required
+            words: { //words displayed into the countdown
+                days: 'day',
+                hours: 'hour',
+                minutes: 'minute',
+                seconds: 'second',
+                pluralLetter: 's'
+            },
+            plural: true, //use plurals
+            inline: false, //set to true to get an inline basic countdown like : 24 days, 4 hours, 2 minutes, 5 seconds
+            inlineClass: 'simply-countdown-inline', //inline css span class in case of inline = true
+            // in case of inline set to false
+            sectionClass: 'simply-section', //section css class
+            amountClass: 'simply-amount', // amount css class
+            wordClass: 'simply-word' // word css class
+    });
+</code>
+</pre>
+        <h3>You can use it with jQuery too (not required)</h3>
+
+<pre>
+<code class="language-javascript">
+    // jQuery Example
+
+    $('#elementId').simplyCountdown({
+        year: 2015, // required
+        month: 6, // required
+        day: 28, // required
+        ...
+    });
+</code>
+</pre>
+    </section>
+
+    <section class="custom">
+        <h2>Easy to customize</h2>
+        <p>
+            You can easly customize the countdown using the css theme starter file or create your own like so :
+        </p>
+
+        <div class="note">
+            <p>
+                <i class="fa fa-info"></i> &nbsp; The following theme template works with default class in parameters
+            </p>
+        </div>
+        <pre>
+<code class="language-css">
+    /**
+    * Project : simply-countdown
+    * File : simplyCountdown.theme.custom
+    * Author : Your Name &lt;your-mail[at]example.com&gt;
+    */
+
+    .simply-countdown {
+    /* The countdown */
+    }
+    .simply-countdown > .simply-section {
+    /* coutndown blocks */
+    }
+
+    .simply-countdown > .simply-section > div {
+    /* countdown block inner div */
+    }
+
+    .simply-countdown > .simply-section .simply-amount,
+    .simply-countdown > .simply-section .simply-word {
+    /* amounts and words */
+    }
+
+    .simply-countdown > .simply-section .simply-amount {
+    /* amounts */
+    }
+
+    .simply-countdown > .simply-section .simply-word {
+    /* words */
+    }
+
+</code>
+</pre>
+    </section>
+
+    <section class="examples">
+        <h2>Examples</h2>
+        <h3>Default</h3>
+        <p>Displayed whithout jQuery</p>
+        <div class="simply-countdown" id="simply-countdown"></div>
+
+        <h3>Custom</h3>
+        <p>Displayed with jQuery</p>
+        <div class="simply-countdown-losange" id="simply-countdown-losange"></div>
+    </section>
+</main>
 
 <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/0.0.1/prism.min.js"></script>
 <script src="dev/simplyCountdown.js"></script>
 <script>
     var d = new Date();
 
-    $('#simply-countdown').simplyCountdown({
+    simplyCountdown('simply-countdown', {
         year: d.getFullYear(),
         month: d.getMonth() + 2,
         day: 25
     });
 
-    simplyCountdown('simply-countdown-losange', {
+    $('#simply-countdown-losange').simplyCountdown({
         year: d.getFullYear(),
         month: d.getMonth() + 2,
         day: 25
