@@ -29,6 +29,9 @@ $ npm install simplycountdown.js
             year: 2015, // required
             month: 6, // required
             day: 28, // required
+            hours: 0, // Default is 0 [0-23] integer
+            minutes: 0, // Default is 0 [0-59] integer
+            seconds: 0, // Default is 0 [0-59] integer
             words: { //words displayed into the countdown
                 days: 'day',
                 hours: 'hour',
@@ -97,6 +100,9 @@ You can easly customize the countdown using the css theme starter file or create
 ```
 
 ### Changelog
+
+##### 1.1.0
+- Add hours, minutes, seconds in available settings to set the target Date
 
 ##### 1.0.1
 - Fix console error when not using jQuery

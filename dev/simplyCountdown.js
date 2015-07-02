@@ -3,7 +3,7 @@
  * File : simplyCountdown
  * Date : 27/06/2015
  * License : MIT
- * Version : 1.0.1
+ * Version : 1.1.0
  * Author : Vincent Loy <vincent.loy1@gmail.com>
  */
 /*global window, document*/
@@ -44,6 +44,9 @@
                 year: 2015,
                 month: 6,
                 day: 28,
+                hours: 0,
+                minutes: 0,
+                seconds: 0,
                 words: {
                     days: 'day',
                     hours: 'hour',
@@ -58,7 +61,7 @@
                 amountClass: 'simply-amount',
                 wordClass: 'simply-word'
             }, args),
-            targetDate = new Date(parameters.year, parameters.month - 1, parameters.day),
+            targetDate,
             currentDate,
             secondsLeft,
             days,
@@ -66,6 +69,15 @@
             minutes,
             seconds,
             countdown = document.getElementById(eltId);
+
+        targetDate = new Date(
+            parameters.year,
+            parameters.month - 1,
+            parameters.day,
+            parameters.hours,
+            parameters.minutes,
+            parameters.seconds
+        );
 
         window.setInterval(function () {
             var spanTag,
