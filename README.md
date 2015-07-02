@@ -95,3 +95,11 @@ You can easly customize the countdown using the css theme starter file or create
         /* words */
    }
 ```
+
+### Changelog
+
+##### 1.0.1
+- Fix console error when not using jQuery
+
+##### 1.0.0
+- initial release
