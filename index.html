@@ -171,18 +171,18 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/0.0.1/prism.min.js"></script>
 <script src="dev/simplyCountdown.js"></script>
 <script>
-    var d = new Date();
+    var d = new Date(new Date().getTime() + 48 * 120 * 120 * 2000);
 
     simplyCountdown('simply-countdown', {
         year: d.getFullYear(),
-        month: d.getMonth() + 2,
-        day: 25
+        month: d.getMonth() + 1,
+        day: d.getDate()
     });
 
     $('#simply-countdown-losange').simplyCountdown({
         year: d.getFullYear(),
-        month: d.getMonth() + 2,
-        day: 25
+        month: d.getMonth() + 1,
+        day: d.getDate()
     });
 </script>
 </body>
