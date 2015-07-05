@@ -23,9 +23,8 @@ $ npm install simplycountdown.js
 ``` 
 ```javascript 
     // This is an example with default parameters
-    // You'll always have to call simplyCountdown using ID's, no classes.
 
-    simplyCountdown('elementId', {
+    simplyCountdown('[CSS-SELECTOR]', {
             year: 2015, // required
             month: 6, // required
             day: 28, // required
@@ -53,7 +52,7 @@ $ npm install simplycountdown.js
 
 ```javascript 
 // jQuery Example 
-$('#elementId').simplyCountdown({ 
+$('[CSS-SELECTOR]').simplyCountdown({ 
     year: 2015, // required 
     month: 6, // required 
     day: 28, // required 
@@ -110,6 +109,9 @@ You can easly customize the countdown using the css theme starter file or create
 - Small is better than Big.
 
 ### Changelog
+
+##### 1.1.1
+- Resolve #3 - Remove ID Only compatibility
 
 ##### 1.1.0
 - Add hours, minutes, seconds in available settings to set the target Date

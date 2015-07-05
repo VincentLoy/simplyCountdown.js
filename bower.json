@@ -1,6 +1,6 @@
 {
   "name": "simplycountdown.js",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "homepage": "https://github.com/VincentLoy/simplyCountdown.js",
   "authors": [
     "VincentLoy <vincent.loy1@gmail.com>"
@@ -23,13 +23,12 @@
   "ignore": [
     "node_modules",
     "bower_components",
-    "*.md",
-    "**/.*",
-    "test",
-    "tests"
+    "*.md"
   ],
+  "dependencies": {
+    "jquery": "~1.11.3"
+  },
   "devDependencies": {
-    "jquery": "~2.1.2",
     "lesshat": "~3.0.0",
     "prism": "*"
   }

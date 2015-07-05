@@ -67,7 +67,7 @@
     // This is an example with default parameters
     // You'll always have to call simplyCountdown using ID's, no classes.
 
-    simplyCountdown('elementId', {
+    simplyCountdown('[CSS-SELECTOR]', {
             year: 2015, // required
             month: 6, // required
             day: 28, // required
@@ -97,7 +97,7 @@
 <code class="language-javascript">
     // jQuery Example
 
-    $('#elementId').simplyCountdown({
+    $('[CSS-SELECTOR]').simplyCountdown({
         year: 2015, // required
         month: 6, // required
         day: 28, // required
@@ -158,7 +158,7 @@
         <h2>Examples</h2>
         <h3>Default</h3>
         <p>Displayed whithout jQuery</p>
-        <div class="simply-countdown" id="simply-countdown"></div>
+        <div class="simply-countdown simply-countdown-one"></div>
 
         <h3>Custom</h3>
         <p>Displayed with jQuery</p>
@@ -170,22 +170,22 @@
     <p>Made with &#x2764; by <a href="https://github.com/VincentLoy">Vincent Loy</a></p>
 </footer>
 
-<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/0.0.1/prism.min.js"></script>
 <script src="dev/simplyCountdown.js"></script>
 <script>
     var d = new Date(new Date().getTime() + 48 * 120 * 120 * 2000);
 
-    simplyCountdown('simply-countdown', {
+    simplyCountdown('.simply-countdown-one', {
         year: d.getFullYear(),
         month: d.getMonth() + 1,
-        day: d.getDate(),
+        day: d.getDate()
     });
 
     $('#simply-countdown-losange').simplyCountdown({
         year: d.getFullYear(),
         month: d.getMonth() + 1,
-        day: d.getDate(),
+        day: d.getDate()
     });
 </script>
 </body>

@@ -3,7 +3,7 @@
  * File : simplyCountdown
  * Date : 27/06/2015
  * License : MIT
- * Version : 1.1.0
+ * Version : 1.1.1
  * Author : Vincent Loy <vincent.loy1@gmail.com>
  */
 /*global window, document*/
@@ -38,7 +38,7 @@
         return out;
     };
 
-    simplyCountdown = function (eltId, args) {
+    simplyCountdown = function (elt, args) {
 
         var parameters = extend({
                 year: 2015,
@@ -68,7 +68,7 @@
             hours,
             minutes,
             seconds,
-            countdown = document.getElementById(eltId);
+            cd = document.querySelectorAll(elt);
 
         targetDate = new Date(
             parameters.year,
@@ -79,100 +79,102 @@
             parameters.seconds
         );
 
-        window.setInterval(function () {
-            var spanTag,
-                sectionTag,
-                amountTag,
-                sectionTagInnerContainer,
-                wordTag,
-                dayWord,
-                hourWord,
-                minuteWord,
-                fullCountDown,
-                secondWord;
+        Array.prototype.forEach.call(cd, function (countdown) {
 
-            currentDate = new Date().getTime();
-            secondsLeft = (targetDate - currentDate) / 1000;
+            window.setInterval(function () {
+                var spanTag,
+                    sectionTag,
+                    amountTag,
+                    sectionTagInnerContainer,
+                    wordTag,
+                    dayWord,
+                    hourWord,
+                    minuteWord,
+                    fullCountDown,
+                    secondWord;
 
-            if (secondsLeft > 0) {
-                days = parseInt(secondsLeft / 86400, 10);
-                secondsLeft = secondsLeft % 86400;
+                currentDate = new Date().getTime();
+                secondsLeft = (targetDate - currentDate) / 1000;
 
-                hours = parseInt(secondsLeft / 3600, 10);
-                secondsLeft = secondsLeft % 3600;
+                if (secondsLeft > 0) {
+                    days = parseInt(secondsLeft / 86400, 10);
+                    secondsLeft = secondsLeft % 86400;
 
-                minutes = parseInt(secondsLeft / 60, 10);
-                seconds = parseInt(secondsLeft % 60, 10);
-            } else {
-                days = 0;
-                hours = 0;
-                minutes = 0;
-                seconds = 0;
-            }
+                    hours = parseInt(secondsLeft / 3600, 10);
+                    secondsLeft = secondsLeft % 3600;
 
-            if (parameters.plural) {
-                dayWord = days > 1 ? parameters.words.days + parameters.words.pluralLetter : parameters.words.days;
-                hourWord = hours > 1 ? parameters.words.hours + parameters.words.pluralLetter : parameters.words.hours;
-                minuteWord = minutes > 1 ? parameters.words.minutes + parameters.words.pluralLetter : parameters.words.minutes;
-                secondWord = seconds > 1 ? parameters.words.seconds + parameters.words.pluralLetter : parameters.words.seconds;
-            } else {
-                dayWord = parameters.words.days;
-                hourWord = parameters.words.hours;
-                minuteWord = parameters.words.minutes;
-                secondWord = parameters.words.seconds;
-            }
+                    minutes = parseInt(secondsLeft / 60, 10);
+                    seconds = parseInt(secondsLeft % 60, 10);
+                } else {
+                    days = 0;
+                    hours = 0;
+                    minutes = 0;
+                    seconds = 0;
+                }
 
-            /* display an inline countdown into a span tag */
-            if (parameters.inline) {
-                spanTag = document.createElement('span');
-                spanTag.classList.add(parameters.inlineClass);
+                if (parameters.plural) {
+                    dayWord = days > 1 ? parameters.words.days + parameters.words.pluralLetter : parameters.words.days;
+                    hourWord = hours > 1 ? parameters.words.hours + parameters.words.pluralLetter : parameters.words.hours;
+                    minuteWord = minutes > 1 ? parameters.words.minutes + parameters.words.pluralLetter : parameters.words.minutes;
+                    secondWord = seconds > 1 ? parameters.words.seconds + parameters.words.pluralLetter : parameters.words.seconds;
+                } else {
+                    dayWord = parameters.words.days;
+                    hourWord = parameters.words.hours;
+                    minuteWord = parameters.words.minutes;
+                    secondWord = parameters.words.seconds;
+                }
 
-                spanTag.innerHTML =
-                    days + ' ' + dayWord + ', ' +
-                    hours + ' ' + hourWord + ', ' +
-                    minutes + ' ' + minuteWord + ', ' +
-                    seconds + ' ' + secondWord + ', ';
+                /* display an inline countdown into a span tag */
+                if (parameters.inline) {
+                    spanTag = document.createElement('span');
+                    spanTag.classList.add(parameters.inlineClass);
 
-                countdown.innerHTML = spanTag.outerHTML;
-            } else {
-                sectionTag = document.createElement('div');
-                amountTag = document.createElement('span');
-                wordTag = document.createElement('span');
-                sectionTagInnerContainer = document.createElement('div');
+                    spanTag.innerHTML =
+                        days + ' ' + dayWord + ', ' +
+                        hours + ' ' + hourWord + ', ' +
+                        minutes + ' ' + minuteWord + ', ' +
+                        seconds + ' ' + secondWord + ', ';
 
-                sectionTag.classList.add(parameters.sectionClass);
-                amountTag.classList.add(parameters.amountClass);
-                wordTag.classList.add(parameters.wordClass);
+                    countdown.innerHTML = spanTag.outerHTML;
+                } else {
+                    sectionTag = document.createElement('div');
+                    amountTag = document.createElement('span');
+                    wordTag = document.createElement('span');
+                    sectionTagInnerContainer = document.createElement('div');
 
-                sectionTagInnerContainer.appendChild(amountTag);
-                sectionTagInnerContainer.appendChild(wordTag);
+                    sectionTag.classList.add(parameters.sectionClass);
+                    amountTag.classList.add(parameters.amountClass);
+                    wordTag.classList.add(parameters.wordClass);
 
-                sectionTag.appendChild(sectionTagInnerContainer);
+                    sectionTagInnerContainer.appendChild(amountTag);
+                    sectionTagInnerContainer.appendChild(wordTag);
 
-                amountTag.innerHTML = days;
-                wordTag.innerHTML = dayWord;
+                    sectionTag.appendChild(sectionTagInnerContainer);
 
-                fullCountDown = sectionTag.outerHTML;
+                    amountTag.innerHTML = days;
+                    wordTag.innerHTML = dayWord;
 
-                amountTag.innerHTML = hours;
-                wordTag.innerHTML = hourWord;
+                    fullCountDown = sectionTag.outerHTML;
 
-                fullCountDown += sectionTag.outerHTML;
+                    amountTag.innerHTML = hours;
+                    wordTag.innerHTML = hourWord;
 
-                amountTag.innerHTML = minutes;
-                wordTag.innerHTML = minuteWord;
+                    fullCountDown += sectionTag.outerHTML;
 
-                fullCountDown += sectionTag.outerHTML;
+                    amountTag.innerHTML = minutes;
+                    wordTag.innerHTML = minuteWord;
 
-                amountTag.innerHTML = seconds;
-                wordTag.innerHTML = secondWord;
+                    fullCountDown += sectionTag.outerHTML;
 
-                fullCountDown += sectionTag.outerHTML;
+                    amountTag.innerHTML = seconds;
+                    wordTag.innerHTML = secondWord;
 
+                    fullCountDown += sectionTag.outerHTML;
 
-                countdown.innerHTML = fullCountDown;
-            }
-        }, 1000);
+                    countdown.innerHTML = fullCountDown;
+                }
+            }, 1000);
+        });
     };
 
     exports.simplyCountdown = simplyCountdown;
@@ -188,7 +190,7 @@ if (window.jQuery) {
         }
 
         $.fn.simplyCountdown = function (options) {
-            return simplyCountdownify(this.selector.replace('#', ''), options);
+            return simplyCountdownify(this.selector, options);
         };
     }(jQuery, simplyCountdown));
 }
