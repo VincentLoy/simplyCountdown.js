@@ -99,6 +99,16 @@ You can easly customize the countdown using the css theme starter file or create
    }
 ```
 
+### Contributing
+- Give it a [star](https://github.com/VincentLoy/simplyCountdown.js/stargazers) !
+- [Report a bug](https://github.com/VincentLoy/simplyCountdown.js/issues)
+- Tweet about it :)
+
+#### Pull Requests
+- **Solve a problem**
+- For code enhancement, use [JSLint](http://www.jslint.com/help.html) as a code quality tool.
+- Small is better than Big.
+
 ### Changelog
 
 ##### 1.1.0
