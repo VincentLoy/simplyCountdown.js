@@ -157,11 +157,11 @@
     <section class="examples">
         <h2>Examples</h2>
         <h3>Default</h3>
-        <p>Displayed whithout jQuery</p>
+        <p>Displayed whithout jQuery - UTC enabled</p>
         <div class="simply-countdown simply-countdown-one"></div>
 
         <h3>Custom</h3>
-        <p>Displayed with jQuery</p>
+        <p>Displayed with jQuery - UTC disabled</p>
         <div class="simply-countdown-losange" id="simply-countdown-losange"></div>
     </section>
 </main>
@@ -185,7 +185,8 @@
     $('#simply-countdown-losange').simplyCountdown({
         year: d.getFullYear(),
         month: d.getMonth() + 1,
-        day: d.getDate()
+        day: d.getDate(),
+        enableUtc: false
     });
 </script>
 </body>
