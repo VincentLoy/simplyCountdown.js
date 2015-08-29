@@ -83,8 +83,14 @@
         );
 
         if (parameters.enableUtc) {
-            targetDate = new Date(targetTmpDate.getUTCFullYear(), targetTmpDate.getUTCMonth(), targetTmpDate.getUTCDate(),  targetTmpDate.getUTCHours(),
-                targetTmpDate.getUTCMinutes(), targetTmpDate.getUTCSeconds());
+            targetDate = new Date(
+                targetTmpDate.getUTCFullYear(),
+                targetTmpDate.getUTCMonth(),
+                targetTmpDate.getUTCDate(),
+                targetTmpDate.getUTCHours(),
+                targetTmpDate.getUTCMinutes(),
+                targetTmpDate.getUTCSeconds()
+            );
         } else {
             targetDate = targetTmpDate;
         }
@@ -130,10 +136,18 @@
                 }
 
                 if (parameters.plural) {
-                    dayWord = days > 1 ? parameters.words.days + parameters.words.pluralLetter : parameters.words.days;
-                    hourWord = hours > 1 ? parameters.words.hours + parameters.words.pluralLetter : parameters.words.hours;
-                    minuteWord = minutes > 1 ? parameters.words.minutes + parameters.words.pluralLetter : parameters.words.minutes;
-                    secondWord = seconds > 1 ? parameters.words.seconds + parameters.words.pluralLetter : parameters.words.seconds;
+                    dayWord = days > 1
+                        ? parameters.words.days + parameters.words.pluralLetter : parameters.words.days;
+
+                    hourWord = hours > 1
+                        ? parameters.words.hours + parameters.words.pluralLetter : parameters.words.hours;
+
+                    minuteWord = minutes > 1
+                        ? parameters.words.minutes + parameters.words.pluralLetter : parameters.words.minutes;
+
+                    secondWord = seconds > 1
+                        ? parameters.words.seconds + parameters.words.pluralLetter : parameters.words.seconds;
+
                 } else {
                     dayWord = parameters.words.days;
                     hourWord = parameters.words.hours;
