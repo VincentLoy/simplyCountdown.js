@@ -3,7 +3,7 @@
  * File : simplyCountdown
  * Date : 27/06/2015
  * License : MIT
- * Version : 1.1.1
+ * Version : 1.2.0
  * Author : Vincent Loy <vincent.loy1@gmail.com>
  */
 /*global window, document*/
@@ -56,13 +56,16 @@
                 },
                 plural: true,
                 inline: false,
+                enableUtc: true,
                 inlineClass: 'simply-countdown-inline',
                 sectionClass: 'simply-section',
                 amountClass: 'simply-amount',
                 wordClass: 'simply-word'
             }, args),
             targetDate,
-            currentDate,
+            targetTmpDate,
+            now,
+            nowUtc,
             secondsLeft,
             days,
             hours,
@@ -70,7 +73,7 @@
             seconds,
             cd = document.querySelectorAll(elt);
 
-        targetDate = new Date(
+        targetTmpDate = new Date(
             parameters.year,
             parameters.month - 1,
             parameters.day,
@@ -78,6 +81,13 @@
             parameters.minutes,
             parameters.seconds
         );
+
+        if (parameters.enableUtc) {
+            targetDate = new Date(targetTmpDate.getUTCFullYear(), targetTmpDate.getUTCMonth(), targetTmpDate.getUTCDate(),  targetTmpDate.getUTCHours(),
+                targetTmpDate.getUTCMinutes(), targetTmpDate.getUTCSeconds());
+        } else {
+            targetDate = targetTmpDate;
+        }
 
         Array.prototype.forEach.call(cd, function (countdown) {
 
@@ -93,8 +103,15 @@
                     fullCountDown,
                     secondWord;
 
-                currentDate = new Date().getTime();
-                secondsLeft = (targetDate - currentDate) / 1000;
+                now = new Date();
+                if (parameters.enableUtc) {
+                    nowUtc = new Date(now.getFullYear(), now.getMonth(), now.getDate(),  now.getHours(),
+                        now.getMinutes(), now.getSeconds());
+                    secondsLeft = (targetDate - nowUtc.getTime()) / 1000;
+
+                } else {
+                    secondsLeft = (targetDate - now.getTime()) / 1000;
+                }
 
                 if (secondsLeft > 0) {
                     days = parseInt(secondsLeft / 86400, 10);

@@ -42,6 +42,7 @@ $ npm install simplycountdown.js
             inline: false, //set to true to get an inline basic countdown like : 24 days, 4 hours, 2 minutes, 5 seconds
             inlineClass: 'simply-countdown-inline', //inline css span class in case of inline = true
             // in case of inline set to false
+            enableUtc: true, //Use UTC as default
             sectionClass: 'simply-section', //section css class
             amountClass: 'simply-amount', // amount css class
             wordClass: 'simply-word' // word css class
@@ -110,6 +111,11 @@ You can easly customize the countdown using the css theme starter file or create
 
 ### Changelog
 
+##### 1.2.0
+- Resolve #4 - Add UTC support adding enableUtc parameter
+```javascript
+enableUtc: true //true is default
+```
 ##### 1.1.1
 - Resolve #3 - Remove ID Only compatibility
 
