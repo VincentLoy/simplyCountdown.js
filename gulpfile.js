@@ -18,6 +18,7 @@
         plumber = require('gulp-plumber'),
         uglify = require('gulp-uglify'),
         rename = require('gulp-rename'),
+        browserSync = require('browser-sync'),
         targetCSSDir = 'css',
         targetLESSDir = targetCSSDir + '/less',
         devJSDir = 'dev',
@@ -61,13 +62,27 @@
             .pipe(gulp.dest(distJSDir));
     });
 
-    // Keep an eye on Less
-    gulp.task('watch', function () {
+    gulp.task('serve', ['css', 'compress'], function () {
+        browserSync.init({
+            open: false,
+            server: {
+                baseDir: './'
+            }
+        });
+
+        gulp.watch(devJSDir + '/simplyCountdown.js', ['compress']);
         gulp.watch(targetLESSDir + '/**/*.less', ['css', 'compile-themes']);
+        gulp.watch(['*.html', targetLESSDir + '/**/*.less', devJSDir + '/simplyCountdown.js'])
+            .on('change', browserSync.reload);
     });
 
+    // Keep an eye on Less
+    //gulp.task('watch', function () {
+    //    gulp.watch(targetLESSDir + '/**/*.less', ['css', 'compile-themes']);
+    //});
+
     // What tasks does running gulp trigger?
-    gulp.task('default', ['css', 'compile-themes', 'watch']);
+    gulp.task('default', ['css', 'compile-themes', 'serve']);
 
     //To uglify the new version of simplyCountdown run : gulp release or gulp compress
     gulp.task('release', ['compress']);

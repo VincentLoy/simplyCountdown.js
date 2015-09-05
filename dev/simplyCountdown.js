@@ -10,7 +10,8 @@
 (function (exports) {
     'use strict';
 
-    var extend,
+    var // functions
+        extend,
         simplyCountdown;
 
     extend = function (out) {
@@ -39,7 +40,6 @@
     };
 
     simplyCountdown = function (elt, args) {
-
         var parameters = extend({
                 year: 2015,
                 month: 6,
