@@ -287,43 +287,6 @@
 
                     fullCountDown.seconds.amount.innerHTML = seconds;
                     fullCountDown.seconds.word.innerHTML = secondWord;
-
-
-                    //sectionTag = document.createElement('div');
-                    //amountTag = document.createElement('span');
-                    //wordTag = document.createElement('span');
-                    //sectionTagInnerContainer = document.createElement('div');
-                    //
-                    //sectionTag.classList.add(parameters.sectionClass);
-                    //amountTag.classList.add(parameters.amountClass);
-                    //wordTag.classList.add(parameters.wordClass);
-                    //
-                    //sectionTagInnerContainer.appendChild(amountTag);
-                    //sectionTagInnerContainer.appendChild(wordTag);
-                    //
-                    //sectionTag.appendChild(sectionTagInnerContainer);
-                    //
-                    //amountTag.innerHTML = days;
-                    //wordTag.innerHTML = dayWord;
-                    //
-                    //fullCountDown = sectionTag.outerHTML;
-                    //
-                    //amountTag.innerHTML = hours;
-                    //wordTag.innerHTML = hourWord;
-                    //
-                    //fullCountDown += sectionTag.outerHTML;
-                    //
-                    //amountTag.innerHTML = minutes;
-                    //wordTag.innerHTML = minuteWord;
-                    //
-                    //fullCountDown += sectionTag.outerHTML;
-                    //
-                    //amountTag.innerHTML = seconds;
-                    //wordTag.innerHTML = secondWord;
-                    //
-                    //fullCountDown += sectionTag.outerHTML;
-                    //
-                    //countdown.innerHTML = fullCountDown;
                 }
             }, 1000);
         });
