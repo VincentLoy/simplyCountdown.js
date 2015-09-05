@@ -41,7 +41,10 @@
     };
 
     createElements = function (parameters, countdown) {
-        var daysSectionTag,
+        var // inline mode
+            spanTag,
+            // block mode
+            daysSectionTag,
             daysAmount,
             daysWord,
             daysInnerContainer,
@@ -139,10 +142,11 @@
                 }
             };
 
-        } else {
-            spanTag = document.createElement('span');
-            spanTag.classList.add(parameters.inlineClass);
         }
+
+        spanTag = document.createElement('span');
+        spanTag.classList.add(parameters.inlineClass);
+        return spanTag;
     };
 
     simplyCountdown = function (elt, args) {
@@ -163,11 +167,15 @@
                 plural: true,
                 inline: false,
                 enableUtc: true,
+                onEnd: function () {
+                    return;
+                },
                 inlineClass: 'simply-countdown-inline',
                 sectionClass: 'simply-section',
                 amountClass: 'simply-amount',
                 wordClass: 'simply-word'
             }, args),
+            interval,
             targetDate,
             targetTmpDate,
             now,
@@ -205,9 +213,8 @@
             var fullCountDown = createElements(parameters, countdown);
             //console.log('fullCD', fullCountDown);
 
-            window.setInterval(function () {
-                var spanTag,
-                    dayWord,
+            interval = window.setInterval(function () {
+                var dayWord,
                     hourWord,
                     minuteWord,
                     secondWord;
@@ -236,6 +243,8 @@
                     hours = 0;
                     minutes = 0;
                     seconds = 0;
+                    window.clearInterval(interval);
+                    parameters.onEnd();
                 }
 
                 if (parameters.plural) {
@@ -260,16 +269,12 @@
 
                 /* display an inline countdown into a span tag */
                 if (parameters.inline) {
-                    spanTag = document.createElement('span');
-                    spanTag.classList.add(parameters.inlineClass);
-
-                    spanTag.innerHTML =
+                    countdown.innerHTML =
                         days + ' ' + dayWord + ', ' +
                         hours + ' ' + hourWord + ', ' +
                         minutes + ' ' + minuteWord + ', ' +
-                        seconds + ' ' + secondWord + ', ';
+                        seconds + ' ' + secondWord + '.';
 
-                    countdown.innerHTML = spanTag.outerHTML;
                 } else {
                     fullCountDown.days.amount.innerHTML = days;
                     fullCountDown.days.word.innerHTML = dayWord;

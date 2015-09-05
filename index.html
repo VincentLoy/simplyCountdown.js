@@ -174,24 +174,18 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/0.0.1/prism.min.js"></script>
 <script src="dev/simplyCountdown.js"></script>
 <script>
-//    var d = new Date(2015, 8, 12, 23, 45);
-
-//    console.log(new Date());
-//    console.log(d);
+    var d = new Date(new Date().getTime() + 48 * 120 * 120 * 2000);
 
     simplyCountdown('.simply-countdown-one', {
-        year: 2015,
-        month: 9,
-        day: 6
+        year: d.getFullYear(),
+        month: d.getMonth() + 1,
+        day: d.getDate()
     });
 
     $('#simply-countdown-losange').simplyCountdown({
-        year: 2015,
-        month: 9,
-        day: 5,
-        hours: 23,
-        minutes: 14,
-        seconds: 0,
+        year: d.getFullYear(),
+        month: d.getMonth() + 1,
+        day: d.getDate(),
         enableUtc: false
     });
 </script>
