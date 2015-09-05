@@ -43,6 +43,7 @@ $ npm install simplycountdown.js
             inlineClass: 'simply-countdown-inline', //inline css span class in case of inline = true
             // in case of inline set to false
             enableUtc: true, //Use UTC as default
+            onEnd: function() { return; } //Callback on countdown end, put your own function here
             sectionClass: 'simply-section', //section css class
             amountClass: 'simply-amount', // amount css class
             wordClass: 'simply-word' // word css class
@@ -110,6 +111,14 @@ You can easly customize the countdown using the css theme starter file or create
 - Small is better than Big.
 
 ### Changelog
+
+##### 1.3.0
+- Add onEnd callback
+```javascript
+onEnd: function () {
+    // some code
+}
+```
 
 ##### 1.2.0
 - Resolve #4 - Add UTC support adding enableUtc parameter
