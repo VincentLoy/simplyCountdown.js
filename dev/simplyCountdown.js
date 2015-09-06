@@ -182,8 +182,8 @@
 
                 now = new Date();
                 if (parameters.enableUtc) {
-                    nowUtc = new Date(now.getFullYear(), now.getMonth(), now.getDate(),  now.getHours(),
-                        now.getMinutes(), now.getSeconds());
+                    nowUtc = new Date(now.getFullYear(), now.getMonth(), now.getDate(),
+                        now.getHours(), now.getMinutes(), now.getSeconds());
                     secondsLeft = (targetDate - nowUtc.getTime()) / 1000;
 
                 } else {
@@ -210,16 +210,20 @@
 
                 if (parameters.plural) {
                     dayWord = days > 1
-                        ? parameters.words.days + parameters.words.pluralLetter : parameters.words.days;
+                        ? parameters.words.days + parameters.words.pluralLetter
+                        : parameters.words.days;
 
                     hourWord = hours > 1
-                        ? parameters.words.hours + parameters.words.pluralLetter : parameters.words.hours;
+                        ? parameters.words.hours + parameters.words.pluralLetter
+                        : parameters.words.hours;
 
                     minuteWord = minutes > 1
-                        ? parameters.words.minutes + parameters.words.pluralLetter : parameters.words.minutes;
+                        ? parameters.words.minutes + parameters.words.pluralLetter
+                        : parameters.words.minutes;
 
                     secondWord = seconds > 1
-                        ? parameters.words.seconds + parameters.words.pluralLetter : parameters.words.seconds;
+                        ? parameters.words.seconds + parameters.words.pluralLetter
+                        : parameters.words.seconds;
 
                 } else {
                     dayWord = parameters.words.days;
