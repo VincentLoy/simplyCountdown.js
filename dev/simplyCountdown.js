@@ -108,6 +108,7 @@
                 onEnd: function () {
                     return;
                 },
+                refresh: 1000,
                 inlineClass: 'simply-countdown-inline',
                 sectionClass: 'simply-section',
                 amountClass: 'simply-amount',
@@ -225,7 +226,7 @@
                     fullCountDown.seconds.amount.textContent = seconds;
                     fullCountDown.seconds.word.textContent = secondWord;
                 }
-            }, 1000);
+            }, parameters.refresh);
         });
     };
 
