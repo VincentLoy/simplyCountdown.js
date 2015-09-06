@@ -13,6 +13,7 @@
     var // functions
         extend,
         createElements,
+        createCountdownElt,
         simplyCountdown;
 
     extend = function (out) {
@@ -40,108 +41,45 @@
         return out;
     };
 
+    createCountdownElt = function (countdown, parameters, typeClass) {
+        var innerSectionTag,
+            sectionTag,
+            amountTag,
+            wordTag;
+
+        sectionTag = document.createElement('div');
+        amountTag = document.createElement('span');
+        wordTag = document.createElement('span');
+        innerSectionTag = document.createElement('div');
+
+        innerSectionTag.appendChild(amountTag);
+        innerSectionTag.appendChild(wordTag);
+        sectionTag.appendChild(innerSectionTag);
+
+        sectionTag.classList.add(parameters.sectionClass);
+        sectionTag.classList.add(typeClass);
+        amountTag.classList.add(parameters.amountClass);
+        wordTag.classList.add(parameters.wordClass);
+
+        countdown.appendChild(sectionTag);
+
+        return {
+            full: sectionTag,
+            amount: amountTag,
+            word: wordTag
+        };
+    };
+
     createElements = function (parameters, countdown) {
-        var // inline mode
-            spanTag,
-            // block mode
-            daysSectionTag,
-            daysAmount,
-            daysWord,
-            daysInnerContainer,
-            hoursSectionTag,
-            hoursAmount,
-            hoursWord,
-            hoursInnerContainer,
-            minutesSectionTag,
-            minutesAmount,
-            minutesWord,
-            minutesInnerContainer,
-            secondsSectionTag,
-            secondsAmount,
-            secondsWord,
-            secondsInnerContainer;
+        var spanTag;
 
         if (!parameters.inline) {
-            daysSectionTag = document.createElement('div');
-            daysAmount = document.createElement('span');
-            daysWord = document.createElement('span');
-            daysInnerContainer = document.createElement('div');
-
-            daysInnerContainer.appendChild(daysAmount);
-            daysInnerContainer.appendChild(daysWord);
-            daysSectionTag.appendChild(daysInnerContainer);
-
-            minutesSectionTag = document.createElement('div');
-            minutesAmount = document.createElement('span');
-            minutesWord = document.createElement('span');
-            minutesInnerContainer = document.createElement('div');
-
-            minutesInnerContainer.appendChild(minutesAmount);
-            minutesInnerContainer.appendChild(minutesWord);
-            minutesSectionTag.appendChild(minutesInnerContainer);
-
-            hoursSectionTag = document.createElement('div');
-            hoursAmount = document.createElement('span');
-            hoursWord = document.createElement('span');
-            hoursInnerContainer = document.createElement('div');
-
-            hoursInnerContainer.appendChild(hoursAmount);
-            hoursInnerContainer.appendChild(hoursWord);
-            hoursSectionTag.appendChild(hoursInnerContainer);
-
-            secondsSectionTag = document.createElement('div');
-            secondsAmount = document.createElement('span');
-            secondsWord = document.createElement('span');
-            secondsInnerContainer = document.createElement('div');
-
-            secondsInnerContainer.appendChild(secondsAmount);
-            secondsInnerContainer.appendChild(secondsWord);
-            secondsSectionTag.appendChild(secondsInnerContainer);
-
-            daysSectionTag.classList.add(parameters.sectionClass);
-            hoursSectionTag.classList.add(parameters.sectionClass);
-            minutesSectionTag.classList.add(parameters.sectionClass);
-            secondsSectionTag.classList.add(parameters.sectionClass);
-
-            daysAmount.classList.add(parameters.amountClass);
-            hoursAmount.classList.add(parameters.amountClass);
-            minutesAmount.classList.add(parameters.amountClass);
-            secondsAmount.classList.add(parameters.amountClass);
-
-            daysWord.classList.add(parameters.wordClass);
-            hoursWord.classList.add(parameters.wordClass);
-            minutesWord.classList.add(parameters.wordClass);
-            secondsWord.classList.add(parameters.wordClass);
-
-
-            countdown.appendChild(daysSectionTag);
-            countdown.appendChild(hoursSectionTag);
-            countdown.appendChild(minutesSectionTag);
-            countdown.appendChild(secondsSectionTag);
-
             return {
-                days: {
-                    full: daysSectionTag,
-                    amount: daysAmount,
-                    word: daysWord
-                },
-                hours: {
-                    full: hoursSectionTag,
-                    amount: hoursAmount,
-                    word: hoursWord
-                },
-                minutes: {
-                    full: minutesSectionTag,
-                    amount: minutesAmount,
-                    word: minutesWord
-                },
-                seconds: {
-                    full: secondsSectionTag,
-                    amount: secondsAmount,
-                    word: secondsWord
-                }
+                days: createCountdownElt(countdown, parameters, 'simply-days-section'),
+                hours: createCountdownElt(countdown, parameters, 'simply-hours-section'),
+                minutes: createCountdownElt(countdown, parameters, 'simply-minutes-section'),
+                seconds: createCountdownElt(countdown, parameters, 'simply-seconds-section')
             };
-
         }
 
         spanTag = document.createElement('span');
@@ -211,7 +149,6 @@
 
         Array.prototype.forEach.call(cd, function (countdown) {
             var fullCountDown = createElements(parameters, countdown);
-            //console.log('fullCD', fullCountDown);
 
             interval = window.setInterval(function () {
                 var dayWord,
@@ -276,17 +213,17 @@
                         seconds + ' ' + secondWord + '.';
 
                 } else {
-                    fullCountDown.days.amount.innerHTML = days;
-                    fullCountDown.days.word.innerHTML = dayWord;
+                    fullCountDown.days.amount.textContent = days;
+                    fullCountDown.days.word.textContent = dayWord;
 
-                    fullCountDown.hours.amount.innerHTML = hours;
-                    fullCountDown.hours.word.innerHTML = hourWord;
+                    fullCountDown.hours.amount.textContent = hours;
+                    fullCountDown.hours.word.textContent = hourWord;
 
-                    fullCountDown.minutes.amount.innerHTML = minutes;
-                    fullCountDown.minutes.word.innerHTML = minuteWord;
+                    fullCountDown.minutes.amount.textContent = minutes;
+                    fullCountDown.minutes.word.textContent = minuteWord;
 
-                    fullCountDown.seconds.amount.innerHTML = seconds;
-                    fullCountDown.seconds.word.innerHTML = secondWord;
+                    fullCountDown.seconds.amount.textContent = seconds;
+                    fullCountDown.seconds.word.textContent = secondWord;
                 }
             }, 1000);
         });
