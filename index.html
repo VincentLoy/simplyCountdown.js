@@ -59,7 +59,7 @@
         <pre>
 <code class="language-html">
     &lt;link rel="stylesheet" href="css/simplyCountdown.theme.default.css"/&gt;
-    &lt;script src="dist/simplyCountdown.min.js"&gt;$lt;/script&gt;
+    &lt;script src="dist/simplyCountdown.min.js"&gt;&lt;/script&gt;
 </code>
         </pre>
 <pre>
@@ -89,7 +89,8 @@
             onEnd: function () {
                 // your code
                 return;
-            }
+            },
+            refresh: 1000, //default refresh every 1s
             sectionClass: 'simply-section', //section css class
             amountClass: 'simply-amount', // amount css class
             wordClass: 'simply-word' // word css class
@@ -168,6 +169,9 @@
         <h3>Custom</h3>
         <p>Displayed with jQuery - UTC disabled</p>
         <div class="simply-countdown-losange" id="simply-countdown-losange"></div>
+
+        <h3>Inline</h3>
+        <div class="simply-countdown-inline"></div>
     </section>
 </main>
 
@@ -181,12 +185,22 @@
 <script>
     var d = new Date(new Date().getTime() + 48 * 120 * 120 * 2000);
 
+    // default example
     simplyCountdown('.simply-countdown-one', {
         year: d.getFullYear(),
         month: d.getMonth() + 1,
         day: d.getDate()
     });
 
+    // inline example
+    simplyCountdown('.simply-countdown-inline', {
+        year: d.getFullYear(),
+        month: d.getMonth() + 1,
+        day: d.getDate(),
+        inline: true
+    });
+
+    //jQuery example
     $('#simply-countdown-losange').simplyCountdown({
         year: d.getFullYear(),
         month: d.getMonth() + 1,

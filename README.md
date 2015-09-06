@@ -44,6 +44,7 @@ $ npm install simplycountdown.js
             // in case of inline set to false
             enableUtc: true, //Use UTC as default
             onEnd: function() { return; } //Callback on countdown end, put your own function here
+            refresh: 1000, // default refresh every 1s
             sectionClass: 'simply-section', //section css class
             amountClass: 'simply-amount', // amount css class
             wordClass: 'simply-word' // word css class
@@ -111,6 +112,13 @@ You can easly customize the countdown using the css theme starter file or create
 - Small is better than Big.
 
 ### Changelog
+
+##### 1.3.1
+- clean some code
+- add refresh parameter
+```javascript
+refresh: 1000 //default
+```
 
 ##### 1.3.0
 - Add onEnd callback
