@@ -3,8 +3,9 @@
  * File : simplyCountdown
  * Date : 27/06/2015
  * License : MIT
- * Version : 1.3.1
+ * Version : 1.3.2
  * Author : Vincent Loy <vincent.loy1@gmail.com>
+ * Author : Justin Beasley <JustinB@harvest.org>
  */
 /*global window, document*/
 (function (exports) {
@@ -135,7 +136,8 @@
                 inlineClass: 'simply-countdown-inline',
                 sectionClass: 'simply-section',
                 amountClass: 'simply-amount',
-                wordClass: 'simply-word'
+                wordClass: 'simply-word',
+                zeroPad: false
             }, args),
             interval,
             targetDate,
@@ -241,16 +243,16 @@
                         seconds + ' ' + secondWord + '.';
 
                 } else {
-                    fullCountDown.days.amount.textContent = days;
+                    fullCountDown.days.amount.textContent = (parameters.zeroPad && days.toString().length < 2 ? '0' : '') + days;
                     fullCountDown.days.word.textContent = dayWord;
 
-                    fullCountDown.hours.amount.textContent = hours;
+                    fullCountDown.hours.amount.textContent = (parameters.zeroPad && hours.toString().length < 2 ? '0' : '') + hours;
                     fullCountDown.hours.word.textContent = hourWord;
 
-                    fullCountDown.minutes.amount.textContent = minutes;
+                    fullCountDown.minutes.amount.textContent = (parameters.zeroPad && minutes.toString().length < 2 ? '0' : '') + minutes;
                     fullCountDown.minutes.word.textContent = minuteWord;
 
-                    fullCountDown.seconds.amount.textContent = seconds;
+                    fullCountDown.seconds.amount.textContent = (parameters.zeroPad && seconds.toString().length < 2 ? '0' : '') + seconds;
                     fullCountDown.seconds.word.textContent = secondWord;
                 }
             }, parameters.refresh);
