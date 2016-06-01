@@ -17,11 +17,11 @@ $ npm install simplycountdown.js
 
 ### Insert simplyCountdown to your HTML
 
-```html 
-<link rel="stylesheet" href="css/simplyCountdown.theme.default.css"/> 
-<script src="dist/simplyCountdown.min.js"></script> 
-``` 
-```javascript 
+```html
+<link rel="stylesheet" href="css/simplyCountdown.theme.default.css"/>
+<script src="dist/simplyCountdown.min.js"></script>
+```
+```javascript
     // This is an example with default parameters
 
     simplyCountdown('[CSS-SELECTOR]', {
@@ -53,14 +53,14 @@ $ npm install simplycountdown.js
 
 ### You can use it with jQuery too (not required)
 
-```javascript 
-// jQuery Example 
-$('[CSS-SELECTOR]').simplyCountdown({ 
-    year: 2015, // required 
-    month: 6, // required 
-    day: 28, // required 
-    ... 
-}); 
+```javascript
+// jQuery Example
+$('[CSS-SELECTOR]').simplyCountdown({
+    year: 2015, // required
+    month: 6, // required
+    day: 28, // required
+    ...
+});
 ```
 
 ## Easy to customize
@@ -75,7 +75,7 @@ You can easly customize the countdown using the css theme starter file or create
     * File : simplyCountdown.theme.custom
     * Author : Your Name <your-mail[at]example.com>
     */
-    
+
     .simply-countdown {
         /* The countdown */
     }
@@ -112,6 +112,9 @@ You can easly customize the countdown using the css theme starter file or create
 - Small is better than Big.
 
 ### Changelog
+
+##### 1.3.2
+- fixed Flash of Unstyled Content
 
 ##### 1.3.1
 - clean some code
