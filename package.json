@@ -40,6 +40,6 @@
     "gulp-sourcemaps": "^1.5.2",
     "gulp-uglify": "^1.2.0",
     "gulp-util": "^3.0.4",
-    "less": "~1.7.0"
+    "less": "^2.7.1"
   }
 }

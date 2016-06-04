@@ -5,7 +5,9 @@
  * License : MIT
  * Version : 1.3.2
  * Author : Vincent Loy <vincent.loy1@gmail.com>
- * Author : Justin Beasley <JustinB@harvest.org>
+ * Contributors : 
+ *  - Justin Beasley <JustinB@harvest.org>
+ *  - Nathan Smith <NathanS@harvest.org>
  */
 /*global window, document*/
 (function (exports) {
@@ -174,9 +176,10 @@
         }
 
         Array.prototype.forEach.call(cd, function (countdown) {
-            var fullCountDown = createElements(parameters, countdown);
+            var fullCountDown = createElements(parameters, countdown),
+                refresh;
 
-            interval = window.setInterval(function () {
+            refresh = function () {
                 var dayWord,
                     hourWord,
                     minuteWord,
@@ -255,7 +258,11 @@
                     fullCountDown.seconds.amount.textContent = (parameters.zeroPad && seconds.toString().length < 2 ? '0' : '') + seconds;
                     fullCountDown.seconds.word.textContent = secondWord;
                 }
-            }, parameters.refresh);
+            };
+
+            // Refresh immediately to prevent a Flash of Unstyled Content
+            refresh();
+            interval = window.setInterval(refresh, parameters.refresh);
         });
     };
 

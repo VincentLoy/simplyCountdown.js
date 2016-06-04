@@ -119,6 +119,7 @@ You can easly customize the countdown using the css theme starter file or create
 ```javascript
 zeroPad: false //default
 ```
+- fixed Flash of Unstyled Content
 
 ##### 1.3.1
 - clean some code
