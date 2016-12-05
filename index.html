@@ -184,7 +184,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/0.0.1/prism.min.js"></script>
 <script src="dev/simplyCountdown.js"></script>
 <script>
-    var d = new Date(new Date().getTime() + 48 * 120 * 120 * 2000);
+    var d = new Date();
+    d.setDate(d.getDate() + 450);
 
     // default example
     simplyCountdown('.simply-countdown-one', {
