@@ -7,7 +7,7 @@ const gulp = require('gulp'),
     babel = require('gulp-babel'),
     autoprefixer = require('gulp-autoprefixer'),
     cssCompressor = require('gulp-csso'),
-    uglify = require('gulp-uglify'),
+    terser = require('gulp-terser'),
     eslint = require('gulp-eslint'),
     saveLicense = require('uglify-save-license'),
     browserSync = require('browser-sync'),
@@ -25,7 +25,7 @@ const buildScss = function (filePath) {
             cascade: false,
         }))
         .pipe(cssCompressor({
-            restructure: false,
+            restructure: false
         }))
         .pipe(gulp.dest('css'));
 };
@@ -53,10 +53,10 @@ gulp.task('build:es6', ['lint:es6'], function () {
         .pipe(babel({
             presets: ['@babel/env']
         }))
-        .pipe(uglify({
+        .pipe(terser({
             output: {
-                comments: saveLicense,
-            },
+                comments: saveLicense
+            }
         }))
         .pipe(gulp.dest('dist'));
 });
