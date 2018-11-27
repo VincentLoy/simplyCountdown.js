@@ -47,7 +47,7 @@ gulp.task('build:scss:themes', function () {
 /**
  * Transpile the lib from es6 to es5
  */
-gulp.task('build:es6', function () {
+gulp.task('build:es6', ['lint:es6'], function () {
     return gulp.src('dev/simplyCountdown.js')
         .pipe(concat('simplyCountdown.min.js'))
         .pipe(babel({
@@ -82,7 +82,6 @@ gulp.task('lint:no-break:es6', function () {
 gulp.task('build', [
     'build:scss:demo',
     'build:scss:themes',
-    'lint:es6', // will failt if eslint don't pass
     'build:es6',
 ]);
 
