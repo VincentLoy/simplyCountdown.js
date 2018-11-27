@@ -8,6 +8,7 @@ const gulp = require('gulp'),
     autoprefixer = require('gulp-autoprefixer'),
     cssCompressor = require('gulp-csso'),
     uglify = require('gulp-uglify'),
+    eslint = require('gulp-eslint'),
     saveLicense = require('uglify-save-license'),
     browserSync = require('browser-sync'),
     concat = require('gulp-concat'),
@@ -60,6 +61,20 @@ gulp.task('build:es6', function () {
         .pipe(gulp.dest('dist'));
 });
 
+
+gulp.task('lint:es6', function () {
+    return gulp.src('dev/simplyCountdown.js')
+        .pipe(eslint())
+        .pipe(eslint.format())
+        .pipe(eslint.failAfterError())
+});
+
+gulp.task('lint:no-break:es6', function () {
+    return gulp.src('dev/simplyCountdown.js')
+        .pipe(eslint())
+        .pipe(eslint.format())
+});
+
 /**
  * BUILD
  * Build everything Sass & JS
@@ -67,6 +82,7 @@ gulp.task('build:es6', function () {
 gulp.task('build', [
     'build:scss:demo',
     'build:scss:themes',
+    'lint:es6', // will failt if eslint don't pass
     'build:es6',
 ]);
 
@@ -75,7 +91,7 @@ gulp.task('build', [
  *  SERVE
  *  Take a coffee, relax, and write some code
  */
-gulp.task('serve', ['build:scss:demo', 'build:scss:themes', 'build:es6'], function () {
+gulp.task('serve', ['build:scss:demo', 'build:scss:themes', 'lint:no-break:es6'], function () {
     browserSync({
         notify: true,
         port: 9000,
@@ -86,12 +102,12 @@ gulp.task('serve', ['build:scss:demo', 'build:scss:themes', 'build:es6'], functi
         }
     });
 
-    gulp.watch('dev/**/*.js', ['build:es6'])
+    gulp.watch('dev/**/*.js', ['lint:no-break:es6'])
         .on('change', reload);
 
     gulp.watch('css/scss/**/*', ['build:scss:demo', 'build:scss:themes'])
         .on('change', reload);
 
-    gulp.watch('./**/*.php')
+    gulp.watch('./**/*.html')
         .on('change', reload);
 });
