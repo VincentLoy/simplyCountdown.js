@@ -11,7 +11,10 @@ This is a very (very) basic Javascript CountDown.
 install via npm or bower
 
 ```
-$ bower install simplycountdown.js
+$ yarn add simplycountdown.js
+
+// or
+
 $ npm install simplycountdown.js
 ```
 
@@ -25,7 +28,7 @@ $ npm install simplycountdown.js
     // This is an example with default parameters
 
     simplyCountdown('[CSS-SELECTOR]', {
-            year: 2015, // required
+            year: 2019, // required
             month: 6, // required
             day: 28, // required
             hours: 0, // Default is 0 [0-23] integer
@@ -57,7 +60,7 @@ $ npm install simplycountdown.js
 ```javascript
 // jQuery Example
 $('[CSS-SELECTOR]').simplyCountdown({
-    year: 2015, // required
+    year: 2019, // required
     month: 6, // required
     day: 28, // required
     ...
@@ -109,10 +112,17 @@ You can easly customize the countdown using the css theme starter file or create
 
 #### Pull Requests
 - **Solve a problem**
-- For code enhancement, use [JSLint](http://www.jslint.com/help.html) as a code quality tool.
+- For code enhancement, use [ESLint](https://eslint.org/) as a code quality tool.
 - Small is better than Big.
 
 ### Changelog
+
+##### 1.4.0
+- Remove bower support
+- migrate from LESS to SASS (scss) / for demo and themes
+- migrate lib from ES5 to a really basic ES6
+    - Remove JSLint support
+    - Add ESLint support based on customized [airbnb rules](https://www.npmjs.com/package/eslint-config-airbnb-base)
 
 ##### 1.3.2
 - add zeroPad parameter
