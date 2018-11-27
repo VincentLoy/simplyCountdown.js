@@ -2,6 +2,7 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>simplyCountdown.js</title>
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400italic' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css"/>
@@ -19,10 +20,10 @@
 
         <div class="repo-buttons">
             <a href="https://github.com/VincentLoy/simplyCountdown.js" class="button">
-                <i class="fa fa-github"></i> View on GitHub
+                <i class="fa fa-github"></i> <span>View on GitHub</span>
             </a>
             <a href="https://github.com/VincentLoy/simplyCountdown.js/archive/master.zip" class="button">
-                <i class="fa fa-download"></i> Download Sources
+                <i class="fa fa-download"></i> <span>Download Sources</span>
             </a>
         </div>
     </div>
@@ -46,12 +47,15 @@
     <section class="getting-started">
         <h2>Getting Started</h2>
 
-        <h3>install via npm, bower or <a href="https://github.com/VincentLoy/simplyCountdown.js/archive/master.zip">direct download</a></h3>
+        <h3>install via yarn, npm, <a href="https://github.com/VincentLoy/simplyCountdown.js/archive/master.zip">direct download</a></h3>
 
         <pre>
 <code class="language-console">
-    $ bower install simplycountdown.js
     $ npm install simplycountdown.js
+
+    // or
+
+    $ yarn add simplycountdown.js
 </code>
         </pre>
 
@@ -174,15 +178,105 @@
         <h3>Inline</h3>
         <div class="simply-countdown-inline"></div>
     </section>
+
+    <section class="changelog">
+        <h2>Changelog</h2>
+
+        <h3>1.4.0</h3>
+        <ul>
+            <li>Remove bower support</li>
+            <li>migrate from LESS to SASS (scss) / for demo and themes</li>
+            <li>migrate lib from ES5 to a really basic ES6</li>
+            <li>Remove JSLint support</li>
+            <li>
+                Add ESLint support based on customized
+                [airbnb rules](https://www.npmjs.com/package/eslint-config-airbnb-base)
+            </li>
+        </ul>
+
+        <h3>1.3.2</h3>
+        <ul>
+            <li>
+                add zeroPad parameter
+            </li>
+            <li>
+                fixed Flash of Unstyled Content
+            </li>
+        </ul>
+
+        <h3>1.3.1</h3>
+       <ul>
+           <li>
+               clean some code
+           </li>
+           <li>
+               add refresh parameter
+           </li>
+       </ul>
+
+        <h3>1.3.0</h3>
+        <ul>
+            <li>
+                Add onEnd callback
+            </li>
+        </ul>
+
+        <h3>1.2.0</h3>
+        <ul>
+            <li>
+                <a href="https://github.com/VincentLoy/simplyCountdown.js/issues/4"
+                   rel="nofollow noopener"
+                   target="_blank">
+                    Resolve #4
+                </a> - Add UTC support adding enableUtc parameter
+            </li>
+        </ul>
+
+        <h3>1.1.1</h3>
+        <ul>
+            <li>
+                <a href="https://github.com/VincentLoy/simplyCountdown.js/issues/3"
+                   rel="nofollow noopener"
+                   target="_blank">
+                    Resolve #3
+                </a> - Remove ID Only compatibility
+            </li>
+        </ul>
+
+        <h3>1.1.0</h3>
+        <ul>
+            <li>
+                Add hours, minutes, seconds in available settings to set the target Date
+            </li>
+        </ul>
+
+        <h3>1.0.1</h3>
+        <ul>
+            <li>
+                Fix console error when not using jQuery
+            </li>
+        </ul>
+
+        <h3>1.0.0</h3>
+        <ul>
+            <li>initial release</li>
+        </ul>
+    </section>
 </main>
 
 <footer>
-    <p>Made with &#x2764; by <a href="https://github.com/VincentLoy">Vincent Loy</a></p>
+    <p>
+        Made with &#x2764; by
+        <a href="https://github.com/VincentLoy"
+           target="_blank">
+            Vincent Loy
+        </a>
+    </p>
 </footer>
 
 <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/0.0.1/prism.min.js"></script>
-<script src="dist/simplyCountdown.min.js"></script>
+<script src="dev/simplyCountdown.js"></script>
 <script>
   /**
    * WARNING: I set this coundtown to be running until the end of times.
