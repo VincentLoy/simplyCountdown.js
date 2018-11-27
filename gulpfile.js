@@ -1,89 +1,97 @@
+/*jslint node: true, for */
+
+'use strict';
+
+const gulp = require('gulp'),
+    sass = require('gulp-sass'),
+    babel = require('gulp-babel'),
+    autoprefixer = require('gulp-autoprefixer'),
+    cssCompressor = require('gulp-csso'),
+    uglify = require('gulp-uglify'),
+    saveLicense = require('uglify-save-license'),
+    browserSync = require('browser-sync'),
+    concat = require('gulp-concat'),
+    reload = browserSync.reload,
+    browserChoice = 'default';
+
+const buildScss = function (filePath) {
+    return gulp.src(filePath)
+        .pipe(sass({
+            precision: 10
+        }).on('error', sass.logError))
+        .pipe(autoprefixer({
+            browsers: ['last 2 versions'],
+            cascade: false,
+        }))
+        .pipe(cssCompressor({
+            restructure: false,
+        }))
+        .pipe(gulp.dest('css'));
+};
+
 /**
- * Project : SimplyCountdown
- * File : gulpfile
- * Date : 06/20/2015
- * Author : Vincent Loy <vincent.loy1@gmail.com>
+ * Build the demo sass styles
  */
+gulp.task('build:scss:demo', function () {
+    buildScss('css/scss/demo.scss');
+});
 
-/*jslint indent: 4, maxlen: 100, node: true, vars: true, nomen: true */
+/**
+ * Build the themes sass styles
+ */
+gulp.task('build:scss:themes', function () {
+    buildScss('css/scss/simplyCountdown.theme.*.scss');
+});
 
-(function () {
-    'use strict';
+/**
+ * Transpile the lib from es6 to es5
+ */
+gulp.task('build:es6', function () {
+    return gulp.src('dev/simplyCountdown.js')
+        .pipe(concat('simplyCountdown.min.js'))
+        .pipe(babel({
+            presets: ['@babel/env']
+        }))
+        .pipe(uglify({
+            output: {
+                comments: saveLicense,
+            },
+        }))
+        .pipe(gulp.dest('dist'));
+});
 
-    var gulp = require('gulp'),
-        gutil = require('gulp-util'),
-        less = require('gulp-less'),
-        minifyCSS = require('gulp-minify-css'),
-        sourcemaps = require('gulp-sourcemaps'),
-        plumber = require('gulp-plumber'),
-        uglify = require('gulp-uglify'),
-        rename = require('gulp-rename'),
-        browserSync = require('browser-sync'),
-        targetCSSDir = 'css',
-        targetLESSDir = targetCSSDir + '/less',
-        devJSDir = 'dev',
-        distJSDir = 'dist';
+/**
+ * BUILD
+ * Build everything Sass & JS
+ */
+gulp.task('build', [
+    'build:scss:demo',
+    'build:scss:themes',
+    'build:es6',
+]);
 
 
-    // Compile Less
-    // and save to target CSS directory
-    gulp.task('css', function () {
-        return gulp.src(targetLESSDir + '/demo.less')
-            .pipe(plumber())
-            .pipe(less({style: 'compressed'})
-                .on('error', gutil.log))
-            .pipe(sourcemaps.init())
-            .pipe(minifyCSS({compatibility: 'ie8'}))
-            .pipe(sourcemaps.write())
-            .pipe(gulp.dest(targetCSSDir));
+/**
+ *  SERVE
+ *  Take a coffee, relax, and write some code
+ */
+gulp.task('serve', ['build:scss:demo', 'build:scss:themes', 'build:es6'], function () {
+    browserSync({
+        notify: true,
+        port: 9000,
+        reloadDelay: 100,
+        browser: browserChoice,
+        server: {
+            baseDir: './'
+        }
     });
 
-    gulp.task('compile-themes', function () {
-        return gulp.src(targetLESSDir + '/simplyCountdown.theme.*.less')
-            .pipe(plumber())
-            .pipe(less({style: 'compressed'})
-                .on('error', gutil.log))
-            .pipe(sourcemaps.init())
-            //.pipe(minifyCSS({compatibility: 'ie8'}))
-            .pipe(sourcemaps.write())
-            .pipe(gulp.dest(targetCSSDir));
-    });
+    gulp.watch('dev/**/*.js', ['build:es6'])
+        .on('change', reload);
 
-    gulp.task('compress', function () {
-        return gulp.src(devJSDir + '/simplyCountdown.js')
-            .pipe(sourcemaps.init())
-            .pipe(uglify({
-                preserveComments: 'some'
-            }))
-            .pipe(rename({
-                extname: '.min.js'
-            }))
-            .pipe(sourcemaps.write())
-            .pipe(gulp.dest(distJSDir));
-    });
+    gulp.watch('css/scss/**/*', ['build:scss:demo', 'build:scss:themes'])
+        .on('change', reload);
 
-    gulp.task('serve', ['css', 'compress'], function () {
-        browserSync.init({
-            open: false,
-            server: {
-                baseDir: './'
-            }
-        });
-
-        gulp.watch(devJSDir + '/simplyCountdown.js', ['compress']);
-        gulp.watch(targetLESSDir + '/**/*.less', ['css', 'compile-themes']);
-        gulp.watch(['*.html', targetLESSDir + '/**/*.less', devJSDir + '/simplyCountdown.js'])
-            .on('change', browserSync.reload);
-    });
-
-    // Keep an eye on Less
-    //gulp.task('watch', function () {
-    //    gulp.watch(targetLESSDir + '/**/*.less', ['css', 'compile-themes']);
-    //});
-
-    // What tasks does running gulp trigger?
-    gulp.task('default', ['css', 'compile-themes', 'serve']);
-
-    //To uglify the new version of simplyCountdown run : gulp release or gulp compress
-    gulp.task('release', ['compress']);
-}());
+    gulp.watch('./**/*.php')
+        .on('change', reload);
+});
