@@ -1,0 +1,11 @@
+{
+  "extends": "airbnb-base/legacy",
+  "rules": {
+    "indent": ["error", 4],
+    "func-names": ["error", "never"],
+    "no-param-reassign": ["error", {"props": false}]
+  },
+  "parserOptions": {
+    "ecmaVersion": 6
+  }
+}

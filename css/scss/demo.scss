@@ -1,0 +1,230 @@
+/**
+* Project : simply-countdown
+* File : demo
+* Date : 27/06/2015
+* Author : Vincent Loy <vincent.loy1$gmail.com>
+*/
+$color-blue-darken: #024772;
+$color-blue: #02658C;
+$color-blue-lighten: #0387A5;
+$color-gray: #BFB6AE;
+$color-gray-lighten: #F2E6DC;
+$color-white: #fff;
+
+$spacing: 20px;
+
+$tablet: "screen and (min-width: 970px)";
+
+a,abbr,acronym,address,applet,article,aside,audio,b,big,blockquote,body,canvas,caption,center,cite,code,dd,del,details,dfn,div,dl,dt,em,embed,fieldset,figcaption,figure,footer,form,h1,h2,h3,h4,h5,h6,header,hgroup,html,i,iframe,img,ins,kbd,label,legend,li,mark,menu,nav,object,ol,output,p,pre,q,ruby,s,samp,section,small,span,strike,strong,sub,summary,sup,table,tbody,td,tfoot,th,thead,time,tr,tt,u,ul,var,video{margin:0;padding:0;border:0;font:inherit;vertical-align:baseline}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:after,blockquote:before,q:after,q:before{content:'';content:none}table{border-collapse:collapse;border-spacing:0}
+
+* {
+  box-sizing: border-box;
+}
+
+body, html {
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  overflow-x: hidden;
+  font-size: 16px;
+}
+
+p {
+  font-size: 18px;
+  line-height: 22px;
+  margin: $spacing 0;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $color-blue-darken;
+  border-bottom: 5px solid $color-blue;
+  padding: $spacing;
+
+  @media #{$tablet} {
+    height: 450px;
+  }
+
+  .header-content {
+    text-align: center;
+
+    h1 {
+      font-style: italic;
+      font-size: 2rem;
+      font-weight: 400;
+      color: $color-gray-lighten;
+
+      @media #{$tablet} {
+        font-size: 4rem;
+      }
+    }
+
+    h2 {
+      font-size: 1.33rem;
+      color: $color-gray-lighten;
+      margin: $spacing 0;
+
+      @media #{$tablet} {
+        font-size: 1.75rem;
+        margin: ($spacing * 2) 0 ($spacing * 3) 0;
+      }
+    }
+
+    .repo-buttons {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}
+
+.button {
+  color: $color-gray-lighten;
+  border:2px solid $color-gray-lighten;
+  border-radius: 2px;
+  text-decoration: none;
+  padding: $spacing / 2;
+  transition: 0.1s ease-in-out all;
+  display: block;
+  margin: 0 $spacing $spacing $spacing;
+
+  span {
+    display: none;
+  }
+
+  @media #{$tablet} {
+    margin-bottom: 0;
+
+    span {
+      display: inline;
+    }
+  }
+
+  > i {
+    @media #{$tablet} {
+      margin-right: $spacing / 2;
+    }
+  }
+
+  &:hover {
+    background: $color-gray-lighten;
+    color: $color-blue-darken;
+  }
+}
+
+.container {
+  width: 100%;
+  padding: 0 $spacing;
+  margin: auto;
+
+  @media #{$tablet} {
+    width: 960px;
+  }
+}
+
+.note {
+  background: $color-blue-lighten;
+  color: $color-white;
+  font-style: italic;
+  border-radius: 2px;
+  padding: ($spacing / 3) $spacing;
+}
+
+main {
+  > section:not(:last-of-type) {
+    border-bottom: 1px solid $color-blue-darken;
+    padding-bottom: $spacing;
+  }
+
+  h2 {
+    font-size: 26px;
+    color: $color-blue;
+    font-weight: 700;
+    margin: $spacing 0;
+
+    @media #{$tablet} {
+      font-size: 33px;
+      margin: $spacing * 2 0;
+    }
+  }
+
+  h3 {
+    font-size: 20px;
+    color: $color-blue;
+    font-weight: 700;
+    margin: $spacing 0;
+
+    @media #{$tablet} {
+      font-size: 25px;
+      margin: ($spacing * 2) 0;
+    }
+
+    a {
+      color: $color-blue-lighten;
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  a {
+    font-weight: bold;
+    text-decoration: none;
+    color: $color-blue-lighten;
+    transition: 0.2s ease all;
+
+    &:hover {
+      color: $color-blue-darken;
+      text-decoration: underline;
+    }
+  }
+}
+
+.changelog {
+
+  h3 {
+    &:before {
+      content: "\1d";
+      display: inline-block;
+      margin-right: $spacing / 2;
+      transform: translateY(-2px);
+    }
+
+    &:after {
+      content: "\1d";
+      display: inline-block;
+      margin-left: $spacing / 2;
+      transform: rotate(180deg);
+    }
+  }
+
+  ul {
+    list-style-type: disc;
+    padding-left: $spacing;
+
+    li {
+      margin-bottom: $spacing / 2;
+      font-size: 16px;
+    }
+  }
+}
+
+footer {
+  background: $color-blue-darken;
+  color: $color-white;
+  text-align: center;
+  padding: $spacing;
+  margin-top: $spacing * 2;
+  font-weight: 600;
+
+  a {
+    color: lighten($color-blue-lighten, 25%);
+    text-decoration: none;
+
+    &:hover{
+      text-decoration: underline;
+    }
+  }
+}
