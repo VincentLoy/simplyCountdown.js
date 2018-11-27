@@ -1,41 +1,35 @@
-/*!
- * Project : simply-countdown
- * File : simplyCountdown
- * Date : 27/06/2015
- * License : MIT
- * Version : 1.3.2
- * Author : Vincent Loy <vincent.loy1@gmail.com>
- * Contributors : 
- *  - Justin Beasley <JustinB@harvest.org>
- *  - Nathan Smith <NathanS@harvest.org>
- */
-/*global window, document*/
 (function (exports) {
     'use strict';
 
-    var // functions
-        extend,
-        createElements,
-        createCountdownElt,
-        simplyCountdown;
+    /*!
+     * Project : simply-countdown
+     * Date : 27/06/2015
+     * License : MIT
+     * Version : 1.4.0
+     * Author : Vincent Loy <vincent.loy1@gmail.com>
+     * Contributors :
+     *  - Justin Beasley <JustinB@harvest.org>
+     *  - Nathan Smith <NathanS@harvest.org>
+     */
 
     /**
      * Function that merge user parameters with defaults one.
-     * @param out
+     * @param output
      * @returns {*|{}}
      */
-    extend = function (out) {
-        var i,
-            obj,
-            key;
-        out = out || {};
+    let extend = function (output) {
+        let obj;
+        let out = output || {};
 
-        for (i = 1; i < arguments.length; i += 1) {
+        for (let i = 1; i < arguments.length; i += 1) {
             obj = arguments[i];
+            const keys = Object.keys(obj);
 
-            if (obj) {
-                for (key in obj) {
-                    if (obj.hasOwnProperty(key)) {
+            if (keys.length) {
+                for (let i2 = 0; i2 < keys.length; i2 += 1) {
+                    let key = keys[i2];
+
+                    if (Object.prototype.hasOwnProperty.call(obj, key)) {
                         if (typeof obj[key] === 'object') {
                             extend(out[key], obj[key]);
                         } else {
@@ -56,16 +50,11 @@
      * @param typeClass
      * @returns {{full: (*|Element), amount: (*|Element), word: (*|Element)}}
      */
-    createCountdownElt = function (countdown, parameters, typeClass) {
-        var innerSectionTag,
-            sectionTag,
-            amountTag,
-            wordTag;
-
-        sectionTag = document.createElement('div');
-        amountTag = document.createElement('span');
-        wordTag = document.createElement('span');
-        innerSectionTag = document.createElement('div');
+    let createCountdownElt = (countdown, parameters, typeClass) => {
+        let sectionTag = document.createElement('div');
+        let amountTag = document.createElement('span');
+        let wordTag = document.createElement('span');
+        let innerSectionTag = document.createElement('div');
 
         innerSectionTag.appendChild(amountTag);
         innerSectionTag.appendChild(wordTag);
@@ -89,10 +78,10 @@
      * Function that create full countdown DOM elements calling createCountdownElt
      * @param parameters
      * @param countdown
-     * @returns {{days: (*|Element), hours: (*|Element), minutes: (*|Element), seconds: (*|Element)}}
+     * @returns {{days:(*|Element), hours:(*|Element), minutes:(*|Element), seconds:(*|Element)}}
      */
-    createElements = function (parameters, countdown) {
-        var spanTag;
+    let createElements = (parameters, countdown) => {
+        let spanTag;
 
         if (!parameters.inline) {
             return {
@@ -113,45 +102,43 @@
      * @param elt
      * @param args (parameters)
      */
-    simplyCountdown = function (elt, args) {
-        var parameters = extend({
-                year: 2015,
-                month: 6,
-                day: 28,
-                hours: 0,
-                minutes: 0,
-                seconds: 0,
-                words: {
-                    days: 'day',
-                    hours: 'hour',
-                    minutes: 'minute',
-                    seconds: 'second',
-                    pluralLetter: 's'
-                },
-                plural: true,
-                inline: false,
-                enableUtc: true,
-                onEnd: function () {
-                    return;
-                },
-                refresh: 1000,
-                inlineClass: 'simply-countdown-inline',
-                sectionClass: 'simply-section',
-                amountClass: 'simply-amount',
-                wordClass: 'simply-word',
-                zeroPad: false
-            }, args),
-            interval,
-            targetDate,
-            targetTmpDate,
-            now,
-            nowUtc,
-            secondsLeft,
-            days,
-            hours,
-            minutes,
-            seconds,
-            cd = document.querySelectorAll(elt);
+    let simplyCountdown = function (elt, args) {
+        let parameters = extend({
+            year: 2015,
+            month: 6,
+            day: 28,
+            hours: 0,
+            minutes: 0,
+            seconds: 0,
+            words: {
+                days: 'day',
+                hours: 'hour',
+                minutes: 'minute',
+                seconds: 'second',
+                pluralLetter: 's'
+            },
+            plural: true,
+            inline: false,
+            enableUtc: true,
+            onEnd: () => {},
+            refresh: 1000,
+            inlineClass: 'simply-countdown-inline',
+            sectionClass: 'simply-section',
+            amountClass: 'simply-amount',
+            wordClass: 'simply-word',
+            zeroPad: false
+        }, args);
+        let interval;
+        let targetDate;
+        let targetTmpDate;
+        let now;
+        let nowUtc;
+        let secondsLeft;
+        let days;
+        let hours;
+        let minutes;
+        let seconds;
+        let cd = document.querySelectorAll(elt);
 
         targetTmpDate = new Date(
             parameters.year,
@@ -175,32 +162,32 @@
             targetDate = targetTmpDate;
         }
 
-        Array.prototype.forEach.call(cd, function (countdown) {
-            var fullCountDown = createElements(parameters, countdown),
-                refresh;
+        Array.prototype.forEach.call(cd, (theCountdown) => {
+            let countdown = theCountdown;
+            let fullCountDown = createElements(parameters, countdown);
+            let refresh;
 
             refresh = function () {
-                var dayWord,
-                    hourWord,
-                    minuteWord,
-                    secondWord;
+                let dayWord;
+                let hourWord;
+                let minuteWord;
+                let secondWord;
 
                 now = new Date();
                 if (parameters.enableUtc) {
                     nowUtc = new Date(now.getFullYear(), now.getMonth(), now.getDate(),
                         now.getHours(), now.getMinutes(), now.getSeconds());
                     secondsLeft = (targetDate - nowUtc.getTime()) / 1000;
-
                 } else {
                     secondsLeft = (targetDate - now.getTime()) / 1000;
                 }
 
                 if (secondsLeft > 0) {
                     days = parseInt(secondsLeft / 86400, 10);
-                    secondsLeft = secondsLeft % 86400;
+                    secondsLeft %= 86400;
 
                     hours = parseInt(secondsLeft / 3600, 10);
-                    secondsLeft = secondsLeft % 3600;
+                    secondsLeft %= 3600;
 
                     minutes = parseInt(secondsLeft / 60, 10);
                     seconds = parseInt(secondsLeft % 60, 10);
@@ -229,7 +216,6 @@
                     secondWord = seconds > 1
                         ? parameters.words.seconds + parameters.words.pluralLetter
                         : parameters.words.seconds;
-
                 } else {
                     dayWord = parameters.words.days;
                     hourWord = parameters.words.hours;
@@ -239,12 +225,10 @@
 
                 /* display an inline countdown into a span tag */
                 if (parameters.inline) {
-                    countdown.innerHTML =
-                        days + ' ' + dayWord + ', ' +
-                        hours + ' ' + hourWord + ', ' +
-                        minutes + ' ' + minuteWord + ', ' +
-                        seconds + ' ' + secondWord + '.';
-
+                    countdown.innerHTML = `${days} ${dayWord}, `
+                        + `${hours} ${hourWord}, `
+                        + `${minutes} ${minuteWord}, `
+                        + `${seconds} ${secondWord}.`;
                 } else {
                     fullCountDown.days.amount.textContent = (parameters.zeroPad && days.toString().length < 2 ? '0' : '') + days;
                     fullCountDown.days.word.textContent = dayWord;
@@ -266,10 +250,11 @@
         });
     };
 
+
     exports.simplyCountdown = simplyCountdown;
 }(window));
 
-/*global $, jQuery, simplyCountdown*/
+/* global jQuery, simplyCountdown */
 if (window.jQuery) {
     (function ($, simplyCountdown) {
         'use strict';
