@@ -1,6 +1,5 @@
 /*!
  * Project : simply-countdown
- * File : simplyCountdown
  * Date : 27/06/2015
  * License : MIT
  * Version : 1.3.2
@@ -9,11 +8,12 @@
  *  - Justin Beasley <JustinB@harvest.org>
  *  - Nathan Smith <NathanS@harvest.org>
  */
+
 /*global window, document*/
 (function (exports) {
     'use strict';
 
-    var // functions
+    let // functions
         extend,
         createElements,
         createCountdownElt,
@@ -25,7 +25,7 @@
      * @returns {*|{}}
      */
     extend = function (out) {
-        var i,
+        let i,
             obj,
             key;
         out = out || {};
@@ -56,8 +56,8 @@
      * @param typeClass
      * @returns {{full: (*|Element), amount: (*|Element), word: (*|Element)}}
      */
-    createCountdownElt = function (countdown, parameters, typeClass) {
-        var innerSectionTag,
+    createCountdownElt = (countdown, parameters, typeClass) => {
+        let innerSectionTag,
             sectionTag,
             amountTag,
             wordTag;
@@ -91,8 +91,8 @@
      * @param countdown
      * @returns {{days: (*|Element), hours: (*|Element), minutes: (*|Element), seconds: (*|Element)}}
      */
-    createElements = function (parameters, countdown) {
-        var spanTag;
+    createElements = (parameters, countdown) => {
+        let spanTag;
 
         if (!parameters.inline) {
             return {
@@ -114,7 +114,7 @@
      * @param args (parameters)
      */
     simplyCountdown = function (elt, args) {
-        var parameters = extend({
+        let parameters = extend({
                 year: 2015,
                 month: 6,
                 day: 28,
@@ -131,9 +131,7 @@
                 plural: true,
                 inline: false,
                 enableUtc: true,
-                onEnd: function () {
-                    return;
-                },
+                onEnd: () => {},
                 refresh: 1000,
                 inlineClass: 'simply-countdown-inline',
                 sectionClass: 'simply-section',
@@ -175,12 +173,12 @@
             targetDate = targetTmpDate;
         }
 
-        Array.prototype.forEach.call(cd, function (countdown) {
-            var fullCountDown = createElements(parameters, countdown),
+        Array.prototype.forEach.call(cd, (countdown) => {
+            let fullCountDown = createElements(parameters, countdown),
                 refresh;
 
             refresh = function () {
-                var dayWord,
+                let dayWord,
                     hourWord,
                     minuteWord,
                     secondWord;
