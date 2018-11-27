@@ -5,26 +5,24 @@
 * Author : Vincent Loy <vincent.loy1@gmail.com>
 */
 
-@import '../../bower_components/lesshat/build/lesshat';
-
-
 .simply-countdown-losange {
   overflow: visible;
   display: table;
   font-family: 'Arial', sans-serif;
 
-  & > .simply-section {
-    .size(100px);
-    .display(flex);
-    .justify-content(center);
-    .align-items(center);
-    .rotate(45deg);
+  > .simply-section {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: rotate(-45deg);
     float: left;
     margin: 30px;
     background: #024772;
 
-    & > div {
-      .rotate(-45deg);
+    > div {
+      transform: rotate(45deg);
       .simply-amount,
       .simply-word {
         display: block;
