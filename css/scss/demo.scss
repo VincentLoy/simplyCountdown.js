@@ -182,9 +182,24 @@ main {
   }
 }
 
-.changelog {
-
+.examples {
   h3 {
+    margin: $spacing 0 ($spacing / 3) 0;
+
+    & + p {
+      margin-top: 0;
+    }
+  }
+
+  .simply-countdown-inline {
+    margin-top: $spacing;
+  }
+}
+
+.changelog {
+  h3 {
+    margin-bottom: $spacing / 2;
+
     &:before {
       content: "\1d";
       display: inline-block;

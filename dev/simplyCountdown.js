@@ -5,7 +5,7 @@
      * Project : simply-countdown
      * Date : 27/06/2015
      * License : MIT
-     * Version : 1.4.0
+     * Version : 1.5.0
      * Author : Vincent Loy <vincent.loy1@gmail.com>
      * Contributors :
      *  - Justin Beasley <JustinB@harvest.org>
@@ -102,7 +102,7 @@
      * @param elt
      * @param args (parameters)
      */
-    let simplyCountdown = function (elt, args) {
+    exports.simplyCountdown = (elt, args) => {
         let parameters = extend({
             year: 2015,
             month: 6,
@@ -119,14 +119,16 @@
             },
             plural: true,
             inline: false,
-            enableUtc: true,
-            onEnd: () => {},
+            enableUtc: false,
+            onEnd: () => {
+            },
             refresh: 1000,
             inlineClass: 'simply-countdown-inline',
             sectionClass: 'simply-section',
             amountClass: 'simply-amount',
             wordClass: 'simply-word',
-            zeroPad: false
+            zeroPad: false,
+            countUp: false
         }, args);
         let interval;
         let targetDate;
@@ -173,6 +175,17 @@
                 let minuteWord;
                 let secondWord;
 
+                let updateDisplayDate = () => {
+                    days = parseInt(secondsLeft / 86400, 10);
+                    secondsLeft %= 86400;
+
+                    hours = parseInt(secondsLeft / 3600, 10);
+                    secondsLeft %= 3600;
+
+                    minutes = parseInt(secondsLeft / 60, 10);
+                    seconds = parseInt(secondsLeft % 60, 10);
+                };
+
                 now = new Date();
                 if (parameters.enableUtc) {
                     nowUtc = new Date(now.getFullYear(), now.getMonth(), now.getDate(),
@@ -183,14 +196,10 @@
                 }
 
                 if (secondsLeft > 0) {
-                    days = parseInt(secondsLeft / 86400, 10);
-                    secondsLeft %= 86400;
-
-                    hours = parseInt(secondsLeft / 3600, 10);
-                    secondsLeft %= 3600;
-
-                    minutes = parseInt(secondsLeft / 60, 10);
-                    seconds = parseInt(secondsLeft % 60, 10);
+                    updateDisplayDate();
+                } else if (parameters.countUp) {
+                    secondsLeft = (now.getTime() - targetDate) / 1000;
+                    updateDisplayDate();
                 } else {
                     days = 0;
                     hours = 0;
@@ -249,9 +258,6 @@
             interval = window.setInterval(refresh, parameters.refresh);
         });
     };
-
-
-    exports.simplyCountdown = simplyCountdown;
 }(window));
 
 /* global jQuery, simplyCountdown */

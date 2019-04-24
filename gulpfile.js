@@ -15,8 +15,11 @@ const gulp = require('gulp'),
     reload = browserSync.reload,
     browserChoice = 'default';
 
-const buildScss = function (filePath) {
-    return gulp.src(filePath)
+/**
+ * Build the demo sass styles
+ */
+gulp.task('build:scss:demo', function () {
+    return gulp.src('css/scss/demo.scss')
         .pipe(sass({
             precision: 10
         }).on('error', sass.logError))
@@ -28,20 +31,24 @@ const buildScss = function (filePath) {
             restructure: false
         }))
         .pipe(gulp.dest('css'));
-};
-
-/**
- * Build the demo sass styles
- */
-gulp.task('build:scss:demo', function () {
-    buildScss('css/scss/demo.scss');
 });
 
 /**
  * Build the themes sass styles
  */
 gulp.task('build:scss:themes', function () {
-    buildScss('css/scss/simplyCountdown.theme.*.scss');
+    return gulp.src('css/scss/simplyCountdown.theme.*.scss')
+        .pipe(sass({
+            precision: 10
+        }).on('error', sass.logError))
+        .pipe(autoprefixer({
+            browsers: ['last 2 versions'],
+            cascade: false,
+        }))
+        .pipe(cssCompressor({
+            restructure: false
+        }))
+        .pipe(gulp.dest('css'));
 });
 
 /**
@@ -101,7 +108,7 @@ gulp.task('serve', ['build:scss:demo', 'build:scss:themes', 'lint:no-break:es6']
         }
     });
 
-    gulp.watch('dev/**/*.js', ['lint:no-break:es6'])
+    gulp.watch('dev/**/*.js', ['build:es6'])
         .on('change', reload);
 
     gulp.watch('css/scss/**/*', ['build:scss:demo', 'build:scss:themes'])
@@ -110,3 +117,5 @@ gulp.task('serve', ['build:scss:demo', 'build:scss:themes', 'lint:no-break:es6']
     gulp.watch('./**/*.html')
         .on('change', reload);
 });
+
+gulp.task('default', ['serve']);

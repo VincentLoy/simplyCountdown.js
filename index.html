@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>simplyCountdown.js</title>
-    <link href='http://fonts.googleapis.com/css?family=Lato:300,400italic' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css"/>
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400italic' rel='stylesheet'
+          type='text/css'>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css"/>
 
     <link rel="stylesheet" href="css/simplyCountdown.theme.losange.css"/>
     <link rel="stylesheet" href="css/simplyCountdown.theme.default.css"/>
@@ -22,7 +24,8 @@
             <a href="https://github.com/VincentLoy/simplyCountdown.js" class="button">
                 <i class="fa fa-github"></i> <span>View on GitHub</span>
             </a>
-            <a href="https://github.com/VincentLoy/simplyCountdown.js/archive/master.zip" class="button">
+            <a href="https://github.com/VincentLoy/simplyCountdown.js/archive/master.zip"
+               class="button">
                 <i class="fa fa-download"></i> <span>Download Sources</span>
             </a>
         </div>
@@ -34,8 +37,10 @@
         <h2>Why another countdown ?</h2>
 
         <p>
-            I developed this little library in a boring day. I regularly use this kind of Javascript's
-            libraries to display countdowns on websites and this one exactly meets the needs that I have.
+            I developed this little library in a boring day. I regularly use this kind of
+            Javascript's
+            libraries to display countdowns on websites and this one exactly meets the needs that I
+            have.
             It is perfect to make 'under construction' pages, etc.
         </p>
 
@@ -47,7 +52,9 @@
     <section class="getting-started">
         <h2>Getting Started</h2>
 
-        <h3>install via yarn, npm, <a href="https://github.com/VincentLoy/simplyCountdown.js/archive/master.zip">direct download</a></h3>
+        <h3>install via yarn, npm, <a
+                href="https://github.com/VincentLoy/simplyCountdown.js/archive/master.zip">direct
+            download</a></h3>
 
         <pre>
 <code class="language-console">
@@ -66,7 +73,7 @@
     &lt;script src="dist/simplyCountdown.min.js"&gt;&lt;/script&gt;
 </code>
         </pre>
-<pre>
+        <pre>
 <code class="language-javascript">
     // This is an example with default parameters
     // You'll always have to call simplyCountdown using ID's, no classes.
@@ -98,13 +105,14 @@
             sectionClass: 'simply-section', //section css class
             amountClass: 'simply-amount', // amount css class
             wordClass: 'simply-word', // word css class
-            zeroPad: false
+            zeroPad: false,
+            countUp: false, // enable count up if set to true
     });
 </code>
 </pre>
         <h3>You can use it with jQuery too (not required)</h3>
 
-<pre>
+        <pre>
 <code class="language-javascript">
     // jQuery Example
 
@@ -121,12 +129,14 @@
     <section class="custom">
         <h2>Easy to customize</h2>
         <p>
-            You can easly customize the countdown using the css theme starter file or create your own like so :
+            You can easly customize the countdown using the css theme starter file or create your
+            own like so :
         </p>
 
         <div class="note">
             <p>
-                <i class="fa fa-info"></i> &nbsp; The following theme template works with default class in parameters
+                <i class="fa fa-info"></i> &nbsp; The following theme template works with default
+                class in parameters
             </p>
         </div>
         <pre>
@@ -176,11 +186,23 @@
         <div class="simply-countdown-losange" id="simply-countdown-losange"></div>
 
         <h3>Inline</h3>
+        <p>Display a simple inline countdown</p>
         <div class="simply-countdown-inline"></div>
+
+        <h3>countup</h3>
+        <p>countup Enabled option</p>
+        <div class="simply-countdown simply-countdown-countup"></div>
     </section>
 
     <section class="changelog">
         <h2>Changelog</h2>
+
+        <h3>1.5.0</h3>
+        <ul>
+            <li>Add countUp option (<a href="https://github.com/VincentLoy/simplyCountdown.js/issues/10" target="_blank">Resolve #10</a>)</li>
+            <li>Upgrade yarn dev dependencies</li>
+            <li>Some minor code reformatting</li>
+        </ul>
 
         <h3>1.4.0</h3>
         <ul>
@@ -190,7 +212,7 @@
             <li>Remove JSLint support</li>
             <li>
                 Add ESLint support based on customized
-                [airbnb rules](https://www.npmjs.com/package/eslint-config-airbnb-base)
+                <a href="https://www.npmjs.com/package/eslint-config-airbnb-base", target="_blank">airbnb rules</a>
             </li>
         </ul>
 
@@ -205,14 +227,14 @@
         </ul>
 
         <h3>1.3.1</h3>
-       <ul>
-           <li>
-               clean some code
-           </li>
-           <li>
-               add refresh parameter
-           </li>
-       </ul>
+        <ul>
+            <li>
+                clean some code
+            </li>
+            <li>
+                add refresh parameter
+            </li>
+        </ul>
 
         <h3>1.3.0</h3>
         <ul>
@@ -278,12 +300,13 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/0.0.1/prism.min.js"></script>
 <script src="dist/simplyCountdown.min.js"></script>
 <script>
-  /**
-   * WARNING: I set this coundtown to be running until the end of times.
-   * So when you'll init the plugin, follow how it's done in plugin documentation.
-   * e.g : instead of "month: d.getMonth() + 1" put "month: 10" for October.
-   */
-  var d = new Date();
+    /**
+     * WARNING: I set this coundtown to be running until the end of times.
+     * So when you'll init the plugin, follow how it's done in plugin documentation.
+     * e.g : instead of "month: d.getMonth() + 1" put "month: 10" for October.
+     */
+    var d = new Date(),
+        countUpDate = new Date();
     d.setDate(d.getDate() + 450);
 
     // default example
@@ -307,6 +330,17 @@
         month: d.getMonth() + 1,
         day: d.getDate(),
         enableUtc: false
+    });
+
+    // Count Up Example
+    simplyCountdown('.simply-countdown-countup', {
+        year: countUpDate.getFullYear(),
+        month: countUpDate.getMonth() + 1,
+        day: countUpDate.getDate(),
+        hours: countUpDate.getHours(),
+        minutes: countUpDate.getMinutes(),
+        seconds: countUpDate.getSeconds(),
+        countUp: true
     });
 </script>
 </body>
