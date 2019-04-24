@@ -1,16 +1,17 @@
 {
   "name": "simplycountdown.js",
   "description": "Tiny Javascript Countdown",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "homepage": "http://vincentloy.github.io/simplyCountdown.js",
   "author": {
     "name": "Vincent Loy",
-    "url": "http://vincent-loy.fr",
+    "url": "https://vincent-loy.fr",
     "email": "vincent.loy1@gmail.com"
   },
   "keywords": [
     "simplyCountdown",
     "countdown",
+    "countup",
     "clock",
     "jquery",
     "vanilla",

@@ -51,7 +51,8 @@ $ npm install simplycountdown.js
             sectionClass: 'simply-section', //section css class
             amountClass: 'simply-amount', // amount css class
             wordClass: 'simply-word', // word css class
-            zeroPad: false
+            zeroPad: false,
+            countUp: false
     });
 ```
 
@@ -116,6 +117,11 @@ You can easly customize the countdown using the css theme starter file or create
 - Small is better than Big.
 
 ### Changelog
+
+##### 1.5.0
+- Resolve #10 - Add countup support
+- Upgrade yarn dev dependencies
+- Some minor code reformatting
 
 ##### 1.4.0
 - Remove bower support

@@ -3,7 +3,8 @@
   "rules": {
     "indent": ["error", 4],
     "func-names": ["error", "never"],
-    "no-param-reassign": ["error", {"props": false}]
+    "no-param-reassign": ["error", {"props": false}],
+    "quotes": "off"
   },
   "parserOptions": {
     "ecmaVersion": 6
