@@ -23,12 +23,7 @@
   "bugs": {
     "url": "https://github.com/VincentLoy/simplyCountdown.js/issues"
   },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "https://github.com/VincentLoy/simplyCountdown.js/blob/master/LICENSE"
-    }
-  ],
+  "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.1.6",
     "@babel/polyfill": "^7.0.0",
