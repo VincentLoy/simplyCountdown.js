@@ -250,6 +250,28 @@
 
                     fullCountDown.seconds.amount.textContent = (parameters.zeroPad && seconds.toString().length < 2 ? '0' : '') + seconds;
                     fullCountDown.seconds.word.textContent = secondWord;
+
+                    if(days == 0) {
+                        countdown.childNodes[0].style.display = "none";
+                        if(hours == 0) {
+                            countdown.childNodes[1].style.display = "none";
+                            if(minutes == 0) {
+                                countdown.childNodes[2].style.display = "none";
+                                if(seconds == 0) {
+                                    countdown.childNodes[3].style.display = "none";
+                                } else {
+                                    countdown.childNodes[3].style.display = "flex";
+                                }
+                            } else {
+                                countdown.childNodes[2].style.display = "flex";
+                                countdown.childNodes[3].style.display = "flex";
+                            }
+                        } else {
+                            countdown.childNodes[1].style.display = "flex";
+                            countdown.childNodes[2].style.display = "flex";
+                            countdown.childNodes[3].style.display = "flex";
+                        }
+                    }
                 }
             };
 
