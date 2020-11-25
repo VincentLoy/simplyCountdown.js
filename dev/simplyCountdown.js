@@ -5,7 +5,7 @@
      * Project : simply-countdown
      * Date : 27/06/2015
      * License : MIT
-     * Version : 1.5.0
+     * Version : 1.6.0
      * Author : Vincent Loy <vincent.loy1@gmail.com>
      * Contributors :
      *  - Justin Beasley <JustinB@harvest.org>
@@ -111,11 +111,10 @@
             minutes: 0,
             seconds: 0,
             words: {
-                days: 'day',
-                hours: 'hour',
-                minutes: 'minute',
-                seconds: 'second',
-                pluralLetter: 's'
+                days: { singular: 'day', plural: 'days' },
+                hours: { singular: 'hour', plural: 'hours' },
+                minutes: { singular: 'minute', plural: 'minutes' },
+                seconds: { singular: 'second', plural: 'seconds' }
             },
             plural: true,
             inline: false,
@@ -211,25 +210,25 @@
 
                 if (parameters.plural) {
                     dayWord = days > 1
-                        ? parameters.words.days + parameters.words.pluralLetter
-                        : parameters.words.days;
+                        ? parameters.words.days.plural
+                        : parameters.words.days.singular;
 
                     hourWord = hours > 1
-                        ? parameters.words.hours + parameters.words.pluralLetter
-                        : parameters.words.hours;
+                        ? parameters.words.hours.plural
+                        : parameters.words.hours.singular;
 
                     minuteWord = minutes > 1
-                        ? parameters.words.minutes + parameters.words.pluralLetter
-                        : parameters.words.minutes;
+                        ? parameters.words.minutes.plural
+                        : parameters.words.minutes.singular;
 
                     secondWord = seconds > 1
-                        ? parameters.words.seconds + parameters.words.pluralLetter
-                        : parameters.words.seconds;
+                        ? parameters.words.seconds.plural
+                        : parameters.words.seconds.singular;
                 } else {
-                    dayWord = parameters.words.days;
-                    hourWord = parameters.words.hours;
-                    minuteWord = parameters.words.minutes;
-                    secondWord = parameters.words.seconds;
+                    dayWord = parameters.words.days.singular;
+                    hourWord = parameters.words.hours.singular;
+                    minuteWord = parameters.words.minutes.singular;
+                    secondWord = parameters.words.seconds.singular;
                 }
 
                 /* display an inline countdown into a span tag */
