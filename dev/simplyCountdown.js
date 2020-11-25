@@ -5,7 +5,7 @@
      * Project : simply-countdown
      * Date : 27/06/2015
      * License : MIT
-     * Version : 1.5.0
+     * Version : 1.6.0
      * Author : Vincent Loy <vincent.loy1@gmail.com>
      * Contributors :
      *  - Justin Beasley <JustinB@harvest.org>
