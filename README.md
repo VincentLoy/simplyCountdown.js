@@ -117,6 +117,9 @@ You can easly customize the countdown using the css theme starter file or create
 
 ### Changelog
 
+##### 1.6.0
+- Compatibility with languages like german for plurals ([PR #15](https://github.com/VincentLoy/simplyCountdown.js/pull/15)), thanks to [q30t](https://github.com/q30t)
+
 ##### 1.5.0
 - Resolve #10 - Add countup support
 - Upgrade yarn dev dependencies
