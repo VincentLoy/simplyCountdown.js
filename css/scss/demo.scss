@@ -211,7 +211,7 @@ main {
       content: "\1d";
       display: inline-block;
       margin-left: $spacing / 2;
-      transform: rotate(180deg);
+      transform: rotate(180deg) translateY(-4px);
     }
   }
 
