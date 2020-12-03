@@ -44,7 +44,7 @@ $ npm install simplycountdown.js
             inline: false, //set to true to get an inline basic countdown like : 24 days, 4 hours, 2 minutes, 5 seconds
             inlineClass: 'simply-countdown-inline', //inline css span class in case of inline = true
             // in case of inline set to false
-            enableUtc: true, //Use UTC as default
+            enableUtc: false, //Use UTC or not - default : false
             onEnd: function() { return; }, //Callback on countdown end, put your own function here
             refresh: 1000, // default refresh every 1s
             sectionClass: 'simply-section', //section css class
@@ -53,6 +53,13 @@ $ npm install simplycountdown.js
             zeroPad: false,
             countUp: false
     });
+
+    // Also, you can init with already existing Javascript Object.
+    let myElement = document.querySelector('.my-countdown');
+    simplyCountdown(myElement, { /* options */ });
+
+    let multipleElements = document.querySelectorAll('.my-countdown');
+    simplyCountdown(multipleElements, { /* options */ });
 ```
 
 ### You can use it with jQuery too (not required)
