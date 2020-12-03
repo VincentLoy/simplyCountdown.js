@@ -1,3 +1,5 @@
+/* global Symbol */
+
 (function (exports) {
     'use strict';
 
@@ -41,6 +43,10 @@
         }
 
         return out;
+    };
+
+    let isIterableElement = (val) => {
+        return val !== null && Symbol.iterator in Object(val);
     };
 
     /**
@@ -103,6 +109,7 @@
      * @param args (parameters)
      */
     exports.simplyCountdown = (elt, args) => {
+        const eltProto = Object.getPrototypeOf(elt);
         let parameters = extend({
             year: 2015,
             month: 6,
@@ -139,7 +146,15 @@
         let hours;
         let minutes;
         let seconds;
-        let cd = document.querySelectorAll(elt);
+        let cd;
+
+        // console.log(typeof elt);
+        //
+        if (eltProto === String.prototype) {
+            cd = document.querySelectorAll(elt);
+        } else {
+            cd = elt;
+        }
 
         targetTmpDate = new Date(
             parameters.year,
@@ -163,7 +178,7 @@
             targetDate = targetTmpDate;
         }
 
-        Array.prototype.forEach.call(cd, (theCountdown) => {
+        let runCountdown = (theCountdown) => {
             let countdown = theCountdown;
             let fullCountDown = createElements(parameters, countdown);
             let refresh;
@@ -255,7 +270,15 @@
             // Refresh immediately to prevent a Flash of Unstyled Content
             refresh();
             interval = window.setInterval(refresh, parameters.refresh);
-        });
+        };
+
+        if (!isIterableElement(cd)) {
+            runCountdown(cd);
+        } else {
+            Array.prototype.forEach.call(cd, (cdElt) => {
+                runCountdown(cdElt);
+            });
+        }
     };
 }(window));
 

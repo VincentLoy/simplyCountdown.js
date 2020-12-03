@@ -99,7 +99,7 @@
             inline: false, //set to true to get an inline basic countdown like : 24 days, 4 hours, 2 minutes, 5 seconds
             inlineClass: 'simply-countdown-inline', //inline css span class in case of inline = true
             // in case of inline set to false
-            enableUtc: true,
+            enableUtc: false,
             onEnd: function () {
                 // your code
                 return;
@@ -111,6 +111,13 @@
             zeroPad: false,
             countUp: false, // enable count up if set to true
     });
+
+    // Also, you can init with already existing Javascript Object.
+    let myElement = document.querySelector('.my-countdown');
+    simplyCountdown(myElement, { /* options */ });
+
+    let multipleElements = document.querySelectorAll('.my-countdown');
+    simplyCountdown(multipleElements, { /* options */ });
 </code>
 </pre>
         <h3>You can use it with jQuery too (not required)</h3>
@@ -194,12 +201,24 @@
 
         <h3>countup</h3>
         <p>countup Enabled option</p>
-        <div class="simply-countdown simply-countdown-countup"></div>
+        <div class="simply-countdown simply-countdown-countup" id="simply-countdown-countup"></div>
     </section>
 
     <section class="changelog">
         <h2>Changelog</h2>
 
+        <h3>1.7.0</h3>
+        <ul>
+            <li>
+                Countdowns can be initialized directly with HTML elements with variables like
+                <ul>
+                    <li>document.getElementById</li>
+                    <li>document.querySelector</li>
+                    <li>document.querySelectorAll</li>
+                    <li>...etc</li>
+                </ul>
+            </li>
+        </ul>
         <h3>1.6.0</h3>
         <ul>
             <li>
@@ -271,7 +290,7 @@
         <h3>1.1.1</h3>
         <ul>
             <li>
-                <a href="https://github.com/VincentLoy/simplyCountdown.js/issues/3"
+                <a href="https://github.com/VincentLoy/simplyCountdown.min.js/issues/3"
                    rel="nofollow noopener"
                    target="_blank">
                     Resolve #3
@@ -312,7 +331,7 @@
 
 <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/0.0.1/prism.min.js"></script>
-<script src="dist/simplyCountdown.min.js"></script>
+<script src="dev/simplyCountdown.js"></script>
 <script>
     /**
      * WARNING: I set this coundtown to be running until the end of times.
@@ -327,7 +346,8 @@
     simplyCountdown('.simply-countdown-one', {
         year: d.getFullYear(),
         month: d.getMonth() + 1,
-        day: d.getDate()
+        day: d.getDate(),
+        enableUtc: true
     });
 
     // inline example
@@ -346,8 +366,9 @@
         enableUtc: false
     });
 
-    // Count Up Example
-    simplyCountdown('.simply-countdown-countup', {
+    // direct element injection & Count Up Example
+    var countUp = document.querySelector('.simply-countdown-countup');
+    simplyCountdown(countUp, {
         year: countUpDate.getFullYear(),
         month: countUpDate.getMonth() + 1,
         day: countUpDate.getDate(),
