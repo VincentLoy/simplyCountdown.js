@@ -103,6 +103,30 @@
         return spanTag;
     };
 
+    function selectSingularOrPluralWords(values, parameters) {
+        let selectSingularOrPlural = (value, words) => {
+            return value > 1 || (value == 0 && parameters.zeroIsPlural)
+                ? words.plural
+                : words.singular;
+        }
+
+        if (parameters.plural) {
+            return {
+                dayWord: selectSingularOrPlural(values.days, parameters.words.days),
+                hourWord: selectSingularOrPlural(values.hours, parameters.words.hours),
+                minuteWord: selectSingularOrPlural(values.minutes, parameters.words.minutes),
+                secondWord: selectSingularOrPlural(values.seconds, parameters.words.seconds),
+            }
+        } else {
+            return {
+                dayWord: parameters.words.days.singular,
+                hourWord: parameters.words.hours.singular,
+                minuteWord: parameters.words.minutes.singular,
+                secondWord: parameters.words.seconds.singular,
+            }
+        }
+    }
+
     /**
      * simplyCountdown, create and display the coundtown.
      * @param elt
@@ -124,6 +148,7 @@
                 seconds: { singular: 'second', plural: 'seconds' }
             },
             plural: true,
+            zeroIsPlural: false,
             inline: false,
             enableUtc: false,
             onEnd: () => {
@@ -184,11 +209,6 @@
             let refresh;
 
             refresh = function () {
-                let dayWord;
-                let hourWord;
-                let minuteWord;
-                let secondWord;
-
                 let updateDisplayDate = () => {
                     days = parseInt(secondsLeft / 86400, 10);
                     secondsLeft %= 86400;
@@ -223,28 +243,15 @@
                     parameters.onEnd();
                 }
 
-                if (parameters.plural) {
-                    dayWord = days > 1
-                        ? parameters.words.days.plural
-                        : parameters.words.days.singular;
-
-                    hourWord = hours > 1
-                        ? parameters.words.hours.plural
-                        : parameters.words.hours.singular;
-
-                    minuteWord = minutes > 1
-                        ? parameters.words.minutes.plural
-                        : parameters.words.minutes.singular;
-
-                    secondWord = seconds > 1
-                        ? parameters.words.seconds.plural
-                        : parameters.words.seconds.singular;
-                } else {
-                    dayWord = parameters.words.days.singular;
-                    hourWord = parameters.words.hours.singular;
-                    minuteWord = parameters.words.minutes.singular;
-                    secondWord = parameters.words.seconds.singular;
-                }
+                const {dayWord, hourWord, minuteWord, secondWord} = selectSingularOrPluralWords(
+                    {
+                        days,
+                        hours,
+                        minutes,
+                        seconds,
+                    },
+                    parameters
+                );
 
                 /* display an inline countdown into a span tag */
                 if (parameters.inline) {
