@@ -118,10 +118,10 @@
             minutes: 0,
             seconds: 0,
             words: {
-                days: { singular: 'day', plural: 'days' },
-                hours: { singular: 'hour', plural: 'hours' },
-                minutes: { singular: 'minute', plural: 'minutes' },
-                seconds: { singular: 'second', plural: 'seconds' }
+                days: {lambda: (root, n) => {return n > 1 ? root + "s" : root }, root: 'day'}
+              , hours: {lambda: (root, n) => {return n > 1 ? root + "s" : root }, root: 'hour'}
+              , minutes: {lambda: (root, n) => {return n > 1 ? root + "s" : root }, root: 'minute'}
+              , seconds: {lambda: (root, n) => {return n > 1 ? root + "s" : root }, root: 'second'}
             },
             plural: true,
             inline: false,
@@ -222,29 +222,16 @@
                     window.clearInterval(interval);
                     parameters.onEnd();
                 }
-
-                if (parameters.plural) {
-                    dayWord = days > 1
-                        ? parameters.words.days.plural
-                        : parameters.words.days.singular;
-
-                    hourWord = hours > 1
-                        ? parameters.words.hours.plural
-                        : parameters.words.hours.singular;
-
-                    minuteWord = minutes > 1
-                        ? parameters.words.minutes.plural
-                        : parameters.words.minutes.singular;
-
-                    secondWord = seconds > 1
-                        ? parameters.words.seconds.plural
-                        : parameters.words.seconds.singular;
-                } else {
-                    dayWord = parameters.words.days.singular;
-                    hourWord = parameters.words.hours.singular;
-                    minuteWord = parameters.words.minutes.singular;
-                    secondWord = parameters.words.seconds.singular;
-                }
+                let get_word = (obj, n) => {
+                    return obj.hasOwnProperty('lambda')
+                    ? obj.lambda(obj.root, n)
+                    : obj.root
+                };
+                let words = parameters.words;
+                dayWord = get_word(words.days, days);
+                hourWord = get_word(words.hours, hours);
+                minuteWord = get_word(words.minutes, minutes);
+                secondWord = get_word(words.seconds, seconds);
 
                 /* display an inline countdown into a span tag */
                 if (parameters.inline) {
