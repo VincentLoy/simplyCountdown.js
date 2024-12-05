@@ -125,6 +125,7 @@
             },
             plural: true,
             inline: false,
+            inlineSeparator: ', ',
             enableUtc: false,
             onEnd: () => {
             },
@@ -247,15 +248,15 @@
                     let displayStr = '';
 
                     if (!(parameters.removeZeroUnits && days === 0)) {
-                        displayStr += `${days} ${dayWord}, `;
+                        displayStr += `${days} ${dayWord}${parameters.inlineSeparator}`;
                     }
 
                     if (!(parameters.removeZeroUnits && days === 0 && hours === 0)) {
-                        displayStr += `${hours} ${hourWord}, `;
+                        displayStr += `${hours} ${hourWord}${parameters.inlineSeparator}`;
                     }
 
                     if (!(parameters.removeZeroUnits && days === 0 && hours === 0 && minutes === 0)) {
-                        displayStr += `${minutes} ${minuteWord}, `;
+                        displayStr += `${minutes} ${minuteWord}${parameters.inlineSeparator}`;
                     }
 
                     // Seconds should always be displayed
