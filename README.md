@@ -50,6 +50,7 @@ $ npm install simplycountdown.js
             amountClass: 'simply-amount', // amount css class
             wordClass: 'simply-word', // word css class
             zeroPad: false,
+            removeZeroUnits: false, // Remove zero units e.g : 3 hours, 2 minutes and 3 seconds instead of 0 days, 3 hours, 2 minutes and 3 seconds
             countUp: false
     });
 
