@@ -4,6 +4,8 @@
 * Date : 27/06/2015
 * Author : Vincent Loy <vincent.loy1$gmail.com>
 */
+@use "sass:color";
+
 $color-main: #3F72AF;
 $color-main-darken: #112D4E;
 $color-main-lighten: #6995ca;
@@ -79,7 +81,7 @@ header {
 
       @media #{$tablet} {
         font-size: 1.75rem;
-        margin: ($spacing * 2) 0 ($spacing * 3) 0;
+        margin: calc($spacing * 2) 0 calc($spacing * 3) 0;
       }
     }
 
@@ -96,7 +98,7 @@ header {
   border:2px solid $color-secondary-lighten;
   border-radius: 2px;
   text-decoration: none;
-  padding: $spacing / 2;
+  padding: calc($spacing / 2);
   transition: 0.1s ease-in-out all;
   display: block;
   margin: 0 $spacing $spacing $spacing;
@@ -115,7 +117,7 @@ header {
 
   > i {
     @media #{$tablet} {
-      margin-right: $spacing / 2;
+      margin-right: calc($spacing / 2);
     }
   }
 
@@ -136,11 +138,16 @@ header {
 }
 
 .note {
-  background: $color-main-darken;
+  background: $color-main;
   color: $color-white;
   font-style: italic;
   border-radius: 2px;
-  padding: ($spacing / 3) $spacing;
+  padding: calc($spacing / 3) $spacing;
+  border-radius: 5px;
+
+  p {
+    margin-bottom: $spacing;
+  }
 }
 
 main {
@@ -169,7 +176,7 @@ main {
 
     @media #{$tablet} {
       font-size: 25px;
-      margin: ($spacing * 2) 0;
+      margin: calc($spacing * 2) 0;
     }
 
     a {
@@ -245,7 +252,7 @@ footer {
   font-weight: 600;
 
   a {
-    color: lighten($color-main-lighten, 25%);
+    color: color.adjust($color-main-lighten, $lightness: 25%);
     text-decoration: none;
     font-weight: bold;
 
