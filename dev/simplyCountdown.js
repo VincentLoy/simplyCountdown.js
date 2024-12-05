@@ -125,6 +125,7 @@
             },
             plural: true,
             inline: false,
+            inlineSeparator: ', ',
             enableUtc: false,
             onEnd: () => {
             },
@@ -134,13 +135,12 @@
             amountClass: 'simply-amount',
             wordClass: 'simply-word',
             zeroPad: false,
+            removeZeroUnits: false,
             countUp: false
         }, args);
         let interval;
         let targetDate;
-        let targetTmpDate;
         let now;
-        let nowUtc;
         let secondsLeft;
         let days;
         let hours;
@@ -156,26 +156,26 @@
             cd = elt;
         }
 
-        targetTmpDate = new Date(
-            parameters.year,
-            parameters.month - 1,
-            parameters.day,
-            parameters.hours,
-            parameters.minutes,
-            parameters.seconds
-        );
-
         if (parameters.enableUtc) {
-            targetDate = new Date(
-                targetTmpDate.getUTCFullYear(),
-                targetTmpDate.getUTCMonth(),
-                targetTmpDate.getUTCDate(),
-                targetTmpDate.getUTCHours(),
-                targetTmpDate.getUTCMinutes(),
-                targetTmpDate.getUTCSeconds()
-            );
+            // Use UTC for target date
+            targetDate = new Date(Date.UTC(
+                parameters.year,
+                parameters.month - 1,
+                parameters.day,
+                parameters.hours,
+                parameters.minutes,
+                parameters.seconds
+            ));
         } else {
-            targetDate = targetTmpDate;
+            // Use local time for target date
+            targetDate = new Date(
+                parameters.year,
+                parameters.month - 1,
+                parameters.day,
+                parameters.hours,
+                parameters.minutes,
+                parameters.seconds
+            );
         }
 
         let runCountdown = (theCountdown) => {
@@ -200,14 +200,23 @@
                     seconds = parseInt(secondsLeft % 60, 10);
                 };
 
-                now = new Date();
                 if (parameters.enableUtc) {
-                    nowUtc = new Date(now.getFullYear(), now.getMonth(), now.getDate(),
-                        now.getHours(), now.getMinutes(), now.getSeconds());
-                    secondsLeft = (targetDate - nowUtc.getTime()) / 1000;
+                    // Calculate "now" in UTC
+                    now = new Date();
+                    now = new Date(Date.UTC(
+                        now.getUTCFullYear(),
+                        now.getUTCMonth(),
+                        now.getUTCDate(),
+                        now.getUTCHours(),
+                        now.getUTCMinutes(),
+                        now.getUTCSeconds()
+                    ));
                 } else {
-                    secondsLeft = (targetDate - now.getTime()) / 1000;
+                    // Calculate "now" in local time
+                    now = new Date();
                 }
+
+                secondsLeft = Math.floor((targetDate - now.getTime()) / 1000);
 
                 if (secondsLeft > 0) {
                     updateDisplayDate();
@@ -222,6 +231,7 @@
                     window.clearInterval(interval);
                     parameters.onEnd();
                 }
+
                 let getWord = (obj, n) => {
                     return obj.hasOwnProperty('lambda')
                         ? obj.lambda(obj.root, n)
@@ -235,22 +245,53 @@
 
                 /* display an inline countdown into a span tag */
                 if (parameters.inline) {
-                    countdown.innerHTML = `${days} ${dayWord}, `
-                        + `${hours} ${hourWord}, `
-                        + `${minutes} ${minuteWord}, `
-                        + `${seconds} ${secondWord}.`;
+                    let displayStr = '';
+
+                    if (!(parameters.removeZeroUnits && days === 0)) {
+                        displayStr += `${days} ${dayWord}${parameters.inlineSeparator}`;
+                    }
+
+                    if (!(parameters.removeZeroUnits && days === 0 && hours === 0)) {
+                        displayStr += `${hours} ${hourWord}${parameters.inlineSeparator}`;
+                    }
+
+                    if (!(parameters.removeZeroUnits && days === 0 && hours === 0 && minutes === 0)) {
+                        displayStr += `${minutes} ${minuteWord}${parameters.inlineSeparator}`;
+                    }
+
+                    // Seconds should always be displayed
+                    displayStr += `${seconds} ${secondWord}`;
+
+                    countdown.innerHTML = displayStr.replace(/, $/, ''); // Remove trailing comma if any
                 } else {
-                    fullCountDown.days.amount.textContent = (parameters.zeroPad && days.toString().length < 2 ? '0' : '') + days;
-                    fullCountDown.days.word.textContent = dayWord;
+                    if (!(parameters.removeZeroUnits && days === 0)) {
+                        fullCountDown.days.amount.textContent = (parameters.zeroPad && days.toString().length < 2 ? '0' : '') + days;
+                        fullCountDown.days.word.textContent = dayWord;
+                        fullCountDown.days.full.style.display = '';
+                    } else {
+                        fullCountDown.days.full.style.display = 'none';
+                    }
 
-                    fullCountDown.hours.amount.textContent = (parameters.zeroPad && hours.toString().length < 2 ? '0' : '') + hours;
-                    fullCountDown.hours.word.textContent = hourWord;
+                    if (!(parameters.removeZeroUnits && days === 0 && hours === 0)) {
+                        fullCountDown.hours.amount.textContent = (parameters.zeroPad && hours.toString().length < 2 ? '0' : '') + hours;
+                        fullCountDown.hours.word.textContent = hourWord;
+                        fullCountDown.hours.full.style.display = '';
+                    } else {
+                        fullCountDown.hours.full.style.display = 'none';
+                    }
 
-                    fullCountDown.minutes.amount.textContent = (parameters.zeroPad && minutes.toString().length < 2 ? '0' : '') + minutes;
-                    fullCountDown.minutes.word.textContent = minuteWord;
+                    if (!(parameters.removeZeroUnits && days === 0 && hours === 0 && minutes === 0)) {
+                        fullCountDown.minutes.amount.textContent = (parameters.zeroPad && minutes.toString().length < 2 ? '0' : '') + minutes;
+                        fullCountDown.minutes.word.textContent = minuteWord;
+                        fullCountDown.minutes.full.style.display = '';
+                    } else {
+                        fullCountDown.minutes.full.style.display = 'none';
+                    }
 
+                    // Seconds should always be displayed
                     fullCountDown.seconds.amount.textContent = (parameters.zeroPad && seconds.toString().length < 2 ? '0' : '') + seconds;
                     fullCountDown.seconds.word.textContent = secondWord;
+                    fullCountDown.seconds.full.style.display = '';
                 }
             };
 

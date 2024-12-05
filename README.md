@@ -28,29 +28,31 @@ $ npm install simplycountdown.js
     // This is an example with default parameters
 
     simplyCountdown('[CSS-SELECTOR]', {
-            year: 2019, // required
-            month: 6, // required
-            day: 28, // required
-            hours: 0, // Default is 0 [0-23] integer
-            minutes: 0, // Default is 0 [0-59] integer
-            seconds: 0, // Default is 0 [0-59] integer
-            words: { //words displayed into the countdown, lambda for showing correct plurals
-                days: { root: 'day', lambda: (root, n) => {return n > 1 ? root + "s" : root }},
-                hours: { root: 'hour', lambda: (root, n) => {return n > 1 ? root + "s" : root }},
-                minutes: { root: 'minute', lambda: (root, n) => {return n > 1 ? root + "s" : root }},
-                seconds: { root: 'second', lambda: (root, n) => {return n > 1 ? root + "s" : root }}
-            },
-            inline: false, //set to true to get an inline basic countdown like : 24 days, 4 hours, 2 minutes, 5 seconds
-            inlineClass: 'simply-countdown-inline', //inline css span class in case of inline = true
-            // in case of inline set to false
-            enableUtc: false, //Use UTC or not - default : false
-            onEnd: function() { return; }, //Callback on countdown end, put your own function here
-            refresh: 1000, // default refresh every 1s
-            sectionClass: 'simply-section', //section css class
-            amountClass: 'simply-amount', // amount css class
-            wordClass: 'simply-word', // word css class
-            zeroPad: false,
-            countUp: false
+        year: 2015, // Target year (required)
+        month: 6, // Target month [1-12] (required)
+        day: 28, // Target day [1-31] (required)
+        hours: 0, // Target hour [0-23], default: 0
+        minutes: 0, // Target minute [0-59], default: 0
+        seconds: 0, // Target second [0-59], default: 0
+        words: { // Custom labels, with lambda for plurals
+            days: { root: 'day', lambda: (root, n) => n > 1 ? root + 's' : root },
+            hours: { root: 'hour', lambda: (root, n) => n > 1 ? root + 's' : root },
+            minutes: { root: 'minute', lambda: (root, n) => n > 1 ? root + 's' : root },
+            seconds: { root: 'second', lambda: (root, n) => n > 1 ? root + 's' : root }
+        },
+        plural: true, // Use plurals for labels
+        inline: false, // Inline format: e.g., "24 days, 4 hours, 2 minutes"
+        inlineSeparator: ', ', // Separator for inline format, default: ", "
+        inlineClass: 'simply-countdown-inline', // CSS class for inline countdown
+        enableUtc: false, // Use UTC time if true
+        onEnd: function () {}, // Callback when countdown ends
+        refresh: 1000, // Refresh interval in ms, default: 1000
+        sectionClass: 'simply-section', // CSS class for each countdown section
+        amountClass: 'simply-amount', // CSS class for numeric values
+        wordClass: 'simply-word', // CSS class for unit labels
+        zeroPad: false, // Pad numbers with leading zero
+        removeZeroUnits: false, // Remove units with zero value
+        countUp: false // Count up after reaching zero
     });
 
     // Also, you can init with already existing Javascript Object.
@@ -72,6 +74,30 @@ $('[CSS-SELECTOR]').simplyCountdown({
     ...
 });
 ```
+
+## Parameters
+| Parameter          | Type            | Description                                                                                 | Default                     |
+|--------------------|-----------------|---------------------------------------------------------------------------------------------|-----------------------------|
+| `year`             | Number (required) | The target year for the countdown.                                                          | -                           |
+| `month`            | Number (required) | The target month [1-12] for the countdown.                                                  | -                           |
+| `day`              | Number (required) | The target day [1-31] for the countdown.                                                    | -                           |
+| `hours`            | Number           | The target hour [0-23].                                                                     | 0                           |
+| `minutes`          | Number           | The target minute [0-59].                                                                   | 0                           |
+| `seconds`          | Number           | The target second [0-59].                                                                   | 0                           |
+| `words`            | Object           | Custom labels for the units (days, hours, minutes, seconds) with optional lambda for pluralization. | `{ days: { root: 'day', lambda: (root, n) => n > 1 ? root + 's' : root }, ... }` |
+| `plural`           | Boolean          | Whether to use plural forms for the unit labels.                                            | `true`                      |
+| `inline`           | Boolean          | Set to `true` for a simple inline countdown (e.g., "24 days, 4 hours, 2 minutes").          | `false`                     |
+| `inlineSeparator`  | String           | Separator used in the inline countdown format.                                              | `, `                        |
+| `inlineClass`      | String           | CSS class applied to the inline countdown container.                                        | `"simply-countdown-inline"` |
+| `enableUtc`        | Boolean          | Set to `true` to use UTC time for the countdown calculations.                               | `false`                     |
+| `onEnd`            | Function         | Callback function executed when the countdown ends.                                         | `() => {}`                  |
+| `refresh`          | Number           | The countdown refresh interval in milliseconds.                                             | `1000`                      |
+| `sectionClass`     | String           | CSS class applied to each countdown section (days, hours, minutes, seconds).                | `"simply-section"`          |
+| `amountClass`      | String           | CSS class applied to the numeric value of each countdown section.                           | `"simply-amount"`           |
+| `wordClass`        | String           | CSS class applied to the unit label of each countdown section.                              | `"simply-word"`             |
+| `zeroPad`          | Boolean          | Whether to pad the numeric values with leading zeros (e.g., "05").                         | `false`                     |
+| `removeZeroUnits`  | Boolean          | Remove units with zero value (e.g., remove "0 days" if days are zero).                     | `false`                     |
+| `countUp`          | Boolean          | Count up after reaching zero if set to `true`.                                              | `false`                     |
 
 ## Easy to customize
 
@@ -122,6 +148,14 @@ You can easly customize the countdown using the css theme starter file or create
 - Small is better than Big.
 
 ### Changelog
+
+#### 2.0.0
+This version may have breaking changes, if your website is working well with 1.7.0, you may want to stay on the previous version.
+- fix plurals in a generic way [#52](https://github.com/VincentLoy/simplyCountdown.js/pull/52)
+    - Thumbs up to [mira01](https://github.com/mira01) that fixed [#51](https://github.com/VincentLoy/simplyCountdown.js/issues/51), [#23](https://github.com/VincentLoy/simplyCountdown.js/issues/23) & [#42](https://github.com/VincentLoy/simplyCountdown.js/issues/42) !
+- Added the `inlineSeparator` parameter. Previously, the inline mode only supported a comma-separated countdown. Now, you can customize the separator, using options like |, /, -, or any character that suits your needs.
+- Fix potential UTC-related issues (fingers crossed!).
+
 
 #### 1.7.0
 - Countdowns can be initialized directly with HTML elements with variables like
