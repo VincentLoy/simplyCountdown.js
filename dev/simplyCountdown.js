@@ -118,10 +118,10 @@
             minutes: 0,
             seconds: 0,
             words: {
-                days: {lambda: (root, n) => {return n > 1 ? root + "s" : root }, root: 'day'}
-              , hours: {lambda: (root, n) => {return n > 1 ? root + "s" : root }, root: 'hour'}
-              , minutes: {lambda: (root, n) => {return n > 1 ? root + "s" : root }, root: 'minute'}
-              , seconds: {lambda: (root, n) => {return n > 1 ? root + "s" : root }, root: 'second'}
+                days: {lambda: (root, n) => {return n > 1 ? root + "s" : root }, root: 'day'},
+                hours: {lambda: (root, n) => {return n > 1 ? root + "s" : root }, root: 'hour'},
+                minutes: {lambda: (root, n) => {return n > 1 ? root + "s" : root }, root: 'minute'},
+                seconds: {lambda: (root, n) => {return n > 1 ? root + "s" : root }, root: 'second'}
             },
             plural: true,
             inline: false,
@@ -222,16 +222,16 @@
                     window.clearInterval(interval);
                     parameters.onEnd();
                 }
-                let get_word = (obj, n) => {
+                let getWord = (obj, n) => {
                     return obj.hasOwnProperty('lambda')
-                    ? obj.lambda(obj.root, n)
-                    : obj.root
+                        ? obj.lambda(obj.root, n)
+                        : obj.root
                 };
                 let words = parameters.words;
-                dayWord = get_word(words.days, days);
-                hourWord = get_word(words.hours, hours);
-                minuteWord = get_word(words.minutes, minutes);
-                secondWord = get_word(words.seconds, seconds);
+                dayWord = getWord(words.days, days);
+                hourWord = getWord(words.hours, hours);
+                minuteWord = getWord(words.minutes, minutes);
+                secondWord = getWord(words.seconds, seconds);
 
                 /* display an inline countdown into a span tag */
                 if (parameters.inline) {
