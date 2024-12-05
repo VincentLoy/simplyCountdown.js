@@ -36,7 +36,7 @@ p {
   font-size: 1.2rem;
   line-height: 1.6;
   font-weight: 400;
-  margin: $spacing 0;
+  margin: $spacing 0 45px;
 }
 
 h1, h2, h3 {
@@ -51,9 +51,10 @@ header {
   background: $color-main-darken;
   border-bottom: 5px solid $color-main;
   padding: $spacing;
+  height: 450px;
 
   @media #{$tablet} {
-    height: 450px;
+    height: 650px;
   }
 
   .header-content {
@@ -199,6 +200,42 @@ main {
   font-size: 1.3rem;
 }
 
+.sc-inline-header {
+  color: $color-secondary-lighten;
+  font-weight: 100;
+  font-size: 1.4rem;
+  font-style: italic;
+}
+
+.alert {
+  position: fixed;
+  bottom: -60px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  padding: 20px;
+  display: table;
+  background: $color-main-darken;
+  color: white;
+  border-radius: 5px;
+  font-size: 1.3rem;
+  opacity: 0;
+  transition: 0.3s ease all;
+  
+  &.show-after-header-cd {
+
+    &.active {
+      opacity: 1;
+      bottom: 60px;
+    }
+    
+    a {
+      font-weight: bold;
+      color: $color-secondary-lighten;
+    }
+  }
+}
+
 footer {
   background: $color-main-darken;
   color: $color-white;
@@ -216,4 +253,84 @@ footer {
       text-decoration: underline;
     }
   }
+}
+
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+
+  table {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #212529;
+    border-collapse: collapse;
+    min-width: 600px; // Ensures the table maintains its width with a scrollbar on smaller screens
+
+    th,
+    td {
+      padding: 0.75rem;
+      vertical-align: top;
+      border-top: 1px solid #dee2e6;
+    }
+
+    thead {
+      th {
+        vertical-align: bottom;
+        border-bottom: 2px solid #dee2e6;
+        background-color: #f8f9fa;
+        font-weight: bold;
+      }
+    }
+
+    tbody {
+      tr {
+        &:nth-child(even) {
+          background-color: #f2f2f2;
+        }
+      }
+    }
+
+    &.table-striped tbody tr:nth-of-type(odd) {
+      background-color: rgba(0, 0, 0, 0.05);
+    }
+
+    &.table-hover tbody tr:hover {
+      background-color: rgba(0, 0, 0, 0.075);
+    }
+
+    &.table-bordered {
+      border: 1px solid #dee2e6;
+
+      th,
+      td {
+        border: 1px solid #dee2e6;
+      }
+    }
+
+    &.table-sm th,
+    &.table-sm td {
+      padding: 0.3rem;
+    }
+  }
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.ff-code {
+  font-family: monospace;
+  font-size: 0.9rem;
+}
+
+.hide {
+  display: none;
 }
