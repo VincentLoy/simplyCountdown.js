@@ -139,9 +139,7 @@
         }, args);
         let interval;
         let targetDate;
-        let targetTmpDate;
         let now;
-        let nowUtc;
         let secondsLeft;
         let days;
         let hours;
@@ -157,26 +155,26 @@
             cd = elt;
         }
 
-        targetTmpDate = new Date(
-            parameters.year,
-            parameters.month - 1,
-            parameters.day,
-            parameters.hours,
-            parameters.minutes,
-            parameters.seconds
-        );
-
         if (parameters.enableUtc) {
-            targetDate = new Date(
-                targetTmpDate.getUTCFullYear(),
-                targetTmpDate.getUTCMonth(),
-                targetTmpDate.getUTCDate(),
-                targetTmpDate.getUTCHours(),
-                targetTmpDate.getUTCMinutes(),
-                targetTmpDate.getUTCSeconds()
-            );
+            // Use UTC for target date
+            targetDate = new Date(Date.UTC(
+                parameters.year,
+                parameters.month - 1,
+                parameters.day,
+                parameters.hours,
+                parameters.minutes,
+                parameters.seconds
+            ));
         } else {
-            targetDate = targetTmpDate;
+            // Use local time for target date
+            targetDate = new Date(
+                parameters.year,
+                parameters.month - 1,
+                parameters.day,
+                parameters.hours,
+                parameters.minutes,
+                parameters.seconds
+            );
         }
 
         let runCountdown = (theCountdown) => {
@@ -201,14 +199,23 @@
                     seconds = parseInt(secondsLeft % 60, 10);
                 };
 
-                now = new Date();
                 if (parameters.enableUtc) {
-                    nowUtc = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(),
-                        now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds()));
-                    secondsLeft = (targetDate - nowUtc.getTime()) / 1000;
+                    // Calculate "now" in UTC
+                    now = new Date();
+                    now = new Date(Date.UTC(
+                        now.getUTCFullYear(),
+                        now.getUTCMonth(),
+                        now.getUTCDate(),
+                        now.getUTCHours(),
+                        now.getUTCMinutes(),
+                        now.getUTCSeconds()
+                    ));
                 } else {
-                    secondsLeft = (targetDate - now.getTime()) / 1000;
+                    // Calculate "now" in local time
+                    now = new Date();
                 }
+
+                secondsLeft = Math.floor((targetDate - now.getTime()) / 1000);
 
                 if (secondsLeft > 0) {
                     updateDisplayDate();

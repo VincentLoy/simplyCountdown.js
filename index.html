@@ -352,7 +352,16 @@
     simplyCountdown('.simply-countdown-one', {
         year: d.getFullYear(),
         month: d.getMonth() + 1,
-        day: d.getDate()
+        day: d.getDate(),
+        enableUtc: true
+    });
+
+    //jQuery example
+    $('#simply-countdown-losange').simplyCountdown({
+        year: d.getFullYear(),
+        month: d.getMonth() + 1,
+        day: d.getDate(),
+        enableUtc: false
     });
 
     // example with removeZeroUnits
@@ -369,14 +378,6 @@
         month: d.getMonth() + 1,
         day: d.getDate(),
         inline: true
-    });
-
-    //jQuery example
-    $('#simply-countdown-losange').simplyCountdown({
-        year: d.getFullYear(),
-        month: d.getMonth() + 1,
-        day: d.getDate(),
-        enableUtc: false
     });
 
     // direct element injection & Count Up Example
