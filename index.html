@@ -8,8 +8,9 @@
     <meta name="keywords" content="Vincent Loy, Javascript, Javascript Library, Javascript Countdown, jQuery Countdown, JS, JS Countdown, Countdown, Countup"/>
     <meta name="description" content="simplyCountdown.js is an easy to use Javascript Countdown Library. You can easly customize it with your own CSS and versatile parameters."/>
 
-    <link href='http://fonts.googleapis.com/css?family=Lato:300,400italic' rel='stylesheet'
-          type='text/css'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Wix+Madefor+Text:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css"/>
 
@@ -23,6 +24,12 @@
     <div class="header-content">
         <h1>simplyCountdown.js</h1>
         <h2>A Tiny Javascript Countdown Library</h2>
+
+        <p class="sc-inline-header">
+            You're just 
+            <span class="sc-inline-header__cd bold"></span>
+            away from discovering the perfect Countdown Library for your next project!
+        </p>
 
         <div class="repo-buttons">
             <a href="https://github.com/VincentLoy/simplyCountdown.js" class="button">
@@ -41,16 +48,21 @@
         <h2>Why another countdown ?</h2>
 
         <p>
-            I developed this little library in a boring day. I regularly use this kind of
-            Javascript's
-            libraries to display countdowns on websites and this one exactly meets the needs that I
-            have.
-            It is perfect to make 'under construction' pages, etc.
+            I created this little library on a day when I had some extra time, 
+            inspired by my regular need for JavaScript countdown solutions on websites. 
+            This library is designed to meet my exact needs for simplicity and flexibility, 
+            making it perfect for use cases like 'under construction' pages or upcoming event countdowns.
         </p>
 
         <p>
-            This is a very (very) basic Javascript CountDown.
+            This JavaScript countdown library is lightweight and easy to use—ideal for developers who want a straightforward, 
+            customizable countdown without the unnecessary complexity of many other libraries. Whether it's for landing pages, 
+            promotions, or personal projects, this solution can help you add engaging countdown timers effortlessly.
         </p>
+
+        <p>
+            simplyCountdown.js has been adopted by a variety of projects where developers needed a simple, reliable countdown solution. 
+            Its lightweight nature and ease of customization make it an appealing choice for straightforward use cases like 'under construction' pages or event countdowns
     </section>
 
     <section class="getting-started">
@@ -61,7 +73,7 @@
             download</a></h3>
 
         <pre>
-<code class="language-console">
+<code class="ff-code">
     $ npm install simplycountdown.js
 
     // or
@@ -83,35 +95,32 @@
     // You'll always have to call simplyCountdown using ID's, no classes.
 
     simplyCountdown('[CSS-SELECTOR]', {
-            year: 2015, // required
-            month: 6, // required
-            day: 28, // required
-            hours: 0, // Default is 0 [0-23] integer
-            minutes: 0, // Default is 0 [0-59] integer
-            seconds: 0, // Default is 0 [0-59] integer
-            words: { //words displayed into the countdown, lambda for showing correct plurals
-                days: { root: 'day', lambda: (root, n) => {return n > 1 ? root + "s" : root }},
-                hours: { root: 'hour', lambda: (root, n) => {return n > 1 ? root + "s" : root }},
-                minutes: { root: 'minute', lambda: (root, n) => {return n > 1 ? root + "s" : root }},
-                seconds: { root: 'second', lambda: (root, n) => {return n > 1 ? root + "s" : root }}
-            },
-            plural: true, //use plurals
-            inline: false, //set to true to get an inline basic countdown like : 24 days, 4 hours, 2 minutes, 5 seconds
-            inlineClass: 'simply-countdown-inline', //inline css span class in case of inline = true
-            // in case of inline set to false
-            enableUtc: false,
-            onEnd: function () {
-                // your code
-                return;
-            },
-            refresh: 1000, //default refresh every 1s
-            sectionClass: 'simply-section', //section css class
-            amountClass: 'simply-amount', // amount css class
-            wordClass: 'simply-word', // word css class
-            zeroPad: false,
-            removeZeroUnits: false, // Remove zero units e.g : 3 hours, 2 minutes and 3 seconds instead of 0 days, 3 hours, 2 minutes and 3 seconds
-            countUp: false, // enable count up if set to true
-    });
+        year: 2015, // Target year (required)
+        month: 6, // Target month [1-12] (required)
+        day: 28, // Target day [1-31] (required)
+        hours: 0, // Target hour [0-23], default: 0
+        minutes: 0, // Target minute [0-59], default: 0
+        seconds: 0, // Target second [0-59], default: 0
+        words: { // Custom labels, with lambda for plurals
+            days: { root: 'day', lambda: (root, n) => n > 1 ? root + 's' : root },
+            hours: { root: 'hour', lambda: (root, n) => n > 1 ? root + 's' : root },
+            minutes: { root: 'minute', lambda: (root, n) => n > 1 ? root + 's' : root },
+            seconds: { root: 'second', lambda: (root, n) => n > 1 ? root + 's' : root }
+        },
+        plural: true, // Use plurals for labels
+        inline: false, // Inline format: e.g., "24 days, 4 hours, 2 minutes"
+        inlineSeparator: ', ', // Separator for inline format, default: ", "
+        inlineClass: 'simply-countdown-inline', // CSS class for inline countdown
+        enableUtc: false, // Use UTC time if true
+        onEnd: function () {}, // Callback when countdown ends
+        refresh: 1000, // Refresh interval in ms, default: 1000
+        sectionClass: 'simply-section', // CSS class for each countdown section
+        amountClass: 'simply-amount', // CSS class for numeric values
+        wordClass: 'simply-word', // CSS class for unit labels
+        zeroPad: false, // Pad numbers with leading zero
+        removeZeroUnits: false, // Remove units with zero value
+        countUp: false // Count up after reaching zero
+    });    
 
     // Also, you can init with already existing Javascript Object.
     let myElement = document.querySelector('.my-countdown');
@@ -135,6 +144,144 @@
     });
 </code>
         </pre>
+
+        <h3>Parameters</h3>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                        <th>Default</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code class="ff-code">year</code></td>
+                        <td>Number (required)</td>
+                        <td>The target year for the countdown.</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td><code class="ff-code">month</code></td>
+                        <td>Number (required)</td>
+                        <td>The target month [1-12] for the countdown.</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td><code class="ff-code">day</code></td>
+                        <td>Number (required)</td>
+                        <td>The target day [1-31] for the countdown.</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td><code class="ff-code">hours</code></td>
+                        <td>Number</td>
+                        <td>The target hour [0-23].</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td><code class="ff-code">minutes</code></td>
+                        <td>Number</td>
+                        <td>The target minute [0-59].</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td><code class="ff-code">seconds</code></td>
+                        <td>Number</td>
+                        <td>The target second [0-59].</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td><code class="ff-code">words</code></td>
+                        <td>Object</td>
+                        <td>Custom labels for the units (days, hours, minutes, seconds) with optional lambda function for correct pluralization.</td>
+                        <td>
+                        <code class="ff-code">{ days: { root: 'day', lambda: (root, n) => n > 1 ? root + 's' : root }, ... }</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><code class="ff-code">plural</code></td>
+                        <td>Boolean</td>
+                        <td>Whether to use plural forms for the unit labels.</td>
+                        <td><code class="ff-code">true</code></td>
+                    </tr>
+                    <tr>
+                        <td><code class="ff-code">inline</code></td>
+                        <td>Boolean</td>
+                        <td>Set to <code class="ff-code">true</code> for a simple inline countdown (e.g., "24 days, 4 hours, 2 minutes").</td>
+                        <td><code class="ff-code">false</code></td>
+                    </tr>
+                    <tr>
+                        <td><code class="ff-code">inlineSeparator</code></td>
+                        <td>String</td>
+                        <td>Separator used in the inline countdown format.</td>
+                        <td><code class="ff-code">", "</code></td>
+                    </tr>
+                    <tr>
+                        <td><code class="ff-code">inlineClass</code></td>
+                        <td>String</td>
+                        <td>CSS class applied to the inline countdown container.</td>
+                        <td><code class="ff-code">"simply-countdown-inline"</code></td>
+                    </tr>
+                    <tr>
+                        <td><code class="ff-code">enableUtc</code></td>
+                        <td>Boolean</td>
+                        <td>Set to <code class="ff-code">true</code> to use UTC time for the countdown calculations.</td>
+                        <td><code class="ff-code">false</code></td>
+                    </tr>
+                    <tr>
+                        <td><code class="ff-code">onEnd</code></td>
+                        <td>Function</td>
+                        <td>Callback function executed when the countdown ends.</td>
+                        <td><code class="ff-code">() => {}</code></td>
+                    </tr>
+                    <tr>
+                        <td><code class="ff-code">refresh</code></td>
+                        <td>Number</td>
+                        <td>The countdown refresh interval in milliseconds.</td>
+                        <td><code class="ff-code">1000</code></td>
+                    </tr>
+                    <tr>
+                        <td><code class="ff-code">sectionClass</code></td>
+                        <td>String</td>
+                        <td>CSS class applied to each countdown section (days, hours, minutes, seconds).</td>
+                        <td><code class="ff-code">"simply-section"</code></td>
+                    </tr>
+                    <tr>
+                        <td><code class="ff-code">amountClass</code></td>
+                        <td>String</td>
+                        <td>CSS class applied to the numeric value of each countdown section.</td>
+                        <td><code class="ff-code">"simply-amount"</code></td>
+                    </tr>
+                    <tr>
+                        <td><code class="ff-code">wordClass</code></td>
+                        <td>String</td>
+                        <td>CSS class applied to the unit label of each countdown section.</td>
+                        <td><code class="ff-code">"simply-word"</code></td>
+                    </tr>
+                    <tr>
+                        <td><code class="ff-code">zeroPad</code></td>
+                        <td>Boolean</td>
+                        <td>Whether to pad the numeric values with leading zeros (e.g., "05").</td>
+                        <td><code class="ff-code">false</code></td>
+                    </tr>
+                    <tr>
+                        <td><code class="ff-code">removeZeroUnits</code></td>
+                        <td>Boolean</td>
+                        <td>Remove units with zero value (e.g., remove "0 days" if days are zero).</td>
+                        <td><code class="ff-code">false</code></td>
+                    </tr>
+                    <tr>
+                        <td><code class="ff-code">countUp</code></td>
+                        <td>Boolean</td>
+                        <td>Count up after reaching zero if set to <code class="ff-code">true</code>.</td>
+                        <td><code class="ff-code">false</code></td>
+                    </tr>
+                </tbody>
+            </table>
+          </div>
     </section>
 
     <section class="custom">
@@ -185,7 +332,7 @@
 </code>
         </pre>
     </section>
-
+        <h2>Examples</h2>
         <h3>Default</h3>
         <p>Displayed whithout jQuery - UTC enabled</p>
         <div class="simply-countdown simply-countdown-one"></div>
@@ -206,123 +353,6 @@
         <p>countup Enabled option</p>
         <div class="simply-countdown simply-countdown-countup" id="simply-countdown-countup"></div>
     </section>
-
-    <section class="changelog">
-        <h2>Changelog</h2>
-
-        <h3>1.7.0</h3>
-        <ul>
-            <li>
-                Added <strong>removeZeroUnits</strong> parameter to hide countdown units if they are not relevant. For example, "3 hours, 2 minutes, 3 seconds" instead of "0 days, 3 hours, 2 minutes, 3 seconds". Units are conditionally removed if the remaining time doesn't include them.
-            </li>
-            <li>
-                Countdowns can be initialized directly with HTML elements with variables like
-                <ul>
-                    <li>document.getElementById</li>
-                    <li>document.querySelector</li>
-                    <li>document.querySelectorAll</li>
-                    <li>...etc</li>
-                </ul>
-            </li>
-        </ul>
-        <h3>1.6.0</h3>
-        <ul>
-            <li>
-                Compatibility with languages like german for plurals
-                (<a href="https://github.com/VincentLoy/simplyCountdown.js/pull/15" target="_blank">PR #15</a>),
-                Thanks to <a href="https://github.com/q30t" target="_blank">q30t</a>
-            </li>
-            <li>
-                Update readme
-            </li>
-        </ul>
-        <h3>1.5.0</h3>
-        <ul>
-            <li>Add countUp option (<a href="https://github.com/VincentLoy/simplyCountdown.js/issues/10" target="_blank">Resolve #10</a>)</li>
-            <li>Upgrade yarn dev dependencies</li>
-            <li>Some minor code reformatting</li>
-        </ul>
-
-        <h3>1.4.0</h3>
-        <ul>
-            <li>Remove bower support</li>
-            <li>migrate from LESS to SASS (scss) / for demo and themes</li>
-            <li>migrate lib from ES5 to a really basic ES6</li>
-            <li>Remove JSLint support</li>
-            <li>
-                Add ESLint support based on customized
-                <a href="https://www.npmjs.com/package/eslint-config-airbnb-base", target="_blank">airbnb rules</a>
-            </li>
-        </ul>
-
-        <h3>1.3.2</h3>
-        <ul>
-            <li>
-                add zeroPad parameter
-            </li>
-            <li>
-                fixed Flash of Unstyled Content
-            </li>
-        </ul>
-
-        <h3>1.3.1</h3>
-        <ul>
-            <li>
-                clean some code
-            </li>
-            <li>
-                add refresh parameter
-            </li>
-        </ul>
-
-        <h3>1.3.0</h3>
-        <ul>
-            <li>
-                Add onEnd callback
-            </li>
-        </ul>
-
-        <h3>1.2.0</h3>
-        <ul>
-            <li>
-                <a href="https://github.com/VincentLoy/simplyCountdown.js/issues/4"
-                   rel="nofollow noopener"
-                   target="_blank">
-                    Resolve #4
-                </a> - Add UTC support adding enableUtc parameter
-            </li>
-        </ul>
-
-        <h3>1.1.1</h3>
-        <ul>
-            <li>
-                <a href="https://github.com/VincentLoy/simplyCountdown.min.js/issues/3"
-                   rel="nofollow noopener"
-                   target="_blank">
-                    Resolve #3
-                </a> - Remove ID Only compatibility
-            </li>
-        </ul>
-
-        <h3>1.1.0</h3>
-        <ul>
-            <li>
-                Add hours, minutes, seconds in available settings to set the target Date
-            </li>
-        </ul>
-
-        <h3>1.0.1</h3>
-        <ul>
-            <li>
-                Fix console error when not using jQuery
-            </li>
-        </ul>
-
-        <h3>1.0.0</h3>
-        <ul>
-            <li>initial release</li>
-        </ul>
-    </section>
 </main>
 
 <footer>
@@ -335,6 +365,10 @@
     </p>
 </footer>
 
+<div class="alert show-after-header-cd">
+    You like simplyCountdown ? <a href="https://github.com/VincentLoy/simplyCountdown.js" target="_blank">Give it a star on Github !</a>
+</div>
+
 <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/0.0.1/prism.min.js"></script>
 <script src="dev/simplyCountdown.js"></script>
@@ -344,7 +378,7 @@
      * So when you'll init the plugin, follow how it's done in plugin documentation.
      * e.g : instead of "month: d.getMonth() + 1" put "month: 10" for October.
      */
-    var d = new Date(),
+    let d = new Date(),
         countUpDate = new Date();
     d.setMonth(d.getMonth() + 1);
 
@@ -378,6 +412,31 @@
         month: d.getMonth() + 1,
         day: d.getDate(),
         inline: true
+    });
+    
+    // Header inline Countdown
+    let dateInTwoMinutes = new Date();
+    //dateInTwoMinutes.setMinutes(dateInTwoMinutes.getMinutes() + 1);
+    dateInTwoMinutes.setSeconds(dateInTwoMinutes.getSeconds() + 30);
+    simplyCountdown('.sc-inline-header__cd', {
+        year: dateInTwoMinutes.getFullYear(),
+        month: dateInTwoMinutes.getMonth() + 1,
+        day: dateInTwoMinutes.getDate(),
+        hours: dateInTwoMinutes.getHours(),
+        minutes: dateInTwoMinutes.getMinutes(),
+        seconds: dateInTwoMinutes.getSeconds(),
+        removeZeroUnits: true,
+        inline: true,
+        inlineSeparator: ' - ',
+        onEnd: () => {
+            let afterHeaderCdAlert = document.querySelector('.show-after-header-cd');
+            afterHeaderCdAlert.classList.add('active');
+            document.querySelector('.sc-inline-header').classList.add('hide');
+
+            window.setInterval(() => {
+                afterHeaderCdAlert.classList.remove('active');
+            }, 20000);
+        }
     });
 
     // direct element injection & Count Up Example
