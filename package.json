@@ -1,7 +1,7 @@
 {
   "name": "simplycountdown.js",
   "description": "Tiny Javascript Countdown",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "homepage": "http://vincentloy.github.io/simplyCountdown.js",
   "author": {
     "name": "Vincent Loy",
@@ -32,19 +32,20 @@
     "@babel/core": "^7.1.6",
     "@babel/polyfill": "^7.0.0",
     "@babel/preset-env": "^7.1.6",
-    "browser-sync": "^2.26.3",
+    "browser-sync": "^3.0.3",
     "core-js": "^2.5.7",
     "eslint-config-airbnb-base": "^13.1.0",
-    "gulp": "^4.0.2",
-    "gulp-autoprefixer": "^7.0.1",
+    "gulp": "^5.0.0",
+    "gulp-autoprefixer": "^9.0.0",
     "gulp-babel": "^8.0.0",
     "gulp-concat": "^2.6.1",
     "gulp-csso": "^3.0.1",
     "gulp-eslint": "^5.0.0",
-    "gulp-sass": "^4.0.2",
+    "gulp-sass": "^6.0.0",
     "gulp-terser": "^1.1.5",
     "gulp-uglify": "^3.0.1",
     "prismjs": "^1.15.0",
+    "sass": "^1.82.0",
     "uglify-save-license": "^0.4.1"
   }
 }

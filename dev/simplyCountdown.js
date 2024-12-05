@@ -1,18 +1,17 @@
 /* global Symbol */
 
+/*!
+* Project : simply-countdown
+* Date : 06/12/2024
+* License : MIT
+* Version : 2.0.1
+* Author : Vincent Loy <vincent.loy1@gmail.com>
+* Contributors :
+*  - Justin Beasley <JustinB@harvest.org>
+*  - Nathan Smith <NathanS@harvest.org>
+*/
 (function (exports) {
     'use strict';
-
-    /*!
-     * Project : simply-countdown
-     * Date : 27/06/2015
-     * License : MIT
-     * Version : 1.6.0
-     * Author : Vincent Loy <vincent.loy1@gmail.com>
-     * Contributors :
-     *  - Justin Beasley <JustinB@harvest.org>
-     *  - Nathan Smith <NathanS@harvest.org>
-     */
 
     /**
      * Function that merge user parameters with defaults one.
