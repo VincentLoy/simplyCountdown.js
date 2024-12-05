@@ -75,6 +75,30 @@ $('[CSS-SELECTOR]').simplyCountdown({
 });
 ```
 
+## Parameters
+| Parameter          | Type            | Description                                                                                 | Default                     |
+|--------------------|-----------------|---------------------------------------------------------------------------------------------|-----------------------------|
+| `year`             | Number (required) | The target year for the countdown.                                                          | -                           |
+| `month`            | Number (required) | The target month [1-12] for the countdown.                                                  | -                           |
+| `day`              | Number (required) | The target day [1-31] for the countdown.                                                    | -                           |
+| `hours`            | Number           | The target hour [0-23].                                                                     | 0                           |
+| `minutes`          | Number           | The target minute [0-59].                                                                   | 0                           |
+| `seconds`          | Number           | The target second [0-59].                                                                   | 0                           |
+| `words`            | Object           | Custom labels for the units (days, hours, minutes, seconds) with optional lambda for pluralization. | `{ days: { root: 'day', lambda: (root, n) => n > 1 ? root + 's' : root }, ... }` |
+| `plural`           | Boolean          | Whether to use plural forms for the unit labels.                                            | `true`                      |
+| `inline`           | Boolean          | Set to `true` for a simple inline countdown (e.g., "24 days, 4 hours, 2 minutes").          | `false`                     |
+| `inlineSeparator`  | String           | Separator used in the inline countdown format.                                              | `, `                        |
+| `inlineClass`      | String           | CSS class applied to the inline countdown container.                                        | `"simply-countdown-inline"` |
+| `enableUtc`        | Boolean          | Set to `true` to use UTC time for the countdown calculations.                               | `false`                     |
+| `onEnd`            | Function         | Callback function executed when the countdown ends.                                         | `() => {}`                  |
+| `refresh`          | Number           | The countdown refresh interval in milliseconds.                                             | `1000`                      |
+| `sectionClass`     | String           | CSS class applied to each countdown section (days, hours, minutes, seconds).                | `"simply-section"`          |
+| `amountClass`      | String           | CSS class applied to the numeric value of each countdown section.                           | `"simply-amount"`           |
+| `wordClass`        | String           | CSS class applied to the unit label of each countdown section.                              | `"simply-word"`             |
+| `zeroPad`          | Boolean          | Whether to pad the numeric values with leading zeros (e.g., "05").                         | `false`                     |
+| `removeZeroUnits`  | Boolean          | Remove units with zero value (e.g., remove "0 days" if days are zero).                     | `false`                     |
+| `countUp`          | Boolean          | Count up after reaching zero if set to `true`.                                              | `false`                     |
+
 ## Easy to customize
 
 You can easly customize the countdown using the css theme starter file or create your own like so :
