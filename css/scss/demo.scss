@@ -4,12 +4,15 @@
 * Date : 27/06/2015
 * Author : Vincent Loy <vincent.loy1$gmail.com>
 */
-$color-blue-darken: #024772;
-$color-blue: #02658C;
-$color-blue-lighten: #0387A5;
-$color-gray: #BFB6AE;
-$color-gray-lighten: #F2E6DC;
+$color-main: #3F72AF;
+$color-main-darken: #112D4E;
+$color-main-lighten: #6995ca;
+$color-secondary: #F9F7F7;
+$color-secondary-lighten: #F9F7F7;
 $color-white: #fff;
+
+$ff-base: "Wix Madefor Text", serif;
+$ff-title: "Montserrat", sans-serif;
 
 $spacing: 20px;
 
@@ -22,24 +25,31 @@ a,abbr,acronym,address,applet,article,aside,audio,b,big,blockquote,body,canvas,c
 }
 
 body, html {
-  font-family: 'Lato', sans-serif;
-  font-weight: 400;
+  font-family: $ff-base;
+  font-optical-sizing: auto;
+  font-style: normal;
   overflow-x: hidden;
   font-size: 16px;
 }
 
 p {
-  font-size: 18px;
-  line-height: 22px;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  font-weight: 400;
   margin: $spacing 0;
 }
+
+h1, h2, h3 {
+  font-family: $ff-title;
+}
+
 
 header {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: $color-blue-darken;
-  border-bottom: 5px solid $color-blue;
+  background: $color-main-darken;
+  border-bottom: 5px solid $color-main;
   padding: $spacing;
 
   @media #{$tablet} {
@@ -52,8 +62,8 @@ header {
     h1 {
       font-style: italic;
       font-size: 2rem;
-      font-weight: 400;
-      color: $color-gray-lighten;
+      font-weight: 600;
+      color: $color-secondary-lighten;
 
       @media #{$tablet} {
         font-size: 4rem;
@@ -62,8 +72,9 @@ header {
 
     h2 {
       font-size: 1.33rem;
-      color: $color-gray-lighten;
+      color: $color-secondary-lighten;
       margin: $spacing 0;
+      font-weight: 500;
 
       @media #{$tablet} {
         font-size: 1.75rem;
@@ -80,8 +91,8 @@ header {
 }
 
 .button {
-  color: $color-gray-lighten;
-  border:2px solid $color-gray-lighten;
+  color: $color-secondary-lighten;
+  border:2px solid $color-secondary-lighten;
   border-radius: 2px;
   text-decoration: none;
   padding: $spacing / 2;
@@ -108,8 +119,8 @@ header {
   }
 
   &:hover {
-    background: $color-gray-lighten;
-    color: $color-blue-darken;
+    background: $color-secondary-lighten;
+    color: $color-main-darken;
   }
 }
 
@@ -124,7 +135,7 @@ header {
 }
 
 .note {
-  background: $color-blue-lighten;
+  background: $color-main-darken;
   color: $color-white;
   font-style: italic;
   border-radius: 2px;
@@ -133,25 +144,25 @@ header {
 
 main {
   > section:not(:last-of-type) {
-    border-bottom: 1px solid $color-blue-darken;
+    border-bottom: 1px solid $color-main-darken;
     padding-bottom: $spacing;
   }
 
   h2 {
-    font-size: 26px;
-    color: $color-blue;
+    font-size: 2rem;
+    color: $color-main;
     font-weight: 700;
     margin: $spacing 0;
 
     @media #{$tablet} {
-      font-size: 33px;
+      font-size: 3rem;
       margin: $spacing * 2 0;
     }
   }
 
   h3 {
     font-size: 20px;
-    color: $color-blue;
+    color: $color-main;
     font-weight: 700;
     margin: $spacing 0;
 
@@ -161,7 +172,7 @@ main {
     }
 
     a {
-      color: $color-blue-lighten;
+      color: $color-main-lighten;
       text-decoration: none;
       &:hover {
         text-decoration: underline;
@@ -172,32 +183,24 @@ main {
   a {
     font-weight: bold;
     text-decoration: none;
-    color: $color-blue-lighten;
+    color: $color-main-lighten;
     transition: 0.2s ease all;
 
     &:hover {
-      color: $color-blue-darken;
+      color: $color-main-darken;
       text-decoration: underline;
     }
   }
 }
 
-.examples {
-  h3 {
-    margin: $spacing 0 ($spacing / 3) 0;
-
-    & + p {
-      margin-top: 0;
-    }
-  }
-
-  .simply-countdown-inline {
-    margin-top: $spacing;
-  }
+.simply-countdown-inline {
+  margin-top: $spacing;
+  font-weight: bold;
+  font-size: 1.3rem;
 }
 
 footer {
-  background: $color-blue-darken;
+  background: $color-main-darken;
   color: $color-white;
   text-align: center;
   padding: $spacing;
@@ -205,8 +208,9 @@ footer {
   font-weight: 600;
 
   a {
-    color: lighten($color-blue-lighten, 25%);
+    color: lighten($color-main-lighten, 25%);
     text-decoration: none;
+    font-weight: bold;
 
     &:hover{
       text-decoration: underline;
