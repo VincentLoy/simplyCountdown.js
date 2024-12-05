@@ -109,6 +109,7 @@
             amountClass: 'simply-amount', // amount css class
             wordClass: 'simply-word', // word css class
             zeroPad: false,
+            removeZeroUnits: false, // Remove zero units e.g : 3 hours, 2 minutes and 3 seconds instead of 0 days, 3 hours, 2 minutes and 3 seconds
             countUp: false, // enable count up if set to true
     });
 
@@ -119,7 +120,7 @@
     let multipleElements = document.querySelectorAll('.my-countdown');
     simplyCountdown(multipleElements, { /* options */ });
 </code>
-</pre>
+        </pre>
         <h3>You can use it with jQuery too (not required)</h3>
 
         <pre>
@@ -133,7 +134,7 @@
         ...
     });
 </code>
-</pre>
+        </pre>
     </section>
 
     <section class="custom">
@@ -182,11 +183,9 @@
     }
 
 </code>
-</pre>
+        </pre>
     </section>
 
-    <section class="examples">
-        <h2>Examples</h2>
         <h3>Default</h3>
         <p>Displayed whithout jQuery - UTC enabled</p>
         <div class="simply-countdown simply-countdown-one"></div>
@@ -195,6 +194,10 @@
         <p>Displayed with jQuery - UTC disabled</p>
         <div class="simply-countdown-losange" id="simply-countdown-losange"></div>
 
+        <h3>Remove Zero Units</h3>
+        <p>Displayed with removeZeroUnits enabled</p>
+        <div class="simply-countdown simply-countdown-two"></div>
+        
         <h3>Inline</h3>
         <p>Display a simple inline countdown</p>
         <div class="simply-countdown-inline"></div>
@@ -209,6 +212,9 @@
 
         <h3>1.7.0</h3>
         <ul>
+            <li>
+                Added <strong>removeZeroUnits</strong> parameter to hide countdown units if they are not relevant. For example, "3 hours, 2 minutes, 3 seconds" instead of "0 days, 3 hours, 2 minutes, 3 seconds". Units are conditionally removed if the remaining time doesn't include them.
+            </li>
             <li>
                 Countdowns can be initialized directly with HTML elements with variables like
                 <ul>
@@ -340,7 +346,7 @@
      */
     var d = new Date(),
         countUpDate = new Date();
-    d.setDate(d.getDate() + 365);
+    d.setMonth(d.getMonth() + 1);
 
     // default example
     simplyCountdown('.simply-countdown-one', {
@@ -350,20 +356,28 @@
         enableUtc: true
     });
 
-    // inline example
-    simplyCountdown('.simply-countdown-inline', {
-        year: d.getFullYear(),
-        month: d.getMonth() + 1,
-        day: d.getDate(),
-        inline: true
-    });
-
     //jQuery example
     $('#simply-countdown-losange').simplyCountdown({
         year: d.getFullYear(),
         month: d.getMonth() + 1,
         day: d.getDate(),
         enableUtc: false
+    });
+
+    // example with removeZeroUnits
+    simplyCountdown('.simply-countdown-two', {
+        year: d.getFullYear(),
+        month: d.getMonth() + 1,
+        day: d.getDate() - 30,
+        removeZeroUnits: true
+    });
+
+    // inline example
+    simplyCountdown('.simply-countdown-inline', {
+        year: d.getFullYear(),
+        month: d.getMonth() + 1,
+        day: d.getDate(),
+        inline: true
     });
 
     // direct element injection & Count Up Example
