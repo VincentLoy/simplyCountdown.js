@@ -149,6 +149,9 @@ You can easly customize the countdown using the css theme starter file or create
 
 ### Changelog
 
+#### 2.0.1
+Update all 2015 npm dependencies and rebuild the plugin with new deps.
+
 #### 2.0.0
 This version may have breaking changes, if your website is working well with 1.7.0, you may want to stay on the previous version.
 - fix plurals in a generic way [#52](https://github.com/VincentLoy/simplyCountdown.js/pull/52)
