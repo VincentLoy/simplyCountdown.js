@@ -292,7 +292,6 @@
                     fullCountDown.seconds.word.textContent = secondWord;
                     fullCountDown.seconds.full.style.display = '';
                 }
-
             };
 
             // Refresh immediately to prevent a Flash of Unstyled Content

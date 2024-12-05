@@ -196,36 +196,6 @@ main {
   }
 }
 
-.changelog {
-  h3 {
-    margin-bottom: $spacing / 2;
-
-    &:before {
-      content: "\1d";
-      display: inline-block;
-      margin-right: $spacing / 2;
-      transform: translateY(-2px);
-    }
-
-    &:after {
-      content: "\1d";
-      display: inline-block;
-      margin-left: $spacing / 2;
-      transform: rotate(180deg) translateY(-4px);
-    }
-  }
-
-  ul {
-    list-style-type: disc;
-    padding-left: $spacing;
-
-    li {
-      margin-bottom: $spacing / 2;
-      font-size: 16px;
-    }
-  }
-}
-
 footer {
   background: $color-blue-darken;
   color: $color-white;
