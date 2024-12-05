@@ -149,6 +149,14 @@ You can easly customize the countdown using the css theme starter file or create
 
 ### Changelog
 
+#### 2.0.0
+This version may have breaking changes, if your website is working well with 1.7.0, you may want to stay on the previous version.
+- fix plurals in a generic way [#52](https://github.com/VincentLoy/simplyCountdown.js/pull/52)
+    - Thumbs up to [mira01](https://github.com/mira01) that fixed [#51](https://github.com/VincentLoy/simplyCountdown.js/issues/51), [#23](https://github.com/VincentLoy/simplyCountdown.js/issues/23) & [#42](https://github.com/VincentLoy/simplyCountdown.js/issues/42) !
+- Added the `inlineSeparator` parameter. Previously, the inline mode only supported a comma-separated countdown. Now, you can customize the separator, using options like |, /, -, or any character that suits your needs.
+- Fix potential UTC-related issues (fingers crossed!).
+
+
 #### 1.7.0
 - Countdowns can be initialized directly with HTML elements with variables like
     - document.getElementById
