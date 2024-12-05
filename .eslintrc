@@ -1,10 +1,21 @@
 {
   "extends": "airbnb-base/legacy",
   "rules": {
-    "indent": ["error", 4],
-    "func-names": ["error", "never"],
-    "no-param-reassign": ["error", {"props": false}],
-    "quotes": "off"
+    "indent": ["error", 4],                           // Use 4 spaces for indentation
+    "func-names": ["error", "never"],                 // Allow anonymous functions
+    "no-param-reassign": ["error", { "props": false }], // Allow parameter reassignment for object properties
+    "quotes": "off",                                  // Disable quotes enforcement
+    "object-curly-spacing": ["off"],                  // Disable spacing inside curly braces
+    "block-spacing": ["off"],                         // Disable spacing enforcement inside blocks
+    "semi": ["off"],                                  // Allow missing semicolons
+    "no-plusplus": ["off"],                           // Allow ++ and -- operators
+    "prefer-arrow-callback": ["off"],                 // Allow traditional function expressions
+    "vars-on-top": ["off"],                           // Allow variable declarations anywhere
+    "consistent-return": ["off"],                     // Allow inconsistent returns in functions
+    "no-loop-func": ["off"],                          // Allow functions inside loops
+    "object-shorthand": ["off"],                      // Allow verbose object property declarations
+    "no-prototype-builtins": ["off"],                 // Allow direct use of Object.prototype methods
+    "prefer-template": ["off"]                        // Allow string concatenation with `+`
   },
   "parserOptions": {
     "ecmaVersion": 6
