@@ -246,20 +246,24 @@
                 if (parameters.inline) {
                     let displayStr = '';
 
-                    if (!(parameters.removeZeroUnits && days === 0 && secondsLeft < 86400)) {
+                    if (!(parameters.removeZeroUnits && days === 0)) {
                         displayStr += `${days} ${dayWord}, `;
                     }
-                    if (!(parameters.removeZeroUnits && hours === 0 && secondsLeft < 3600)) {
+
+                    if (!(parameters.removeZeroUnits && days === 0 && hours === 0)) {
                         displayStr += `${hours} ${hourWord}, `;
                     }
-                    if (!(parameters.removeZeroUnits && minutes === 0 && secondsLeft < 60)) {
+
+                    if (!(parameters.removeZeroUnits && days === 0 && hours === 0 && minutes === 0)) {
                         displayStr += `${minutes} ${minuteWord}, `;
                     }
+
+                    // Seconds should always be displayed
                     displayStr += `${seconds} ${secondWord}`;
 
                     countdown.innerHTML = displayStr.replace(/, $/, ''); // Remove trailing comma if any
                 } else {
-                    if (!(parameters.removeZeroUnits && days === 0 && secondsLeft < 86400)) {
+                    if (!(parameters.removeZeroUnits && days === 0)) {
                         fullCountDown.days.amount.textContent = (parameters.zeroPad && days.toString().length < 2 ? '0' : '') + days;
                         fullCountDown.days.word.textContent = dayWord;
                         fullCountDown.days.full.style.display = '';
@@ -267,7 +271,7 @@
                         fullCountDown.days.full.style.display = 'none';
                     }
 
-                    if (!(parameters.removeZeroUnits && hours === 0 && secondsLeft < 3600)) {
+                    if (!(parameters.removeZeroUnits && days === 0 && hours === 0)) {
                         fullCountDown.hours.amount.textContent = (parameters.zeroPad && hours.toString().length < 2 ? '0' : '') + hours;
                         fullCountDown.hours.word.textContent = hourWord;
                         fullCountDown.hours.full.style.display = '';
@@ -275,7 +279,7 @@
                         fullCountDown.hours.full.style.display = 'none';
                     }
 
-                    if (!(parameters.removeZeroUnits && minutes === 0 && secondsLeft < 60)) {
+                    if (!(parameters.removeZeroUnits && days === 0 && hours === 0 && minutes === 0)) {
                         fullCountDown.minutes.amount.textContent = (parameters.zeroPad && minutes.toString().length < 2 ? '0' : '') + minutes;
                         fullCountDown.minutes.word.textContent = minuteWord;
                         fullCountDown.minutes.full.style.display = '';
@@ -288,6 +292,7 @@
                     fullCountDown.seconds.word.textContent = secondWord;
                     fullCountDown.seconds.full.style.display = '';
                 }
+
             };
 
             // Refresh immediately to prevent a Flash of Unstyled Content
