@@ -40,19 +40,33 @@
     }
   },
   "files": [
-    "dist",
-    "README.md",
-    "LICENSE"
+    "dist/simplyCountdown.es.js",
+    "dist/simplyCountdown.umd.js",
+    "dist/simplyCountdown.iife.js",
+    "dist/simplyCountdown.es.js.map",
+    "dist/simplyCountdown.umd.js.map",
+    "dist/simplyCountdown.iife.js.map"
   ],
   "scripts": {
     "dev": "vite",
-    "build": "vite build && node scripts/build-docs.js",
+    "build": "npm run build:lib && npm run build:docs",
+    "build:lib": "vite build",
+    "build:docs": "BUILD_TYPE=docs vite build",
+    "serve": "node scripts/serve.js",
     "clean": "rm -rf dist docs"
   },
   "devDependencies": {
+    "@iconify-json/lucide": "^1.2.20",
+    "@unocss/preset-attributify": "^0.58.0",
+    "@unocss/preset-icons": "^0.65.2",
+    "@unocss/preset-typography": "^0.58.9",
+    "@unocss/preset-wind": "^0.58.9",
     "fs-extra": "^11.2.0",
-    "sass": "^1.69.5",
     "terser": "^5.24.0",
+    "unocss": "^0.65.2",
     "vite": "^6.0.0"
+  },
+  "dependencies": {
+    "@unocss/reset": "^0.65.2"
   }
 }

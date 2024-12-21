@@ -1,11 +1,11 @@
 /**
 * Project : simply-countdown
-* File : simplyCountdown.theme.default
+* File : simplyCountdown.theme.dark
 * Author : Vincent Loy <vincent.loy1@gmail.com>
-* Theme : Light Modern
+* Theme : Dark Modern
 */
 
-.simply-countdown {
+.simply-countdown-dark {
     overflow: hidden;
     display: flex;
     flex-wrap: wrap;
@@ -14,80 +14,82 @@
     font-family: "Inter", system-ui, -apple-system, sans-serif;
 }
 
-.simply-countdown > .simply-section {
+.simply-countdown-dark > .simply-section {
     width: 65px;
     height: 65px;
     padding: 1.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(255, 255, 255, 0.9);
-    border: 1px solid rgba(226, 232, 240, 0.8);
+    background: rgba(15, 23, 42, 0.75);
+    border: 1px solid rgba(51, 65, 85, 0.6);
     border-radius: 1rem;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05),
-                0 2px 4px -1px rgba(0, 0, 0, 0.03),
-                0 0 0 1px rgba(0, 0, 0, 0.02);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2),
+                0 2px 4px -1px rgba(0, 0, 0, 0.1),
+                0 0 0 1px rgba(255, 255, 255, 0.05);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     backdrop-filter: blur(10px);
 }
 
-.simply-countdown > .simply-section:hover {
+.simply-countdown-dark > .simply-section:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 12px -2px rgba(0, 0, 0, 0.08),
-                0 3px 6px -2px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 6px 12px -2px rgba(0, 0, 0, 0.3),
+                0 3px 6px -2px rgba(0, 0, 0, 0.2),
+                0 0 0 1px rgba(255, 255, 255, 0.08);
+    background: rgba(15, 23, 42, 0.85);
 }
 
-.simply-countdown > .simply-section > div {
+.simply-countdown-dark > .simply-section > div {
     display: flex;
     flex-direction: column;
     gap: 0.35rem;
     align-items: center;
 }
 
-.simply-countdown > .simply-section .simply-amount {
+.simply-countdown-dark > .simply-section .simply-amount {
     font-size: 1.5rem;
     font-weight: 700;
-    color: #1e293b;
+    color: #f1f5f9;
     line-height: 1.2;
     letter-spacing: -0.025em;
 }
 
-.simply-countdown > .simply-section .simply-word {
+.simply-countdown-dark > .simply-section .simply-word {
     font-size: 0.7rem;
     font-weight: 500;
-    color: #64748b;
+    color: #94a3b8;
     text-transform: uppercase;
     letter-spacing: 0.1em;
 }
 
 @media (min-width: 640px) {
-    .simply-countdown > .simply-section {
+    .simply-countdown-dark > .simply-section {
         width: 75px;
         height: 75px;
         padding: 1.75rem;
     }
 
-    .simply-countdown > .simply-section .simply-amount {
+    .simply-countdown-dark > .simply-section .simply-amount {
         font-size: 1.75rem;
     }
 
-    .simply-countdown > .simply-section .simply-word {
+    .simply-countdown-dark > .simply-section .simply-word {
         font-size: 0.75rem;
     }
 }
 
 @media (min-width: 1024px) {
-    .simply-countdown > .simply-section {
+    .simply-countdown-dark > .simply-section {
         width: 90px;
         height: 90px;
         padding: 2rem;
     }
 
-    .simply-countdown > .simply-section .simply-amount {
+    .simply-countdown-dark > .simply-section .simply-amount {
         font-size: 2rem;
     }
 
-    .simply-countdown > .simply-section .simply-word {
+    .simply-countdown-dark > .simply-section .simply-word {
         font-size: 0.8rem;
     }
 }

@@ -107,7 +107,7 @@
      * @param elt
      * @param args (parameters)
      */
-    exports.simplyCountdown = (elt, args) => {
+    let simplyCountdown = (elt, args) => {
         const eltProto = Object.getPrototypeOf(elt);
         let parameters = extend({
             year: 2015,
@@ -307,6 +307,18 @@
             });
         }
     };
+
+    // Export for module systems
+    if (typeof module !== 'undefined' && module.exports) {
+        module.exports = simplyCountdown;
+    } else if (typeof define === 'function' && define.amd) {
+        define([], function() {
+            return simplyCountdown;
+        });
+    } else {
+        window.simplyCountdown = simplyCountdown;
+    }
+
 }(window));
 
 /* global jQuery, simplyCountdown */
@@ -323,3 +335,5 @@ if (window.jQuery) {
         };
     }(jQuery, simplyCountdown));
 }
+
+export default simplyCountdown;
