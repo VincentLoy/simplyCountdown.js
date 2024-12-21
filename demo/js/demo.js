@@ -1,4 +1,4 @@
-import simplyCountdown from '../../src/simplyCountdown.js';
+import simplyCountdown from '../assets/simplyCountdown.js';
 
 document.addEventListener('DOMContentLoaded', function() {
     /**

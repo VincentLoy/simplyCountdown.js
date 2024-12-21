@@ -31,14 +31,6 @@
     backdrop-filter: blur(10px);
 }
 
-.simply-countdown-dark > .simply-section:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px -2px rgba(0, 0, 0, 0.3),
-                0 3px 6px -2px rgba(0, 0, 0, 0.2),
-                0 0 0 1px rgba(255, 255, 255, 0.08);
-    background: rgba(15, 23, 42, 0.85);
-}
-
 .simply-countdown-dark > .simply-section > div {
     display: flex;
     flex-direction: column;

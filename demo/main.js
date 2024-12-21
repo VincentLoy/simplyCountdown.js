@@ -8,9 +8,8 @@ import './css/simplyCountdown.theme.dark.css'
 import './css/simplyCountdown.theme.cyberpunk.css'
 import './css/simplyCountdown.theme.losange.css'
 
-// Import the library and demo
-import simplyCountdown from '../src/simplyCountdown.js'
-import './js/demo.js'
+// Import the library
+import simplyCountdown from './assets/simplyCountdown.js'
 
 // Make it available globally for the demo
 window.simplyCountdown = simplyCountdown

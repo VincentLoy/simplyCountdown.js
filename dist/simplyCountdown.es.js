@@ -8,37 +8,37 @@
 *  - Justin Beasley <JustinB@harvest.org>
 *  - Nathan Smith <NathanS@harvest.org>
 */
-(function(P) {
-  let w = function(n) {
-    let s, a = n || {};
+(function(O) {
+  let $ = function(n) {
+    let s, i = n || {};
     for (let e = 1; e < arguments.length; e += 1) {
       s = arguments[e];
       const d = Object.keys(s);
       if (d.length)
         for (let r = 0; r < d.length; r += 1) {
           let t = d[r];
-          Object.prototype.hasOwnProperty.call(s, t) && (typeof s[t] == "object" ? w(a[t], s[t]) : a[t] = s[t]);
+          Object.prototype.hasOwnProperty.call(s, t) && (typeof s[t] == "object" ? $(i[t], s[t]) : i[t] = s[t]);
         }
     }
-    return a;
-  }, T = (n) => n !== null && Symbol.iterator in Object(n), f = (n, s, a) => {
+    return i;
+  }, P = (n) => n !== null && Symbol.iterator in Object(n), C = (n, s, i) => {
     let e = document.createElement("div"), d = document.createElement("span"), r = document.createElement("span"), t = document.createElement("div");
-    return t.appendChild(d), t.appendChild(r), e.appendChild(t), e.classList.add(s.sectionClass), e.classList.add(a), d.classList.add(s.amountClass), r.classList.add(s.wordClass), n.appendChild(e), {
+    return t.appendChild(d), t.appendChild(r), e.appendChild(t), e.classList.add(s.sectionClass), e.classList.add(i), d.classList.add(s.amountClass), r.classList.add(s.wordClass), n.appendChild(e), {
       full: e,
       amount: d,
       word: r
     };
-  }, b = (n, s) => {
-    let a;
-    return n.inline ? (a = document.createElement("span"), a.classList.add(n.inlineClass), a) : {
-      days: f(s, n, "simply-days-section"),
-      hours: f(s, n, "simply-hours-section"),
-      minutes: f(s, n, "simply-minutes-section"),
-      seconds: f(s, n, "simply-seconds-section")
+  }, I = (n, s) => {
+    let i;
+    return n.inline ? (i = document.createElement("span"), i.classList.add(n.inlineClass), i) : {
+      days: C(s, n, "simply-days-section"),
+      hours: C(s, n, "simply-hours-section"),
+      minutes: C(s, n, "simply-minutes-section"),
+      seconds: C(s, n, "simply-seconds-section")
     };
-  }, S = (n, s) => {
-    const a = Object.getPrototypeOf(n);
-    let e = w({
+  }, D = (n, s) => {
+    const i = Object.getPrototypeOf(n);
+    let e = $({
       year: 2015,
       month: 6,
       day: 28,
@@ -46,10 +46,10 @@
       minutes: 0,
       seconds: 0,
       words: {
-        days: { lambda: (o, c) => c > 1 ? o + "s" : o, root: "day" },
-        hours: { lambda: (o, c) => c > 1 ? o + "s" : o, root: "hour" },
-        minutes: { lambda: (o, c) => c > 1 ? o + "s" : o, root: "minute" },
-        seconds: { lambda: (o, c) => c > 1 ? o + "s" : o, root: "second" }
+        days: { lambda: (l, m) => m > 1 ? l + "s" : l, root: "day" },
+        hours: { lambda: (l, m) => m > 1 ? l + "s" : l, root: "hour" },
+        minutes: { lambda: (l, m) => m > 1 ? l + "s" : l, root: "minute" },
+        seconds: { lambda: (l, m) => m > 1 ? l + "s" : l, root: "second" }
       },
       plural: !0,
       inline: !1,
@@ -65,8 +65,8 @@
       zeroPad: !1,
       removeZeroUnits: !1,
       countUp: !1
-    }, s), d, r, t, y, i, u, p, C, h;
-    a === String.prototype ? h = document.querySelectorAll(n) : h = n, e.enableUtc ? r = new Date(Date.UTC(
+    }, s), d, r, t, y, a, u, p, f, h;
+    i === String.prototype ? h = document.querySelectorAll(n) : h = n, e.enableUtc ? r = new Date(Date.UTC(
       e.year,
       e.month - 1,
       e.day,
@@ -81,11 +81,11 @@
       e.minutes,
       e.seconds
     );
-    let I = (o) => {
-      let c = o, l = b(e, c), x;
-      x = function() {
-        let $, D, v, E, L = () => {
-          i = parseInt(y / 86400, 10), y %= 86400, u = parseInt(y / 3600, 10), y %= 3600, p = parseInt(y / 60, 10), C = parseInt(y % 60, 10);
+    let v = (l) => {
+      let m = l, o = I(e, m), U;
+      U = function() {
+        let T, b, S, x, E = () => {
+          a = parseInt(y / 86400, 10), y %= 86400, u = parseInt(y / 3600, 10), y %= 3600, p = parseInt(y / 60, 10), f = parseInt(y % 60, 10);
         };
         e.enableUtc ? (t = /* @__PURE__ */ new Date(), t = new Date(Date.UTC(
           t.getUTCFullYear(),
@@ -94,31 +94,21 @@
           t.getUTCHours(),
           t.getUTCMinutes(),
           t.getUTCSeconds()
-        ))) : t = /* @__PURE__ */ new Date(), y = Math.floor((r - t.getTime()) / 1e3), y > 0 ? L() : e.countUp ? (y = (t.getTime() - r) / 1e3, L()) : (i = 0, u = 0, p = 0, C = 0, window.clearInterval(d), e.onEnd());
-        let g = (m, O) => m.hasOwnProperty("lambda") ? m.lambda(m.root, O) : m.root, U = e.words;
-        if ($ = g(U.days, i), D = g(U.hours, u), v = g(U.minutes, p), E = g(U.seconds, C), e.inline) {
-          let m = "";
-          e.removeZeroUnits && i === 0 || (m += `${i} ${$}${e.inlineSeparator}`), e.removeZeroUnits && i === 0 && u === 0 || (m += `${u} ${D}${e.inlineSeparator}`), e.removeZeroUnits && i === 0 && u === 0 && p === 0 || (m += `${p} ${v}${e.inlineSeparator}`), m += `${C} ${E}`, c.innerHTML = m.replace(/, $/, "");
+        ))) : t = /* @__PURE__ */ new Date(), y = Math.floor((r - t.getTime()) / 1e3), y > 0 ? E() : e.countUp ? (y = (t.getTime() - r) / 1e3, E()) : (a = 0, u = 0, p = 0, f = 0, window.clearInterval(d), e.onEnd());
+        let w = (c, L) => c.hasOwnProperty("lambda") ? c.lambda(c.root, L) : c.root, g = e.words;
+        if (T = w(g.days, a), b = w(g.hours, u), S = w(g.minutes, p), x = w(g.seconds, f), e.inline) {
+          let c = "";
+          e.removeZeroUnits && a === 0 || (c += `${a} ${T}${e.inlineSeparator}`), e.removeZeroUnits && a === 0 && u === 0 || (c += `${u} ${b}${e.inlineSeparator}`), e.removeZeroUnits && a === 0 && u === 0 && p === 0 || (c += `${p} ${S}${e.inlineSeparator}`), c += `${f} ${x}`, m.innerHTML = c.replace(/, $/, "");
         } else
-          e.removeZeroUnits && i === 0 ? l.days.full.style.display = "none" : (l.days.amount.textContent = (e.zeroPad && i.toString().length < 2 ? "0" : "") + i, l.days.word.textContent = $, l.days.full.style.display = ""), e.removeZeroUnits && i === 0 && u === 0 ? l.hours.full.style.display = "none" : (l.hours.amount.textContent = (e.zeroPad && u.toString().length < 2 ? "0" : "") + u, l.hours.word.textContent = D, l.hours.full.style.display = ""), e.removeZeroUnits && i === 0 && u === 0 && p === 0 ? l.minutes.full.style.display = "none" : (l.minutes.amount.textContent = (e.zeroPad && p.toString().length < 2 ? "0" : "") + p, l.minutes.word.textContent = v, l.minutes.full.style.display = ""), l.seconds.amount.textContent = (e.zeroPad && C.toString().length < 2 ? "0" : "") + C, l.seconds.word.textContent = E, l.seconds.full.style.display = "";
-      }, x(), d = window.setInterval(x, e.refresh);
+          e.removeZeroUnits && a === 0 ? o.days.full.style.display = "none" : (o.days.amount.textContent = (e.zeroPad && a.toString().length < 2 ? "0" : "") + a, o.days.word.textContent = T, o.days.full.style.display = ""), e.removeZeroUnits && a === 0 && u === 0 ? o.hours.full.style.display = "none" : (o.hours.amount.textContent = (e.zeroPad && u.toString().length < 2 ? "0" : "") + u, o.hours.word.textContent = b, o.hours.full.style.display = ""), e.removeZeroUnits && a === 0 && u === 0 && p === 0 ? o.minutes.full.style.display = "none" : (o.minutes.amount.textContent = (e.zeroPad && p.toString().length < 2 ? "0" : "") + p, o.minutes.word.textContent = S, o.minutes.full.style.display = ""), o.seconds.amount.textContent = (e.zeroPad && f.toString().length < 2 ? "0" : "") + f, o.seconds.word.textContent = x, o.seconds.full.style.display = "";
+      }, U(), d = window.setInterval(U, e.refresh);
     };
-    T(h) ? Array.prototype.forEach.call(h, (o) => {
-      I(o);
-    }) : I(h);
+    P(h) ? Array.prototype.forEach.call(h, (l) => {
+      v(l);
+    }) : v(h);
   };
-  typeof module < "u" && module.exports ? module.exports = S : typeof define == "function" && define.amd ? define([], function() {
-    return S;
-  }) : window.simplyCountdown = S;
+  typeof module < "u" && module.exports ? module.exports = D : window.simplyCountdown = D;
 })();
-window.jQuery && function(P, w) {
-  function T(f, b) {
-    w(f, b);
-  }
-  P.fn.simplyCountdown = function(f) {
-    return T(this.selector, f);
-  };
-}(jQuery, simplyCountdown);
 const Z = simplyCountdown;
 export {
   Z as default
