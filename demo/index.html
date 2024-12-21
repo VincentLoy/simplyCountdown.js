@@ -332,26 +332,24 @@
 </code>
         </pre>
     </section>
+
+    <section class="examples">
         <h2>Examples</h2>
-        <h3>Default</h3>
-        <p>Displayed whithout jQuery - UTC enabled</p>
-        <div class="simply-countdown simply-countdown-one"></div>
-
-        <h3>Custom</h3>
-        <p>Displayed with jQuery - UTC disabled</p>
-        <div class="simply-countdown-losange" id="simply-countdown-losange"></div>
-
-        <h3>Remove Zero Units</h3>
-        <p>Displayed with removeZeroUnits enabled</p>
-        <div class="simply-countdown simply-countdown-two"></div>
         
+        <h3>Default Theme</h3>
+        <div class="simply-countdown-one simply-countdown"></div>
+
+        <h3>Losange Theme</h3>
+        <div id="simply-countdown-losange" class="simply-countdown-losange"></div>
+
+        <h3>Without Zero Units</h3>
+        <div class="simply-countdown-two simply-countdown"></div>
+
         <h3>Inline</h3>
-        <p>Display a simple inline countdown</p>
         <div class="simply-countdown-inline"></div>
 
-        <h3>countup</h3>
-        <p>countup Enabled option</p>
-        <div class="simply-countdown simply-countdown-countup" id="simply-countdown-countup"></div>
+        <h3>Count Up</h3>
+        <div class="simply-countdown-countup simply-countdown"></div>
     </section>
 </main>
 
@@ -371,15 +369,13 @@
 
 <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/0.0.1/prism.min.js"></script>
-<script src="dev/simplyCountdown.js"></script>
+<script src="../src/simplyCountdown.js"></script>
 <script>
     /**
      * WARNING: I set this coundtown to be running until the end of times.
      * So when you'll init the plugin, follow how it's done in plugin documentation.
-     * e.g : instead of "month: d.getMonth() + 1" put "month: 10" for October.
      */
-    let d = new Date(),
-        countUpDate = new Date();
+    let d = new Date();
     d.setMonth(d.getMonth() + 1);
 
     // default example
@@ -416,7 +412,6 @@
     
     // Header inline Countdown
     let dateInTwoMinutes = new Date();
-    //dateInTwoMinutes.setMinutes(dateInTwoMinutes.getMinutes() + 1);
     dateInTwoMinutes.setSeconds(dateInTwoMinutes.getSeconds() + 30);
     simplyCountdown('.sc-inline-header__cd', {
         year: dateInTwoMinutes.getFullYear(),
@@ -439,9 +434,9 @@
         }
     });
 
-    // direct element injection & Count Up Example
-    var countUp = document.querySelector('.simply-countdown-countup');
-    simplyCountdown(countUp, {
+    // Count Up Example
+    var countUpDate = new Date();
+    simplyCountdown('.simply-countdown-countup', {
         year: countUpDate.getFullYear(),
         month: countUpDate.getMonth() + 1,
         day: countUpDate.getDate(),

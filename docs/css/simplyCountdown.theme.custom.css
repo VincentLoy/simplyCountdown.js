@@ -1,0 +1,29 @@
+/**
+* Project : simply-countdown
+* File : simplyCountdown.theme.custom
+* Author : Your Name <YourMail@example.com>
+*/
+
+.simply-countdown {
+    /* The countdown */
+}
+.simply-countdown > .simply-section {
+    /* coutndown blocks */
+}
+
+.simply-countdown > .simply-section > div {
+    /* countdown block inner div */
+}
+
+.simply-countdown > .simply-section .simply-amount,
+.simply-countdown > .simply-section .simply-word {
+    /* amounts and words */
+}
+
+.simply-countdown > .simply-section .simply-amount {
+    /* amounts */
+}
+
+.simply-countdown > .simply-section .simply-word {
+    /* words */
+}
