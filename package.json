@@ -14,7 +14,6 @@
     "countdown",
     "countup",
     "clock",
-    "jquery",
     "vanilla",
     "plugin",
     "vue",
@@ -48,7 +47,7 @@
     "dist/simplyCountdown.iife.js.map"
   ],
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --config vite.config.js",
     "build": "npm run build:lib && npm run build:docs",
     "build:lib": "vite build",
     "build:docs": "BUILD_TYPE=docs vite build",

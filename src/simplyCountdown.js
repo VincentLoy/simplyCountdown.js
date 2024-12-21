@@ -308,32 +308,13 @@
         }
     };
 
-    // Export for module systems
+    // Export for modern module systems
     if (typeof module !== 'undefined' && module.exports) {
         module.exports = simplyCountdown;
-    } else if (typeof define === 'function' && define.amd) {
-        define([], function() {
-            return simplyCountdown;
-        });
     } else {
         window.simplyCountdown = simplyCountdown;
     }
 
 }(window));
-
-/* global jQuery, simplyCountdown */
-if (window.jQuery) {
-    (function ($, simplyCountdown) {
-        'use strict';
-
-        function simplyCountdownify(el, options) {
-            simplyCountdown(el, options);
-        }
-
-        $.fn.simplyCountdown = function (options) {
-            return simplyCountdownify(this.selector, options);
-        };
-    }(jQuery, simplyCountdown));
-}
 
 export default simplyCountdown;
