@@ -1,0 +1,18 @@
+# Development files
+demo/
+docs/
+scripts/
+.github/
+.vscode/
+
+# Config files
+.editorconfig
+.gitignore
+vite.config.js
+
+# Logs
+*.log
+npm-debug.log*
+
+# Only include the built files in dist/
+!dist/
