@@ -12,6 +12,11 @@
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
     <script src="assets/simplyCountdown.iife.js"></script>
+
+    <!-- highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/javascript.min.js"></script>
   <script type="module" crossorigin src="./assets/main.js"></script>
   <link rel="stylesheet" crossorigin href="./assets/main.css">
 </head>
@@ -38,7 +43,10 @@
     <main class="py-16">
         <div class="container mx-auto px-4">
             <section class="mb-20">
-                <h2 class="text-3xl font-bold mb-8">Installation</h2>
+                <h2 class="text-3xl font-bold mb-8">
+                    <i class="i-lucide-download text-indigo-600"></i>
+                    Installation
+                </h2>
                 <div class="space-y-6">
                     <div class="bg-gray-800 p-6 rounded-xl shadow-sm">
                         <h3 class="text-lg font-semibold mb-4 flex items-center gap-2">
@@ -59,7 +67,7 @@
 
             <section class="mb-20">
                 <h2 class="text-3xl font-bold mb-8 flex items-center gap-2">
-                    <div class="i-lucide-clock text-indigo-600"></div>
+                    <i class="i-lucide-clock text-indigo-600"></i>
                     Examples
                 </h2>
                 
@@ -95,36 +103,38 @@
 
             <section class="mb-20">
                 <h2 class="text-3xl font-bold mb-8 flex items-center gap-2">
-                    <div class="i-lucide-code text-indigo-600"></div>
+                    <i class="i-lucide-code text-indigo-600"></i>
                     Usage
                 </h2>
                 <div class="bg-gray-800 p-6 rounded-xl shadow-sm">
-                    <pre class="bg-slate-900 text-slate-100 p-4 rounded-lg overflow-x-auto">
-simplyCountdown('[CSS-SELECTOR]', {
-    year: 2025, // required
-    month: 6, // required
-    day: 28, // required
-    hours: 0, // Default is 0 [0-23] integer
-    minutes: 0, // Default is 0 [0-59] integer
-    seconds: 0, // Default is 0 [0-59] integer
-    words: { //words displayed into the countdown
-        days: { singular: 'day', plural: 'days' },
-        hours: { singular: 'hour', plural: 'hours' },
-        minutes: { singular: 'minute', plural: 'minutes' },
-        seconds: { singular: 'second', plural: 'seconds' }
-    },
-    plural: true, //use plurals
-    inline: false, //set to true to display inline
-    inlineClass: 'simply-countdown-inline', //inline css span class
-    enableUtc: false, //Use UTC or not - default : false
-    onEnd: function() { return; }, //Callback on countdown end
-    refresh: 1000, //default refresh every 1s
-    sectionClass: 'simply-section', //section css class
-    amountClass: 'simply-amount', //amount css class
-    wordClass: 'simply-word', //word css class
-    zeroPad: false,
-    countUp: false
-});
+                    <pre>
+                        <code class="language-javascript bg-slate-900 rounded-xl">
+    simplyCountdown('[CSS-SELECTOR]', {
+        year: 2025, // required
+        month: 6, // required
+        day: 28, // required
+        hours: 0, // Default is 0 [0-23] integer
+        minutes: 0, // Default is 0 [0-59] integer
+        seconds: 0, // Default is 0 [0-59] integer
+        words: { //words displayed into the countdown
+            days: { singular: 'day', plural: 'days' },
+            hours: { singular: 'hour', plural: 'hours' },
+            minutes: { singular: 'minute', plural: 'minutes' },
+            seconds: { singular: 'second', plural: 'seconds' }
+        },
+        plural: true, //use plurals
+        inline: false, //set to true to display inline
+        inlineClass: 'simply-countdown-inline', //inline css span class
+        enableUtc: false, //Use UTC or not - default : false
+        onEnd: function() { return; }, //Callback on countdown end
+        refresh: 1000, //default refresh every 1s
+        sectionClass: 'simply-section', //section css class
+        amountClass: 'simply-amount', //amount css class
+        wordClass: 'simply-word', //word css class
+        zeroPad: false,
+        countUp: false
+    });
+                        </code>
                     </pre>
                 </div>
             </section>
@@ -146,5 +156,7 @@ simplyCountdown('[CSS-SELECTOR]', {
             </p>
         </div>
     </footer>
+
+    <script>hljs.highlightAll();</script>
 </body>
 </html>

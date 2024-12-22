@@ -34,7 +34,7 @@
 .simply-countdown-dark > .simply-section > div {
     display: flex;
     flex-direction: column;
-    gap: 0.35rem;
+    line-height: 1;
     align-items: center;
 }
 
@@ -47,7 +47,7 @@
 }
 
 .simply-countdown-dark > .simply-section .simply-word {
-    font-size: 0.7rem;
+    font-size: 0.6rem;
     font-weight: 500;
     color: #94a3b8;
     text-transform: uppercase;

@@ -60,12 +60,10 @@
     "@unocss/preset-icons": "^0.65.2",
     "@unocss/preset-typography": "^0.58.9",
     "@unocss/preset-wind": "^0.58.9",
+    "@unocss/reset": "^0.65.2",
     "fs-extra": "^11.2.0",
     "terser": "^5.24.0",
     "unocss": "^0.65.2",
     "vite": "^6.0.0"
-  },
-  "dependencies": {
-    "@unocss/reset": "^0.65.2"
   }
 }

@@ -18,6 +18,7 @@
      * @param output
      * @returns {*|{}}
      */
+
     let extend = function (output) {
         let obj;
         let out = output || {};

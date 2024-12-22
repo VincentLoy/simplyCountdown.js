@@ -29,7 +29,7 @@
     transform: rotate(45deg);
     display: flex;
     flex-direction: column;
-    gap: 0.25rem;
+    line-height: 1.2;
 }
 
 .simply-countdown-losange > .simply-section .simply-amount,
