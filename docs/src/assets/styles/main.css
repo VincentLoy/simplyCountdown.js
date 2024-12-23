@@ -1,0 +1,31 @@
+/* Package manager buttons */
+.package-manager-btn {
+    @apply px-3 py-1.5 rounded-lg text-sm font-medium 
+           flex items-center gap-1.5
+           bg-slate-700/50 text-slate-400
+           hover:bg-slate-700 hover:text-slate-300
+           transition-colors duration-200;
+}
+
+.package-manager-btn.active {
+    @apply bg-indigo-500/20 text-indigo-400
+           hover:bg-indigo-500/30 hover:text-indigo-300;
+}
+
+/* Package manager content */
+.package-manager-content {
+    @apply hidden;
+}
+
+.package-manager-content.active {
+    @apply block;
+}
+
+/* Copy button */
+.relative:hover .copy-button {
+    @apply opacity-100;
+}
+
+pre {
+    @apply overflow-x-auto;
+}

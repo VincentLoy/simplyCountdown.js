@@ -41,24 +41,46 @@
     <main class="py-16">
         <div class="container mx-auto px-4">
             <section class="mb-20">
-                <h2 class="text-3xl font-bold mb-8 flex items-center gap-2">
-                    <span class="icon-[lucide--download] w-6 h-6 text-indigo-600"></span>
-                    Installation
-                </h2>
-                <div class="space-y-6">
-                    <div class="bg-gray-800 p-6 rounded-xl shadow-sm">
-                        <h3 class="text-lg font-semibold mb-4 flex items-center gap-2">
-                            <span class="icon-[lucide--package] w-5 h-5 text-indigo-600"></span>
-                            NPM
-                        </h3>
-                        <pre><code class="language-elm bg-slate-900 text-slate-100 p-4 rounded-lg">npm install simplycountdown</code></pre>
-                    </div>
-                    <div class="bg-gray-800 p-6 rounded-xl shadow-sm">
-                        <h3 class="text-lg font-semibold mb-4 flex items-center gap-2">
-                            <span class="icon-[lucide--package] w-5 h-5 text-indigo-600"></span>
-                            Yarn
-                        </h3>
-                        <pre><code class="language-elm bg-slate-900 text-slate-100 p-4 rounded-lg">yarn add simplycountdown</code></pre>
+                <div class="grid gap-8 md:grid-cols-2">
+                    <div>
+                        <h2 class="text-3xl font-bold mb-8 flex items-center gap-2">
+                            <span class="icon-[lucide--terminal] w-6 h-6 text-indigo-600"></span>
+                            Installation
+                        </h2>
+                        <div class="space-y-6">
+                            <div class="bg-gray-800 p-6 rounded-xl shadow-sm">
+                                <div class="flex gap-2 mb-6">
+                                    <button class="package-manager-btn active" data-manager="npm">
+                                        <span class="icon-[vscode-icons--file-type-npm] w-4 h-4"></span>
+                                        npm
+                                    </button>
+                                    <button class="package-manager-btn" data-manager="yarn">
+                                        <span class="icon-[vscode-icons--file-type-yarn] w-4 h-4"></span>
+                                        yarn
+                                    </button>
+                                    <button class="package-manager-btn" data-manager="pnpm">
+                                        <span class="icon-[vscode-icons--file-type-pnpm] w-4 h-4"></span>
+                                        pnpm
+                                    </button>
+                                    <button class="package-manager-btn" data-manager="bun">
+                                        <span class="icon-[vscode-icons--file-type-bun] w-4 h-4"></span>
+                                        bun
+                                    </button>
+                                </div>
+                                
+                                <div class="relative">
+                                    <pre class="package-manager-content active" data-manager="npm"><code class="language-bash bg-slate-900 text-slate-100 p-4 rounded-lg">npm install simplycountdown</code></pre>
+                                    <pre class="package-manager-content" data-manager="yarn"><code class="language-bash bg-slate-900 text-slate-100 p-4 rounded-lg">yarn add simplycountdown</code></pre>
+                                    <pre class="package-manager-content" data-manager="pnpm"><code class="language-bash bg-slate-900 text-slate-100 p-4 rounded-lg">pnpm install simplycountdown</code></pre>
+                                    <pre class="package-manager-content" data-manager="bun"><code class="language-bash bg-slate-900 text-slate-100 p-4 rounded-lg">bun install simplycountdown</code></pre>
+                                    
+                                    <button class="copy-button absolute top-3 right-3 p-2 text-slate-400 hover:text-slate-300 bg-slate-800/50 rounded-lg opacity-0 transition-opacity group">
+                                        <span class="icon-[lucide--copy] w-4 h-4 copy-icon block group-data-[copied]:hidden"></span>
+                                        <span class="icon-[lucide--check] w-4 h-4 check-icon hidden group-data-[copied]:block text-green-400"></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -131,6 +153,41 @@
         zeroPad: false,
         countUp: false
     });
+                    </code></pre>
+                </div>
+            </section>
+
+            <section class="mb-20">
+                <h2 class="text-3xl font-bold mb-8 flex items-center gap-2">
+                    <span class="icon-[lucide--braces] w-6 h-6 text-indigo-600"></span>
+                    Customize
+                </h2>
+                <div class="bg-gray-800 p-6 rounded-xl shadow-sm">
+                    <pre><code class="language-css bg-slate-900 rounded-xl">
+    .simply-countdown {
+        /* The countdown */
+    }
+    .simply-countdown > .simply-section {
+        /* coutndown blocks */
+    }
+    
+    .simply-countdown > .simply-section > div {
+        /* countdown block inner div */
+    }
+    
+    .simply-countdown > .simply-section .simply-amount,
+    .simply-countdown > .simply-section .simply-word {
+        /* amounts and words */
+    }
+    
+    .simply-countdown > .simply-section .simply-amount {
+        /* amounts */
+    }
+    
+    .simply-countdown > .simply-section .simply-word {
+        /* words */
+    }
+                        
                     </code></pre>
                 </div>
             </section>

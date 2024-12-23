@@ -51,10 +51,11 @@
     "build:lib": "vite build",
     "build:docs": "vite build --mode docs",
     "build": "npm run build:lib && npm run build:docs",
-    "preview": "vite preview docs/dist"
+    "preview": "vite preview --outDir docs/dist"
   },
   "devDependencies": {
     "@iconify-json/lucide": "^1.1.144",
+    "@iconify-json/vscode-icons": "^1.1.33",
     "@iconify/tailwind": "^0.1.4",
     "@tailwindcss/typography": "^0.5.10",
     "@vitejs/plugin-vue": "^5.0.0",

@@ -4,6 +4,9 @@ import './style.css'
 // Import highlight.js
 import hljs from 'highlight.js/lib/core'
 import javascript from 'highlight.js/lib/languages/javascript'
+import css from 'highlight.js/lib/languages/css'
+import elm from 'highlight.js/lib/languages/elm'
+import bash from 'highlight.js/lib/languages/bash'
 import 'highlight.js/styles/github-dark.css'
 
 // Import our countdown library and themes
@@ -15,7 +18,46 @@ import { simplyCountdown } from '../../src/core/simplyCountdown.js'
 
 // Configure highlight.js
 hljs.registerLanguage('javascript', javascript)
+hljs.registerLanguage('elm', elm)
+hljs.registerLanguage('css', css)
+hljs.registerLanguage('bash', bash)
 hljs.highlightAll()
+
+// Package manager switcher
+document.querySelectorAll('.package-manager-btn').forEach(button => {
+    button.addEventListener('click', () => {
+        const manager = button.dataset.manager
+        
+        // Update buttons
+        document.querySelectorAll('.package-manager-btn').forEach(btn => {
+            btn.classList.toggle('active', btn === button)
+        })
+        
+        // Update content
+        document.querySelectorAll('.package-manager-content').forEach(content => {
+            content.classList.toggle('active', content.dataset.manager === manager)
+        })
+    })
+})
+
+// Copy button functionality
+document.querySelectorAll('.copy-button').forEach(button => {
+    button.addEventListener('click', async () => {
+        const pre = button.closest('.relative').querySelector('pre.active code')
+        const text = pre.textContent
+        
+        try {
+            await navigator.clipboard.writeText(text)
+            button.dataset.copied = true
+            
+            setTimeout(() => {
+                delete button.dataset.copied
+            }, 2000)
+        } catch (err) {
+            console.error('Failed to copy:', err)
+        }
+    })
+})
 
 // Configuration des exemples
 const nextYear = new Date().getFullYear() + 1
