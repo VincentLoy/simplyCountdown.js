@@ -9,19 +9,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..900&display=swap" rel="stylesheet">
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-    <link rel="stylesheet" href="css/simplyCountdown.theme.cyberpunk.css">
-    <link rel="stylesheet" href="css/simplyCountdown.theme.dark.css">
-    <link rel="stylesheet" href="css/simplyCountdown.theme.default.css">
-    <link rel="stylesheet" href="css/simplyCountdown.theme.losange.css">
-    <script type="module" src="main.js"></script>
-    <script type="module" src="js/demo.js"></script>
 
-    <!-- highlight.js -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/javascript.min.js"></script>
+    <link rel="stylesheet" href="assets/style.min.css">
+    
 </head>
 <body class="bg-gray-900 p-0 font-sans color-white">
     <header class="bg-gradient-to-br from-indigo-600 to-violet-600 text-white py-20">
@@ -46,7 +36,7 @@
     <main class="py-16">
         <div class="container mx-auto px-4">
             <section class="mb-20">
-                <h2 class="text-3xl font-bold mb-8 flex items-center gap-2">
+                <h2 class="text-3xl font-bold mb-8">
                     <i class="i-lucide-download text-indigo-600"></i>
                     Installation
                 </h2>
@@ -56,14 +46,14 @@
                             <div class="i-lucide-package text-indigo-600"></div>
                             NPM
                         </h3>
-                        <pre class="bg-slate-900 text-slate-100 p-4 rounded-lg">$ npm install simplycountdown</pre>
+                        <pre><code class="language-elm bg-slate-900 text-slate-100 p-4 rounded-lg">npm install simplycountdown</code></pre>
                     </div>
                     <div class="bg-gray-800 p-6 rounded-xl shadow-sm">
                         <h3 class="text-lg font-semibold mb-4 flex items-center gap-2">
                             <div class="i-lucide-package text-indigo-600"></div>
                             Yarn
                         </h3>
-                        <pre class="bg-slate-900 text-slate-100 p-4 rounded-lg">$ yarn add simplycountdown</pre>
+                        <pre><code class="language-elm bg-slate-900 text-slate-100 p-4 rounded-lg">yarn add simplycountdown</code></pre>
                     </div>
                 </div>
             </section>
@@ -170,7 +160,6 @@
             </div>
         </div>
     </footer>
-
-    <script>hljs.highlightAll();</script>
+    <script src="assets/main.min.js"></script>
 </body>
 </html>

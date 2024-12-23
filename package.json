@@ -1,6 +1,6 @@
 {
   "name": "simplycountdown",
-  "description": "A dead simple countdown javascript library",
+  "description": "A simple yet powerful countdown plugin, w/ no deps",
   "version": "3.0.0",
   "type": "module",
   "homepage": "http://vincentloy.github.io/simplyCountdown.js",
@@ -30,7 +30,7 @@
   "browserslist": [
     "defaults"
   ],
-  "main": "./dist/simplyCountdown.umd.js",
+  "main": "dist/simplyCountdown.es.js",
   "module": "./dist/simplyCountdown.es.js",
   "exports": {
     ".": {
@@ -47,23 +47,26 @@
     "dist/simplyCountdown.iife.js.map"
   ],
   "scripts": {
-    "dev": "vite --config vite.config.js",
-    "build": "npm run build:lib && npm run build:docs",
+    "dev": "vite serve docs/src --port 3000 --open",
     "build:lib": "vite build",
-    "build:docs": "BUILD_TYPE=docs vite build",
-    "serve": "node scripts/serve.js",
-    "clean": "rm -rf dist docs"
+    "build:docs": "vite build --mode docs",
+    "build": "npm run build:lib && npm run build:docs",
+    "preview": "vite preview docs/dist"
   },
   "devDependencies": {
-    "@iconify-json/lucide": "^1.2.20",
-    "@unocss/preset-attributify": "^0.58.0",
-    "@unocss/preset-icons": "^0.65.2",
-    "@unocss/preset-typography": "^0.58.9",
-    "@unocss/preset-wind": "^0.58.9",
-    "@unocss/reset": "^0.65.2",
+    "@iconify-json/lucide": "^1.1.144",
+    "@iconify/tailwind": "^0.1.4",
+    "@tailwindcss/typography": "^0.5.10",
+    "@vitejs/plugin-vue": "^5.0.0",
+    "autoprefixer": "^10.4.16",
+    "concurrently": "^8.2.2",
     "fs-extra": "^11.2.0",
+    "highlight.js": "^11.11.0",
+    "postcss": "^8.4.32",
+    "rimraf": "^6.0.1",
+    "tailwindcss": "^3.4.0",
     "terser": "^5.24.0",
-    "unocss": "^0.65.2",
-    "vite": "^6.0.0"
+    "typescript": "^5.3.3",
+    "vite": "^5.0.0"
   }
 }
