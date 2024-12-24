@@ -58,6 +58,46 @@ document.querySelectorAll('.copy-button').forEach(button => {
     })
 })
 
+// Glow effect
+const glow = document.createElement('div');
+glow.className = 'sc-doc-block-glow';
+document.body.appendChild(glow);
+
+let currentBlock = null;
+let rafId = null;
+let mouseX = 0;
+let mouseY = 0;
+
+function updateGlowPosition() {
+    if (currentBlock) {
+        glow.style.left = `${mouseX}px`;
+        glow.style.top = `${mouseY}px`;
+        glow.style.opacity = '1';
+        rafId = requestAnimationFrame(updateGlowPosition);
+    }
+}
+
+document.querySelectorAll('.sc-doc-block').forEach(block => {
+    block.addEventListener('mousemove', e => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        
+        if (!currentBlock) {
+            currentBlock = block;
+            rafId = requestAnimationFrame(updateGlowPosition);
+        }
+    });
+    
+    block.addEventListener('mouseleave', () => {
+        currentBlock = null;
+        if (rafId) {
+            cancelAnimationFrame(rafId);
+            rafId = null;
+        }
+        glow.style.opacity = '0';
+    });
+});
+
 // Configuration des exemples
 const now = new Date();
 const nextYear = now.getFullYear() + 1

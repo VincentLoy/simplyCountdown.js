@@ -29,3 +29,30 @@
 pre {
     @apply overflow-x-auto;
 }
+
+/* Glow effect */
+.sc-doc-block {
+    @apply relative;
+}
+
+.sc-doc-block-glow {
+    position: fixed;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(
+        circle at center,
+        rgba(99, 102, 241, 0.06),
+        transparent 40%
+    );
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0;
+    transform: translate(-50%, -50%);
+    will-change: left, top, opacity;
+    transition: opacity 0.2s ease-out;
+}
+
+.sc-doc-block:hover .sc-doc-block-glow {
+    opacity: 1;
+}
