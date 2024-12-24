@@ -39,18 +39,16 @@
     }
   },
   "files": [
-    "dist/simplyCountdown.es.js",
-    "dist/simplyCountdown.umd.js",
-    "dist/simplyCountdown.iife.js",
-    "dist/simplyCountdown.es.js.map",
-    "dist/simplyCountdown.umd.js.map",
-    "dist/simplyCountdown.iife.js.map"
+    "dist",
+    "README.md",
+    "LICENSE"
   ],
   "scripts": {
     "dev": "vite serve docs/src --port 3000 --open",
     "build:lib": "vite build",
     "build:docs": "vite build --mode docs",
-    "build": "npm run build:lib && npm run build:docs",
+    "build:themes": "node scripts/build-themes.js",
+    "build": "npm run build:lib && npm run build:themes && npm run build:docs",
     "preview": "vite preview --outDir docs/dist"
   },
   "devDependencies": {
@@ -60,6 +58,7 @@
     "@tailwindcss/typography": "^0.5.10",
     "@vitejs/plugin-vue": "^5.0.0",
     "autoprefixer": "^10.4.16",
+    "clean-css": "^5.3.3",
     "concurrently": "^8.2.2",
     "fs-extra": "^11.2.0",
     "highlight.js": "^11.11.0",

@@ -10,6 +10,7 @@ const libraryConfig = defineConfig({
       formats: ['es', 'umd', 'iife'],
       fileName: (format) => `simplyCountdown.${format}.js`
     },
+    sourcemap: true,
     rollupOptions: {
       output: {
         assetFileNames: (assetInfo) => {
@@ -29,6 +30,7 @@ const docsConfig = defineConfig({
   build: {
     outDir: '../dist',
     emptyOutDir: true,
+    sourcemap: true,
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'docs/src/index.html')

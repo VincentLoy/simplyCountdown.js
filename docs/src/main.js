@@ -6,6 +6,7 @@ import hljs from 'highlight.js/lib/core'
 import javascript from 'highlight.js/lib/languages/javascript'
 import css from 'highlight.js/lib/languages/css'
 import elm from 'highlight.js/lib/languages/elm'
+import xml from 'highlight.js/lib/languages/xml'
 import 'highlight.js/styles/atom-one-dark.css'
 
 // Import our countdown library and themes
@@ -20,6 +21,7 @@ import { simplyCountdown } from '../../src/core/simplyCountdown.js'
 hljs.registerLanguage('javascript', javascript)
 hljs.registerLanguage('css', css)
 hljs.registerLanguage('elm', elm)
+hljs.registerLanguage('html', xml)
 hljs.highlightAll()
 
 // Package manager switcher

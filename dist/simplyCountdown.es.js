@@ -118,3 +118,4 @@ typeof module < "u" && module.exports ? module.exports = { simplyCountdown: v } 
 export {
   v as simplyCountdown
 };
+//# sourceMappingURL=simplyCountdown.es.js.map
