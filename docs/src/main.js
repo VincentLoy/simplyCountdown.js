@@ -126,6 +126,32 @@ document.querySelectorAll('.sc-doc-block').forEach(block => {
     });
 });
 
+// Dynamic navigation background
+const nav = document.querySelector('nav');
+
+// Add transition class to nav
+nav.classList.add('transition-colors', 'duration-300');
+
+function updateNavBackground() {
+    const scrollPosition = window.scrollY;
+
+    if (scrollPosition === 0) {
+        // When page is at the very top
+        nav.classList.remove('bg-indigo-950/50', 'backdrop-blur-sm');
+        nav.classList.add('bg-transparent');
+    } else {
+        // After scrolling even slightly
+        nav.classList.remove('bg-transparent');
+        nav.classList.add('bg-indigo-950/50', 'backdrop-blur-sm');
+    }
+}
+
+// Initial check
+updateNavBackground();
+
+// Add scroll event listener
+window.addEventListener('scroll', updateNavBackground);
+
 // Configuration des exemples
 const now = new Date();
 const nextYear = now.getFullYear() + 1
@@ -227,3 +253,26 @@ function pluralizeRus(number, singular, genitiveSingular, genitivePlural) {
 
     return `${genitivePlural}`; // Geenetive plural (0, 5, 6...)
 }
+
+// Smooth scrolling with offset
+document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        
+        // Get the target element
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        
+        if (targetElement) {
+            // Calculate the offset (nav height + 20px)
+            const navHeight = document.querySelector('nav').offsetHeight;
+            const offset = navHeight + 20;
+            
+            // Scroll to the element with an offset
+            window.scrollTo({
+                top: targetElement.offsetTop - offset,
+                behavior: 'smooth'
+            });
+        }
+    });
+});
