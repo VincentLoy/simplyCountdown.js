@@ -1,8 +1,8 @@
 /*!
- * Project : simply-countdown
- * Date : 06/12/2024
+ * Project : simplyCountdown
+ * Date : 2024-12-24
  * License : MIT
- * Version : 2.0.1
+ * Version : 3.0.0
  * Author : Vincent Loy-Serre <vincent.loy1@gmail.com>
  * Contributors :
  *  - Justin Beasley <JustinB@harvest.org>
@@ -184,19 +184,19 @@ const createCountdownInstance = (targetElement: HTMLElement, parameters: Countdo
         const seconds = Math.floor(diff / 1000);
 
         if (parameters.inline && inlineElement) {
-            const timeUnits = [
-                { value: days, word: 'days' },
-                { value: hours, word: 'hours' },
-                { value: minutes, word: 'minutes' },
-                { value: seconds, word: 'seconds' }
+            const timeUnits: TimeUnit[] = [
+                { value: days, word: 'days' as keyof CountdownParameters['words'] },
+                { value: hours, word: 'hours' as keyof CountdownParameters['words'] },
+                { value: minutes, word: 'minutes' as keyof CountdownParameters['words'] },
+                { value: seconds, word: 'seconds' as keyof CountdownParameters['words'] }
             ];
             displayInline(timeUnits, parameters, inlineElement);
         } else if (countdown) {
-            const timeUnits = [
-                { value: days, word: 'days' },
-                { value: hours, word: 'hours' },
-                { value: minutes, word: 'minutes' },
-                { value: seconds, word: 'seconds' }
+            const timeUnits: TimeUnit[] = [
+                { value: days, word: 'days' as keyof CountdownParameters['words'] },
+                { value: hours, word: 'hours' as keyof CountdownParameters['words'] },
+                { value: minutes, word: 'minutes' as keyof CountdownParameters['words'] },
+                { value: seconds, word: 'seconds' as keyof CountdownParameters['words'] }
             ];
             displayBlocks(timeUnits, parameters, countdown);
         }
