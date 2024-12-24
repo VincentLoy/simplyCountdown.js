@@ -5,7 +5,7 @@
 * Date : 06/12/2024
 * License : MIT
 * Version : 2.0.1
-* Author : Vincent Loy <vincent.loy1@gmail.com>
+* Author : Vincent Loy-Serre <vincent.loy1@gmail.com>
 * Contributors :
 *  - Justin Beasley <JustinB@harvest.org>
 *  - Nathan Smith <NathanS@harvest.org>

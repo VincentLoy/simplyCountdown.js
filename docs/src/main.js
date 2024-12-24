@@ -15,7 +15,7 @@ import '../../src/themes/dark.css'
 import '../../src/themes/cyber.css'
 import '../../src/themes/losange.css'
 import '../../src/themes/circle.css'
-import { simplyCountdown } from '../../src/core/simplyCountdown.js'
+import { simplyCountdown } from '../../src/core/simplyCountdown.ts'
 
 // Configure highlight.js
 hljs.registerLanguage('javascript', javascript)
@@ -152,3 +152,53 @@ simplyCountdown('.simply-countdown-circle-demo', {
     day: 28,
     zeroPad: true,
 })
+
+// Example with custom Russian pluralization
+simplyCountdown('#custom-plural', {
+    year: 2024,
+    month: 12,
+    day: 31,
+    hours: 23,
+    minutes: 59,
+    seconds: 59,
+    words: {
+        days: {
+            lambda: (root, n) => pluralizeRus(n, 'день', 'дня', 'дней'),
+            root: 'день'
+        },
+        hours: {
+            lambda: (root, n) => pluralizeRus(n, 'час', 'часа', 'часов'),
+            root: 'час'
+        },
+        minutes: {
+            lambda: (root, n) => pluralizeRus(n, 'минута', 'минуты', 'минут'),
+            root: 'минута'
+        },
+        seconds: {
+            lambda: (root, n) => pluralizeRus(n, 'секунда', 'секунды', 'секунд'),
+            root: 'секунда'
+        }
+    },
+    zeroPad: true
+});
+
+// Fonction de pluralisation pour le russe
+function pluralizeRus(number, singular, genitiveSingular, genitivePlural) {
+    const lastDigit = number % 10;
+    const lastTwoDigits = number % 100;
+
+    if (lastTwoDigits >= 11 && lastTwoDigits <= 14) {
+        return `${genitivePlural}`; // Specific case for numbers 11-14
+    }
+
+    if (lastDigit === 1 && lastTwoDigits !== 11) {
+        return `${singular}`; // Specific case for number (1, 21, 31...)
+    }
+
+    if (lastDigit >= 2 && lastDigit <= 4 && !(lastTwoDigits >= 12 && lastTwoDigits <= 14)) {
+        return `${genitiveSingular}`; // Genetive singular (2, 3, 4...)
+    }
+
+    return `${genitivePlural}`; // Geenetive plural (0, 5, 6...)
+}
+

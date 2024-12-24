@@ -1,121 +1,180 @@
-/*!
-* Project : simply-countdown
-* Date : 06/12/2024
-* License : MIT
-* Version : 2.0.1
-* Author : Vincent Loy <vincent.loy1@gmail.com>
-* Contributors :
-*  - Justin Beasley <JustinB@harvest.org>
-*  - Nathan Smith <NathanS@harvest.org>
-*/
-let E = function(s) {
-  let n, l = s || {};
-  for (let e = 1; e < arguments.length; e += 1) {
-    n = arguments[e];
-    const d = Object.keys(n);
-    if (d.length)
-      for (let a = 0; a < d.length; a += 1) {
-        let t = d[a];
-        Object.prototype.hasOwnProperty.call(n, t) && (typeof n[t] == "object" ? E(l[t], n[t]) : l[t] = n[t]);
-      }
+const createCountdownSection = (sectionClass, amount, word) => {
+  const section = document.createElement("div");
+  section.className = `simply-section ${sectionClass}`;
+  const wrap = document.createElement("div");
+  const amount_elem = document.createElement("span");
+  const word_elem = document.createElement("span");
+  amount_elem.className = "simply-amount";
+  word_elem.className = "simply-word";
+  amount_elem.textContent = String(amount);
+  word_elem.textContent = word;
+  wrap.appendChild(amount_elem);
+  wrap.appendChild(word_elem);
+  section.appendChild(wrap);
+  return section;
+};
+const updateCountdownSection = (section, amount, word) => {
+  const amountElement = section.querySelector(".simply-amount");
+  const wordElement = section.querySelector(".simply-word");
+  if (amountElement) {
+    amountElement.textContent = String(amount);
   }
-  return l;
-}, I = (s) => s !== null && Symbol.iterator in Object(s), w = (s, n, l) => {
-  let e = document.createElement("div"), d = document.createElement("span"), a = document.createElement("span"), t = document.createElement("div");
-  return t.appendChild(d), t.appendChild(a), e.appendChild(t), e.classList.add(n.sectionClass), e.classList.add(l), d.classList.add(n.amountClass), a.classList.add(n.wordClass), s.appendChild(e), {
-    full: e,
-    amount: d,
-    word: a
-  };
-}, L = (s, n) => {
-  let l;
-  return s.inline ? (l = document.createElement("span"), l.classList.add(s.inlineClass), n.appendChild(l), {
-    days: l,
-    hours: l,
-    minutes: l,
-    seconds: l
-  }) : {
-    days: w(n, s, "simply-days-section"),
-    hours: w(n, s, "simply-hours-section"),
-    minutes: w(n, s, "simply-minutes-section"),
-    seconds: w(n, s, "simply-seconds-section")
+  if (wordElement) {
+    wordElement.textContent = word;
+  }
+};
+const createCountdown = (container) => {
+  const days = createCountdownSection("simply-days-section", 0, "day");
+  const hours = createCountdownSection("simply-hours-section", 0, "hour");
+  const minutes = createCountdownSection("simply-minutes-section", 0, "minute");
+  const seconds = createCountdownSection("simply-seconds-section", 0, "second");
+  container.appendChild(days);
+  container.appendChild(hours);
+  container.appendChild(minutes);
+  container.appendChild(seconds);
+  return {
+    days,
+    hours,
+    minutes,
+    seconds
   };
 };
-const v = function(s, n) {
-  const l = Object.getPrototypeOf(s);
-  let e = E({
-    year: 2015,
-    month: 6,
-    day: 28,
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
-    words: {
-      days: { lambda: (o, c) => c > 1 ? o + "s" : o, root: "day" },
-      hours: { lambda: (o, c) => c > 1 ? o + "s" : o, root: "hour" },
-      minutes: { lambda: (o, c) => c > 1 ? o + "s" : o, root: "minute" },
-      seconds: { lambda: (o, c) => c > 1 ? o + "s" : o, root: "second" }
-    },
-    plural: !0,
-    inline: !1,
-    inlineSeparator: ", ",
-    enableUtc: !1,
-    onEnd: () => {
-    },
-    refresh: 1e3,
-    inlineClass: "simply-countdown-inline",
-    sectionClass: "simply-section",
-    amountClass: "simply-amount",
-    wordClass: "simply-word",
-    zeroPad: !1,
-    removeZeroUnits: !1,
-    countUp: !1
-  }, n), d, a, t, y, i, u, f, p, h;
-  l === String.prototype ? h = document.querySelectorAll(s) : h = s, e.enableUtc ? a = new Date(Date.UTC(
-    e.year,
-    e.month - 1,
-    e.day,
-    e.hours,
-    e.minutes,
-    e.seconds
-  )) : a = new Date(
-    e.year,
-    e.month - 1,
-    e.day,
-    e.hours,
-    e.minutes,
-    e.seconds
+/*!
+ * Project : simply-countdown
+ * Date : 06/12/2024
+ * License : MIT
+ * Version : 2.0.1
+ * Author : Vincent Loy-Serre <vincent.loy1@gmail.com>
+ * Contributors :
+ *  - Justin Beasley <JustinB@harvest.org>
+ *  - Nathan Smith <NathanS@harvest.org>
+ */
+const defaultParams = {
+  year: 2024,
+  month: 12,
+  day: 25,
+  hours: 0,
+  minutes: 0,
+  seconds: 0,
+  words: {
+    days: { lambda: (root, n) => n > 1 ? root + "s" : root, root: "day" },
+    hours: { lambda: (root, n) => n > 1 ? root + "s" : root, root: "hour" },
+    minutes: { lambda: (root, n) => n > 1 ? root + "s" : root, root: "minute" },
+    seconds: { lambda: (root, n) => n > 1 ? root + "s" : root, root: "second" }
+  },
+  plural: true,
+  inline: false,
+  inlineSeparator: ", ",
+  enableUtc: false,
+  onEnd: () => {
+  },
+  refresh: 1e3,
+  inlineClass: "simply-countdown-inline",
+  sectionClass: "simply-section",
+  amountClass: "simply-amount",
+  wordClass: "simply-word",
+  zeroPad: false,
+  countUp: false,
+  removeZeroUnits: false
+};
+const isNodeList = (element) => {
+  return element instanceof NodeList;
+};
+const createCountdownInstance = (targetElement, parameters) => {
+  const targetDate = new Date(
+    parameters.year,
+    parameters.month - 1,
+    parameters.day,
+    parameters.hours,
+    parameters.minutes,
+    parameters.seconds
   );
-  let D = (o) => {
-    let c = o, r = L(e, c), U;
-    U = function() {
-      let T, b, S, x, $ = () => {
-        i = parseInt(y / 86400, 10), y %= 86400, u = parseInt(y / 3600, 10), y %= 3600, f = parseInt(y / 60, 10), p = parseInt(y % 60, 10);
-      };
-      e.enableUtc ? (t = /* @__PURE__ */ new Date(), t = new Date(Date.UTC(
-        t.getUTCFullYear(),
-        t.getUTCMonth(),
-        t.getUTCDate(),
-        t.getUTCHours(),
-        t.getUTCMinutes(),
-        t.getUTCSeconds()
-      ))) : t = /* @__PURE__ */ new Date(), y = Math.floor((a - t.getTime()) / 1e3), y > 0 ? $() : e.countUp ? (y = (t.getTime() - a) / 1e3, $()) : (i = 0, u = 0, f = 0, p = 0, window.clearInterval(d), e.onEnd());
-      let C = (m, P) => m.hasOwnProperty("lambda") ? m.lambda(m.root, P) : m.root, g = e.words;
-      if (T = C(g.days, i), b = C(g.hours, u), S = C(g.minutes, f), x = C(g.seconds, p), e.inline) {
-        let m = "";
-        e.removeZeroUnits && i === 0 || (m += `${i} ${T}${e.inlineSeparator}`), e.removeZeroUnits && i === 0 && u === 0 || (m += `${u} ${b}${e.inlineSeparator}`), e.removeZeroUnits && i === 0 && u === 0 && f === 0 || (m += `${f} ${S}${e.inlineSeparator}`), m += `${p} ${x}`, c.innerHTML = m.replace(/, $/, "");
-      } else
-        e.removeZeroUnits && i === 0 ? r.days.full.style.display = "none" : (r.days.amount.textContent = (e.zeroPad && i.toString().length < 2 ? "0" : "") + i, r.days.word.textContent = T, r.days.full.style.display = ""), e.removeZeroUnits && i === 0 && u === 0 ? r.hours.full.style.display = "none" : (r.hours.amount.textContent = (e.zeroPad && u.toString().length < 2 ? "0" : "") + u, r.hours.word.textContent = b, r.hours.full.style.display = ""), e.removeZeroUnits && i === 0 && u === 0 && f === 0 ? r.minutes.full.style.display = "none" : (r.minutes.amount.textContent = (e.zeroPad && f.toString().length < 2 ? "0" : "") + f, r.minutes.word.textContent = S, r.minutes.full.style.display = ""), r.seconds.amount.textContent = (e.zeroPad && p.toString().length < 2 ? "0" : "") + p, r.seconds.word.textContent = x, r.seconds.full.style.display = "";
-    }, U(), d = window.setInterval(U, e.refresh);
+  let inlineElement = null;
+  if (parameters.inline) {
+    inlineElement = document.createElement("span");
+    inlineElement.className = parameters.inlineClass;
+    targetElement.appendChild(inlineElement);
+  }
+  const countdown = parameters.inline ? null : createCountdown(targetElement);
+  const refresh = () => {
+    const currentDate = parameters.enableUtc ? new Date((/* @__PURE__ */ new Date()).toUTCString()) : /* @__PURE__ */ new Date();
+    let diff = parameters.countUp ? currentDate.getTime() - targetDate.getTime() : targetDate.getTime() - currentDate.getTime();
+    if (diff <= 0 && !parameters.countUp) {
+      diff = 0;
+      if (parameters.onEnd) {
+        parameters.onEnd();
+      }
+    }
+    const days = Math.floor(diff / (1e3 * 60 * 60 * 24));
+    diff -= days * 1e3 * 60 * 60 * 24;
+    const hours = Math.floor(diff / (1e3 * 60 * 60));
+    diff -= hours * 1e3 * 60 * 60;
+    const minutes = Math.floor(diff / (1e3 * 60));
+    diff -= minutes * 1e3 * 60;
+    const seconds = Math.floor(diff / 1e3);
+    if (parameters.inline && inlineElement) {
+      let displayStr = "";
+      if (!(parameters.removeZeroUnits && days === 0)) {
+        displayStr += `${days} ${parameters.words.days.lambda(parameters.words.days.root, days)}${parameters.inlineSeparator}`;
+      }
+      if (!(parameters.removeZeroUnits && days === 0 && hours === 0)) {
+        displayStr += `${hours} ${parameters.words.hours.lambda(parameters.words.hours.root, hours)}${parameters.inlineSeparator}`;
+      }
+      if (!(parameters.removeZeroUnits && days === 0 && hours === 0 && minutes === 0)) {
+        displayStr += `${minutes} ${parameters.words.minutes.lambda(parameters.words.minutes.root, minutes)}${parameters.inlineSeparator}`;
+      }
+      displayStr += `${seconds} ${parameters.words.seconds.lambda(parameters.words.seconds.root, seconds)}`;
+      inlineElement.innerHTML = displayStr.replace(new RegExp(`${parameters.inlineSeparator}$`), "");
+    } else if (countdown) {
+      const values = [
+        { value: days, section: countdown.days, word: parameters.words.days },
+        { value: hours, section: countdown.hours, word: parameters.words.hours },
+        { value: minutes, section: countdown.minutes, word: parameters.words.minutes },
+        { value: seconds, section: countdown.seconds, word: parameters.words.seconds }
+      ];
+      values.forEach(({ value, section, word }) => {
+        if (!parameters.removeZeroUnits || value > 0) {
+          const displayValue = parameters.zeroPad ? String(value).padStart(2, "0") : value;
+          const wordValue = word.lambda(word.root, value);
+          updateCountdownSection(section, displayValue, wordValue);
+          section.style.display = "";
+        } else {
+          section.style.display = "none";
+        }
+      });
+    }
   };
-  I(h) ? Array.prototype.forEach.call(h, (o) => {
-    D(o);
-  }) : D(h);
+  const interval = setInterval(refresh, parameters.refresh);
+  refresh();
+  const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      mutation.removedNodes.forEach((node) => {
+        if (node === targetElement) {
+          clearInterval(interval);
+          observer.disconnect();
+        }
+      });
+    });
+  });
+  if (targetElement.parentNode) {
+    observer.observe(targetElement.parentNode, { childList: true });
+  }
 };
-typeof module < "u" && module.exports ? module.exports = { simplyCountdown: v } : typeof define == "function" && define.amd && define([], function() {
-  return { simplyCountdown: v };
-});
+const simplyCountdown = (element, args = defaultParams) => {
+  const parameters = { ...defaultParams, ...args };
+  if (typeof element === "string") {
+    const elements = document.querySelectorAll(element);
+    elements.forEach((el) => createCountdownInstance(el, parameters));
+  } else if (isNodeList(element)) {
+    element.forEach((el) => createCountdownInstance(el, parameters));
+  } else {
+    createCountdownInstance(element, parameters);
+  }
+};
+if (typeof window !== "undefined") {
+  window.simplyCountdown = simplyCountdown;
+}
 export {
-  v as simplyCountdown
+  simplyCountdown
 };
 //# sourceMappingURL=simplyCountdown.es.js.map
