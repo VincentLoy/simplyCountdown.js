@@ -41,24 +41,50 @@ document.querySelectorAll('.package-manager-btn').forEach(button => {
     })
 })
 
-// Copy button functionality
-document.querySelectorAll('.copy-button').forEach(button => {
-    button.addEventListener('click', async () => {
-        const pre = button.closest('.relative').querySelector('pre.active code')
-        const text = pre.textContent
+// Add copy buttons to all code blocks
+document.querySelectorAll('pre').forEach(pre => {
+    // Remove any existing copy buttons
+    pre.querySelectorAll('.copy-button').forEach(btn => btn.remove());
+    
+    // Create the copy button
+    const copyButton = document.createElement('button');
+    copyButton.className = 'copy-button absolute top-3 right-3 p-2 text-slate-400 hover:text-slate-300 bg-slate-800/50 rounded-lg opacity-0 transition-opacity group';
+    
+    // Create copy icon
+    const copyIcon = document.createElement('span');
+    copyIcon.className = 'icon-[lucide--copy] w-4 h-4 copy-icon block group-data-[copied]:hidden';
+    
+    // Create check icon
+    const checkIcon = document.createElement('span');
+    checkIcon.className = 'icon-[lucide--check] w-4 h-4 check-icon hidden group-data-[copied]:block text-green-400';
+    
+    // Add icons to button
+    copyButton.appendChild(copyIcon);
+    copyButton.appendChild(checkIcon);
+    
+    // Make pre relative for absolute positioning of button
+    pre.classList.add('relative');
+    
+    // Add button to pre element
+    pre.appendChild(copyButton);
+    
+    // Add click handler
+    copyButton.addEventListener('click', async () => {
+        const code = pre.querySelector('code') || pre;
+        const text = code.textContent;
         
         try {
-            await navigator.clipboard.writeText(text)
-            button.dataset.copied = true
+            await navigator.clipboard.writeText(text);
+            copyButton.dataset.copied = true;
             
             setTimeout(() => {
-                delete button.dataset.copied
-            }, 2000)
+                delete copyButton.dataset.copied;
+            }, 2000);
         } catch (err) {
-            console.error('Failed to copy:', err)
+            console.error('Failed to copy:', err);
         }
-    })
-})
+    });
+});
 
 // Glow effect
 const glow = document.createElement('div');
@@ -201,4 +227,3 @@ function pluralizeRus(number, singular, genitiveSingular, genitivePlural) {
 
     return `${genitivePlural}`; // Geenetive plural (0, 5, 6...)
 }
-
