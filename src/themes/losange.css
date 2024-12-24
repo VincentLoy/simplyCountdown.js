@@ -9,7 +9,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 4rem;
+    gap: 3rem;
     font-family: "Inter", sans-serif;
 }
 

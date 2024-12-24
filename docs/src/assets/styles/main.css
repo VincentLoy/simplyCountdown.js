@@ -1,6 +1,6 @@
 /* Package manager buttons */
 .package-manager-btn {
-    @apply px-3 py-1.5 rounded-lg text-sm font-medium 
+    @apply px-3 py-1.5 rounded-lg text-xs lg:text-sm font-medium 
            flex items-center gap-1.5
            bg-slate-700/50 text-slate-400
            hover:bg-slate-700 hover:text-slate-300

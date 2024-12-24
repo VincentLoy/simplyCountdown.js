@@ -4,6 +4,18 @@
 
 @layer components {
   .btn {
-    @apply px-4 py-2 rounded inline-block bg-primary text-white cursor-pointer hover:bg-primary-dark disabled:cursor-default disabled:bg-gray-600 disabled:opacity-50;
+    @apply inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold transition-colors;
+  }
+
+  .btn-light {
+    @apply bg-white text-indigo-600 hover:bg-indigo-50 hover:bg-opacity-95;
+  }
+
+  .btn-indigo {
+    @apply bg-indigo-500 text-white hover:bg-indigo-400;
+  }
+
+  .sc-doc-block {
+    @apply bg-gray-800 p-6 rounded-xl shadow-sm;
   }
 }

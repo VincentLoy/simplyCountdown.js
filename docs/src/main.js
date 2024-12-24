@@ -6,21 +6,20 @@ import hljs from 'highlight.js/lib/core'
 import javascript from 'highlight.js/lib/languages/javascript'
 import css from 'highlight.js/lib/languages/css'
 import elm from 'highlight.js/lib/languages/elm'
-import bash from 'highlight.js/lib/languages/bash'
-import 'highlight.js/styles/github-dark.css'
+import 'highlight.js/styles/atom-one-dark.css'
 
 // Import our countdown library and themes
 import '../../src/themes/default.css'
 import '../../src/themes/dark.css'
 import '../../src/themes/cyber.css'
 import '../../src/themes/losange.css'
+import '../../src/themes/circle.css'
 import { simplyCountdown } from '../../src/core/simplyCountdown.js'
 
 // Configure highlight.js
 hljs.registerLanguage('javascript', javascript)
-hljs.registerLanguage('elm', elm)
 hljs.registerLanguage('css', css)
-hljs.registerLanguage('bash', bash)
+hljs.registerLanguage('elm', elm)
 hljs.highlightAll()
 
 // Package manager switcher
@@ -60,19 +59,22 @@ document.querySelectorAll('.copy-button').forEach(button => {
 })
 
 // Configuration des exemples
-const nextYear = new Date().getFullYear() + 1
+const now = new Date();
+const nextYear = now.getFullYear() + 1
+const nextMonth = now.getMonth() + 1
 
 // Example 1: Default Theme
 simplyCountdown('.simply-countdown-one', {
-    year: nextYear,
-    month: 6,
+    year: now.getFullYear(),
+    month: nextMonth,
     day: 28,
+    zeroPad: true,
 })
 
 // Example 2: Dark Theme without Zero Units
 simplyCountdown('.simply-countdown-two', {
-    year: nextYear,
-    month: 6,
+    year: now.getFullYear(),
+    month: nextMonth,
     day: 28,
     zeroPad: false,
 })
@@ -91,6 +93,7 @@ simplyCountdown('.simply-countdown-countup', {
     month: 1,
     day: 1,
     countUp: true,
+    removeZeroUnits: true,
 })
 
 // Example 5: Losange Theme
@@ -98,4 +101,12 @@ simplyCountdown('#simply-countdown-losange', {
     year: nextYear,
     month: 6,
     day: 28,
+})
+
+// Example 6: Circle Theme
+simplyCountdown('.simply-countdown-circle-demo', {
+    year: now.getFullYear(),
+    month: nextMonth,
+    day: 28,
+    zeroPad: true,
 })
