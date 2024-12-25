@@ -40,10 +40,10 @@ const createCountdown = (container) => {
   };
 };
 /*!
- * Project : simply-countdown
- * Date : 06/12/2024
+ * Project : simplyCountdown
+ * Date : 2024-12-24
  * License : MIT
- * Version : 2.0.1
+ * Version : 3.0.0
  * Author : Vincent Loy-Serre <vincent.loy1@gmail.com>
  * Contributors :
  *  - Justin Beasley <JustinB@harvest.org>
@@ -80,6 +80,33 @@ const defaultParams = {
 const isNodeList = (element) => {
   return element instanceof NodeList;
 };
+function formatTimeUnit(unit, params) {
+  const value = params.zeroPad ? String(unit.value).padStart(2, "0") : unit.value;
+  return `${value} ${params.words[unit.word].lambda(params.words[unit.word].root, unit.value)}`;
+}
+function shouldDisplay(unit, previousUnits, params) {
+  if (!params.removeZeroUnits) return true;
+  return unit.value !== 0 || previousUnits.some((u) => u.value !== 0);
+}
+function displayInline(timeUnits, params, element) {
+  const displayStr = timeUnits.filter((unit, index) => shouldDisplay(unit, timeUnits.slice(0, index), params)).map((unit) => formatTimeUnit(unit, params)).join(params.inlineSeparator);
+  element.innerHTML = displayStr;
+}
+function displayBlocks(timeUnits, params, countdown) {
+  timeUnits.forEach((unit, index) => {
+    const shouldShow = unit.word === "seconds" || shouldDisplay(unit, timeUnits.slice(0, index), params);
+    if (shouldShow) {
+      updateCountdownSection(
+        countdown[unit.word],
+        params.zeroPad ? String(unit.value).padStart(2, "0") : unit.value,
+        params.words[unit.word].lambda(params.words[unit.word].root, unit.value)
+      );
+      countdown[unit.word].style.display = "";
+    } else {
+      countdown[unit.word].style.display = "none";
+    }
+  });
+}
 const createCountdownInstance = (targetElement, parameters) => {
   const targetDate = new Date(
     parameters.year,
@@ -113,35 +140,21 @@ const createCountdownInstance = (targetElement, parameters) => {
     diff -= minutes * 1e3 * 60;
     const seconds = Math.floor(diff / 1e3);
     if (parameters.inline && inlineElement) {
-      let displayStr = "";
-      if (!(parameters.removeZeroUnits && days === 0)) {
-        displayStr += `${days} ${parameters.words.days.lambda(parameters.words.days.root, days)}${parameters.inlineSeparator}`;
-      }
-      if (!(parameters.removeZeroUnits && days === 0 && hours === 0)) {
-        displayStr += `${hours} ${parameters.words.hours.lambda(parameters.words.hours.root, hours)}${parameters.inlineSeparator}`;
-      }
-      if (!(parameters.removeZeroUnits && days === 0 && hours === 0 && minutes === 0)) {
-        displayStr += `${minutes} ${parameters.words.minutes.lambda(parameters.words.minutes.root, minutes)}${parameters.inlineSeparator}`;
-      }
-      displayStr += `${seconds} ${parameters.words.seconds.lambda(parameters.words.seconds.root, seconds)}`;
-      inlineElement.innerHTML = displayStr.replace(new RegExp(`${parameters.inlineSeparator}$`), "");
-    } else if (countdown) {
-      const values = [
-        { value: days, section: countdown.days, word: parameters.words.days },
-        { value: hours, section: countdown.hours, word: parameters.words.hours },
-        { value: minutes, section: countdown.minutes, word: parameters.words.minutes },
-        { value: seconds, section: countdown.seconds, word: parameters.words.seconds }
+      const timeUnits = [
+        { value: days, word: "days" },
+        { value: hours, word: "hours" },
+        { value: minutes, word: "minutes" },
+        { value: seconds, word: "seconds" }
       ];
-      values.forEach(({ value, section, word }) => {
-        if (!parameters.removeZeroUnits || value > 0) {
-          const displayValue = parameters.zeroPad ? String(value).padStart(2, "0") : value;
-          const wordValue = word.lambda(word.root, value);
-          updateCountdownSection(section, displayValue, wordValue);
-          section.style.display = "";
-        } else {
-          section.style.display = "none";
-        }
-      });
+      displayInline(timeUnits, parameters, inlineElement);
+    } else if (countdown) {
+      const timeUnits = [
+        { value: days, word: "days" },
+        { value: hours, word: "hours" },
+        { value: minutes, word: "minutes" },
+        { value: seconds, word: "seconds" }
+      ];
+      displayBlocks(timeUnits, parameters, countdown);
     }
   };
   const interval = setInterval(refresh, parameters.refresh);

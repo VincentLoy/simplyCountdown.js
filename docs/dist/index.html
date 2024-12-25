@@ -18,8 +18,8 @@
   <script type="module" crossorigin src="/assets/main.min.js"></script>
   <link rel="stylesheet" crossorigin href="/assets/main.min.css">
 </head>
-<body class="bg-gray-900 p-0 font-sans text-white">
-    <header class="bg-gradient-to-br from-indigo-600 to-violet-600 text-white py-20">
+<body class="bg-gray-900 p-0 font-sans text-white" id="top">
+    <header class="bg-gradient-to-br from-indigo-600 to-violet-600 text-white pt-40 pb-20">
         <div class="container text-center md:text-left mx-auto px-4">
             <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
                 <span>simplyCountdown.js</span>
@@ -44,6 +44,54 @@
                 </span>
             </div>
         </div>
+
+        <nav class="bg-indigo-950/50 backdrop-blur-sm fixed top-0 z-50 py-4 left-0 right-0">
+            <div class="container mx-auto px-4">
+                <ul class="flex flex-wrap justify-center items-center gap-4 md:gap-6">
+                    <li>
+                        <a href="#top" class="text-indigo-200 hover:text-white transition-colors duration-300 flex items-center gap-2 text-sm md:text-base">
+                            <span class="font-black">SimplyCountdown</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#installation" class="text-indigo-200 hover:text-white transition-colors duration-300 flex items-center gap-2 text-sm md:text-base">
+                            <span class="icon-[lucide--terminal] w-4 h-4"></span>
+                            Installation
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#why-simply-countdown" class="text-indigo-200 hover:text-white transition-colors duration-300 flex items-center gap-2 text-sm md:text-base">
+                            <span class="icon-[lucide--crown] w-4 h-4"></span>
+                            Why simplyCountdown
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#examples" class="text-indigo-200 hover:text-white transition-colors duration-300 flex items-center gap-2 text-sm md:text-base">
+                            <span class="icon-[lucide--clock] w-4 h-4"></span>
+                            Examples
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#usage" class="text-indigo-200 hover:text-white transition-colors duration-300 flex items-center gap-2 text-sm md:text-base">
+                            <span class="icon-[lucide--code] w-4 h-4"></span>
+                            Usage
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#customize" class="text-indigo-200 hover:text-white transition-colors duration-300 flex items-center gap-2 text-sm md:text-base">
+                            <span class="icon-[lucide--braces] w-4 h-4"></span>
+                            Customize
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#themes" class="text-indigo-200 hover:text-white transition-colors duration-300 flex items-center gap-2 text-sm md:text-base">
+                            <span class="icon-[lucide--palette] w-4 h-4"></span>
+                            Themes
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
     </header>
 
     <main class="py-16">
@@ -51,7 +99,7 @@
             <section class="mb-20">
                 <div class="grid gap-8 md:grid-cols-2">
                     <div>
-                        <h2 class="text-3xl font-bold mb-8 flex items-center gap-2">
+                        <h2 id="installation" class="text-3xl font-bold mb-8 flex items-center gap-2">
                             <span class="icon-[lucide--terminal] w-6 h-6 text-indigo-600"></span>
                             Installation
                         </h2>
@@ -80,34 +128,32 @@
                                 <pre class="package-manager-content" data-manager="yarn"><code class="language-elm bg-slate-900 text-slate-100 p-4 rounded-lg">yarn add simplycountdown</code></pre>
                                 <pre class="package-manager-content" data-manager="pnpm"><code class="language-elm bg-slate-900 text-slate-100 p-4 rounded-lg">pnpm install simplycountdown</code></pre>
                                 <pre class="package-manager-content" data-manager="bun"><code class="language-elm bg-slate-900 text-slate-100 p-4 rounded-lg">bun install simplycountdown</code></pre>
-                                
-                                <button class="copy-button absolute top-3 right-3 p-2 text-slate-400 hover:text-slate-300 bg-slate-800/50 rounded-lg opacity-0 transition-opacity group">
-                                    <span class="icon-[lucide--copy] w-4 h-4 copy-icon block group-data-[copied]:hidden"></span>
-                                    <span class="icon-[lucide--check] w-4 h-4 check-icon hidden group-data-[copied]:block text-green-400"></span>
-                                </button>
                             </div>
                         </div>
                     </div>
 
                     <div>
-                        <h2 class="text-3xl font-bold mb-8 flex items-center gap-2">
+                        <h2 id="why-simply-countdown" class="text-3xl font-bold mb-8 flex items-center gap-2">
                             <span class="icon-[lucide--crown] w-6 h-6 text-indigo-600"></span>
                             Why simplyCountdown ?
                         </h2>
-                        <div class="sc-doc-block prose text-white">
-                            <p>
-                                A lightweight countdown library born from the need for simplicity. Perfect for any kind of project.
-                            </p>
-
-                            <p>
-                                No complexity, just add customizable countdown timers quickly.
+                        <div class="sc-doc-block">
+                            <div class="prose text-white">
+                                <p>
+                                    A lightweight countdown library born from the need for simplicity. Perfect for any kind of project.
+                                </p>
+                                
+                                <p>
+                                    No complexity, just add customizable countdown timers quickly.
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </section>
 
             <section class="mb-20">
-                <h2 class="text-3xl font-bold mb-8 flex items-center gap-2">
+                <h2 id="examples" class="text-3xl font-bold mb-8 flex items-center gap-2">
                     <span class="icon-[lucide--clock] w-6 h-6 text-indigo-600"></span>
                     Examples
                 </h2>
@@ -144,7 +190,7 @@
                     </div>
 
                     <div class="sc-doc-block">
-                        <h3 class="text-lg lg:text-2xl text-center font-semibold mb-12">Complexe Pluralization - RussianExample</h3>
+                        <h3 class="text-lg lg:text-2xl text-center font-semibold mb-12">Complexe Pluralization - Russian Example</h3>
                         <div id="custom-plural" class="simply-countdown"></div>
                     </div>
                 </div>
@@ -155,11 +201,11 @@
             </section>
 
             <section class="mb-20">
-                <h2 class="text-3xl font-bold mb-8 flex items-center gap-2">
+                <h2 id="usage" class="text-3xl font-bold mb-8 flex items-center gap-2">
                     <span class="icon-[lucide--code] w-6 h-6 text-indigo-600"></span>
                     Usage
                 </h2>
-                <h3 class="text-xl font-bold mb-8 flex items-center gap-2">
+                <h3 id="javascript-usage" class="text-xl font-bold mb-8 flex items-center gap-2">
                     Javascript - common usage
                 </h3>
                 <div class="sc-doc-block">
@@ -206,7 +252,7 @@
             </section>
 
             <section class="mb-20">
-                <h2 class="text-3xl font-bold mb-8 flex items-center gap-2">
+                <h2 id="customize" class="text-3xl font-bold mb-8 flex items-center gap-2">
                     <span class="icon-[lucide--braces] w-6 h-6 text-indigo-600"></span>
                     Customize
                 </h2>
@@ -241,12 +287,12 @@
             </section>
 
             <section class="mb-20">
-                <h2 class="text-3xl font-bold mb-8 flex items-center gap-2">
+                <h2 id="themes" class="text-3xl font-bold mb-8 flex items-center gap-2">
                     <span class="icon-[lucide--palette] w-6 h-6 text-indigo-600"></span>
                     Available Themes
                 </h2>
                 <div class="sc-doc-block">
-                    <h3 class="text-xl font-bold mb-4">Available Themes Import</h3>
+                    <h3 id="themes-import" class="text-xl font-bold mb-4">Available Themes Import</h3>
                     <pre><code class="language-html bg-slate-900 rounded-xl">
 &lt;!-- Default theme --&gt;
 &lt;link rel="stylesheet" href="dist/themes/default.css"&gt;
