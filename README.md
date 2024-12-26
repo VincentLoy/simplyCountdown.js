@@ -264,4 +264,4 @@ The library supports all modern browsers (Chrome, Firefox, Safari, Edge) and IE1
 
 ## License
 
-MIT © 2014-present - Vincent Loy
+MIT © 2015-present - Vincent Loy
