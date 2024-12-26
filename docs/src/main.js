@@ -155,27 +155,31 @@ window.addEventListener('scroll', updateNavBackground);
 // Configuration des exemples
 const now = new Date();
 const nextYear = now.getFullYear() + 1
-const nextMonth = now.getMonth() + 1
+const nextMonth = ((now.getMonth() + 2) % 12) + 1
+const tomorrow = new Date(now.getTime() + (24 * 60 * 60 * 1000))
 
 // Example 1: Default Theme
 simplyCountdown('.simply-countdown-one', {
-    year: now.getFullYear(),
+    year: nextYear,
     month: nextMonth,
-    day: 28,
+    day: 27,
     zeroPad: true,
     enableUtc: true,
     sectionClass: 'CUSTOM-SECTION-CLASS',
     amountClass: 'CUSTOM-AMOUNT-CLASS',
     wordClass: 'CUSTOM-WORD-CLASS',
-})
+});
 
 // Example 2: Dark Theme without Zero Units
 simplyCountdown('.simply-countdown-two', {
     year: now.getFullYear(),
-    month: nextMonth,
-    day: 28,
+    month: now.getMonth() + 1,
+    day: tomorrow.getDate(),
+    hours: 12,
+    minutes: 5,
     zeroPad: false,
-})
+    removeZeroUnits: true
+});
 
 // Example 3: Inline
 simplyCountdown('.simply-countdown-inline', {
@@ -183,7 +187,7 @@ simplyCountdown('.simply-countdown-inline', {
     month: 6,
     day: 28,
     inline: true,
-})
+});
 
 // Example 4: Count Up with Cyberpunk Theme
 simplyCountdown('.simply-countdown-countup', {
@@ -192,14 +196,14 @@ simplyCountdown('.simply-countdown-countup', {
     day: 1,
     countUp: true,
     removeZeroUnits: true,
-})
+});
 
 // Example 5: Losange Theme
 simplyCountdown('#simply-countdown-losange', {
     year: nextYear,
     month: 6,
     day: 28,
-})
+});
 
 // Example 6: Circle Theme
 simplyCountdown('.simply-countdown-circle-demo', {
@@ -207,7 +211,7 @@ simplyCountdown('.simply-countdown-circle-demo', {
     month: nextMonth,
     day: 28,
     zeroPad: true,
-})
+});
 
 // Example with custom Russian pluralization
 simplyCountdown('#custom-plural', {

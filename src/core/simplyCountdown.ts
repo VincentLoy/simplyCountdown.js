@@ -192,6 +192,8 @@ const createCountdownInstance = (targetElement: HTMLElement, parameters: Countdo
 
         if (diff <= 0 && !parameters.countUp) {
             diff = 0;
+            // Clear interval before calling onEnd to prevent multiple calls
+            clearInterval(interval);
             if (parameters.onEnd) {
                 parameters.onEnd();
             }
