@@ -13,9 +13,9 @@ import 'highlight.js/styles/atom-one-dark.css'
 import '../../src/themes/default.css'
 import '../../src/themes/dark.css'
 import '../../src/themes/cyber.css'
+import simplyCountdown from '../../src/core/simplyCountdown.ts'
 import '../../src/themes/losange.css'
 import '../../src/themes/circle.css'
-import { simplyCountdown } from '../../src/core/simplyCountdown.ts'
 
 // Configure highlight.js
 hljs.registerLanguage('javascript', javascript)

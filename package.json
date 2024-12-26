@@ -47,13 +47,13 @@
   ],
   "scripts": {
     "dev": "vite serve docs/src --port 3000 --open",
-    "build:lib": "vite build",
-    "build:docs": "vite build --mode docs",
+    "build": "bun run build:lib && bun run build:themes && bun run build:docs",
+    "build:lib": "vite build --mode es && vite build --mode umd",
     "build:themes": "node scripts/build-themes.js",
-    "build": "npm run build:lib && npm run build:themes && npm run build:docs",
-    "test": "vitest",
-    "test:watch": "vitest watch",
-    "preview": "vite preview --outDir docs/dist"
+    "build:docs": "vite build --mode docs",
+    "preview": "vite preview --outDir docs/dist",
+    "dist:test": "rimraf dist_tests && mkdir dist_tests && node scripts/generate-dist-tests.js",
+    "dist:test:serve": "bun run dist:test && node scripts/server.test.js"
   },
   "devDependencies": {
     "@iconify-json/lucide": "^1.2.20",
@@ -69,6 +69,7 @@
     "jsdom": "^23.0.1",
     "postcss": "^8.4.32",
     "rimraf": "^6.0.1",
+    "serve-handler": "^6.1.6",
     "tailwindcss": "^3.4.0",
     "terser": "^5.26.0",
     "typescript": "^5.3.3",

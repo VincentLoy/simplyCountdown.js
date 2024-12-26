@@ -184,10 +184,7 @@ const simplyCountdown = (element, args = defaultParams) => {
     createCountdownInstance(element, parameters);
   }
 };
-if (typeof window !== "undefined") {
-  window.simplyCountdown = simplyCountdown;
-}
 export {
-  simplyCountdown
+  simplyCountdown as default
 };
-//# sourceMappingURL=simplyCountdown.es.js.map
+//# sourceMappingURL=simplyCountdown.js.map

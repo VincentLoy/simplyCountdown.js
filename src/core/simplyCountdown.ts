@@ -222,7 +222,7 @@ const createCountdownInstance = (targetElement: HTMLElement, parameters: Countdo
     }
 };
 
-export const simplyCountdown = (
+export default (
     element: CountdownSelector,
     args: Partial<CountdownParameters> = defaultParams
 ): void => {
@@ -237,14 +237,3 @@ export const simplyCountdown = (
         createCountdownInstance(element, parameters);
     }
 };
-
-// UMD export
-declare global {
-    interface Window {
-        simplyCountdown: typeof simplyCountdown;
-    }
-}
-
-if (typeof window !== 'undefined') {
-    window.simplyCountdown = simplyCountdown;
-}

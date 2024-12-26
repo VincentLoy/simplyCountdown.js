@@ -7,7 +7,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 2rem;
+    gap: 1.5rem;
     font-family: "Inter", sans-serif;
 }
 
@@ -51,7 +51,6 @@
     font-size: 1.75rem;
     font-weight: 700;
     line-height: 1;
-    margin-bottom: 0.25rem;
     background: linear-gradient(
         to right,
         var(--sc-circle-primary),
@@ -63,7 +62,7 @@
 }
 
 .simply-countdown-circle .simply-word {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     opacity: 0.8;

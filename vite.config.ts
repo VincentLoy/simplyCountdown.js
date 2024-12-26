@@ -1,21 +1,27 @@
 import { defineConfig } from 'vite';
 import { resolve } from 'path';
 
-// Configuration pour le build de la librairie
-const libraryConfig = defineConfig({
+// Configuration commune
+const commonConfig = {
+    sourcemap: true,
+    minify: 'terser',
+    terserOptions: {
+        compress: {
+            drop_console: true
+        }
+    }
+};
+
+// Configuration pour le build ES
+const esConfig = defineConfig({
     build: {
+        outDir: 'dist',
+        emptyOutDir: true,
+        ...commonConfig,
         lib: {
             entry: resolve(__dirname, 'src/core/simplyCountdown.ts'),
-            name: 'simplyCountdown',
-            formats: ['es', 'umd', 'iife'],
-            fileName: (format) => `simplyCountdown.${format}.js`
-        },
-        sourcemap: true,
-        minify: 'terser',
-        terserOptions: {
-            compress: {
-                drop_console: true
-            }
+            formats: ['es'],
+            fileName: () => 'simplyCountdown.js'
         },
         rollupOptions: {
             output: {
@@ -24,6 +30,36 @@ const libraryConfig = defineConfig({
                         return 'themes/[name][extname]';
                     }
                     return '[name][extname]';
+                }
+            }
+        }
+    }
+});
+
+// Configuration pour le build UMD
+const umdConfig = defineConfig({
+    build: {
+        outDir: 'dist',
+        emptyOutDir: false,
+        ...commonConfig,
+        lib: {
+            entry: resolve(__dirname, 'src/core/simplyCountdown.umd.ts'),
+            name: 'simplyCountdown',
+            formats: ['umd'],
+            fileName: () => 'simplyCountdown.umd.js'
+        },
+        rollupOptions: {
+            output: {
+                assetFileNames: (assetInfo) => {
+                    if (assetInfo.name === 'style.css') {
+                        return 'themes/[name][extname]';
+                    }
+                    return '[name][extname]';
+                },
+                format: 'umd',
+                name: 'simplyCountdown',
+                amd: {
+                    id: 'simplyCountdown'
                 }
             }
         }
@@ -55,5 +91,8 @@ export default ({ mode }: { mode?: string }) => {
     if (mode === 'docs') {
         return docsConfig;
     }
-    return libraryConfig;
+    if (mode === 'umd') {
+        return umdConfig;
+    }
+    return esConfig;
 };
