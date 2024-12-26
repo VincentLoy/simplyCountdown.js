@@ -140,14 +140,24 @@ function displayBlocks(timeUnits: TimeUnit[], params: CountdownParameters, count
 }
 
 const createCountdownInstance = (targetElement: HTMLElement, parameters: CountdownParameters) => {
-    const targetDate = new Date(
-        parameters.year,
-        parameters.month - 1,
-        parameters.day,
-        parameters.hours,
-        parameters.minutes,
-        parameters.seconds
-    );
+    // Create target date with proper UTC handling
+    const targetDate = parameters.enableUtc 
+        ? new Date(Date.UTC(
+            parameters.year,
+            parameters.month - 1,
+            parameters.day,
+            parameters.hours,
+            parameters.minutes,
+            parameters.seconds
+        ))
+        : new Date(
+            parameters.year,
+            parameters.month - 1,
+            parameters.day,
+            parameters.hours,
+            parameters.minutes,
+            parameters.seconds
+        );
 
     // Create span element for inline mode
     let inlineElement: HTMLElement | null = null;
@@ -164,7 +174,18 @@ const createCountdownInstance = (targetElement: HTMLElement, parameters: Countdo
     });
 
     const refresh = () => {
-        const currentDate = parameters.enableUtc ? new Date(new Date().toUTCString()) : new Date();
+        // Fix UTC current date handling
+        const currentDate = parameters.enableUtc 
+            ? new Date(Date.UTC(
+                new Date().getUTCFullYear(),
+                new Date().getUTCMonth(),
+                new Date().getUTCDate(),
+                new Date().getUTCHours(),
+                new Date().getUTCMinutes(),
+                new Date().getUTCSeconds()
+            ))
+            : new Date();
+
         let diff = parameters.countUp
             ? currentDate.getTime() - targetDate.getTime()
             : targetDate.getTime() - currentDate.getTime();

@@ -163,6 +163,7 @@ simplyCountdown('.simply-countdown-one', {
     month: nextMonth,
     day: 28,
     zeroPad: true,
+    enableUtc: true,
     sectionClass: 'CUSTOM-SECTION-CLASS',
     amountClass: 'CUSTOM-AMOUNT-CLASS',
     wordClass: 'CUSTOM-WORD-CLASS',
