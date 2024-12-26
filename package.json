@@ -60,7 +60,6 @@
     "@iconify-json/vscode-icons": "^1.1.33",
     "@iconify/tailwind": "^0.1.4",
     "@tailwindcss/typography": "^0.5.10",
-    "@vitejs/plugin-vue": "^5.0.0",
     "autoprefixer": "^10.4.16",
     "clean-css": "^5.3.3",
     "fs-extra": "^11.2.0",
