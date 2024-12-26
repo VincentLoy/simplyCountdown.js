@@ -13,9 +13,9 @@ import 'highlight.js/styles/atom-one-dark.css'
 import '../../src/themes/default.css'
 import '../../src/themes/dark.css'
 import '../../src/themes/cyber.css'
-import simplyCountdown from '../../src/core/simplyCountdown.ts'
 import '../../src/themes/losange.css'
 import '../../src/themes/circle.css'
+import { simplyCountdown } from '../../src/core/simplyCountdown.ts'
 
 // Configure highlight.js
 hljs.registerLanguage('javascript', javascript)
@@ -163,6 +163,9 @@ simplyCountdown('.simply-countdown-one', {
     month: nextMonth,
     day: 28,
     zeroPad: true,
+    sectionClass: 'CUSTOM-SECTION-CLASS',
+    amountClass: 'CUSTOM-AMOUNT-CLASS',
+    wordClass: 'CUSTOM-WORD-CLASS',
 })
 
 // Example 2: Dark Theme without Zero Units

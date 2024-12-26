@@ -3,18 +3,25 @@
  */
 export const createCountdownSection = (
     sectionClass: string,
+    amountClass: string,
+    wordClass: string,
     amount: number,
-    word: string
+    word: string,
+    params: {
+        sectionClass: string;
+        amountClass: string;
+        wordClass: string;
+    }
 ): HTMLElement => {
     const section = document.createElement('div');
-    section.className = `simply-section ${sectionClass}`;
+    section.className = `${sectionClass} ${params.sectionClass}`;
 
     const wrap = document.createElement('div');
     const amount_elem = document.createElement('span');
     const word_elem = document.createElement('span');
 
-    amount_elem.className = 'simply-amount';
-    word_elem.className = 'simply-word';
+    amount_elem.className = `${amountClass} ${params.amountClass}`;
+    word_elem.className = `${wordClass} ${params.wordClass}`;
 
     amount_elem.textContent = String(amount);
     word_elem.textContent = word;
@@ -59,17 +66,26 @@ export const updateCountdownSection = (
  * Creates all countdown elements
  */
 export const createCountdown = (
-    container: HTMLElement
+    container: HTMLElement,
+    params: {
+        sectionClass: string;
+        amountClass: string;
+        wordClass: string;
+    }
 ): {
     days: HTMLElement;
     hours: HTMLElement;
     minutes: HTMLElement;
     seconds: HTMLElement;
 } => {
-    const days = createCountdownSection('simply-days-section', 0, 'day');
-    const hours = createCountdownSection('simply-hours-section', 0, 'hour');
-    const minutes = createCountdownSection('simply-minutes-section', 0, 'minute');
-    const seconds = createCountdownSection('simply-seconds-section', 0, 'second');
+
+    const amountCls = 'simply-amount';
+    const wordCls = 'simply-word';
+    
+    const days = createCountdownSection('simply-section simply-days-section', amountCls, wordCls, 0, 'day', params);
+    const hours = createCountdownSection('simply-section simply-hours-section', amountCls, wordCls, 0, 'hour', params);
+    const minutes = createCountdownSection('simply-section simply-minutes-section', amountCls, wordCls, 0, 'minute', params);
+    const seconds = createCountdownSection('simply-section simply-seconds-section', amountCls, wordCls, 0, 'second', params);
 
     container.appendChild(days);
     container.appendChild(hours);

@@ -157,7 +157,11 @@ const createCountdownInstance = (targetElement: HTMLElement, parameters: Countdo
         targetElement.appendChild(inlineElement);
     }
 
-    const countdown = parameters.inline ? null : createCountdown(targetElement);
+    const countdown = parameters.inline ? null : createCountdown(targetElement, {
+        sectionClass: parameters.sectionClass,
+        amountClass: parameters.amountClass,
+        wordClass: parameters.wordClass
+    });
 
     const refresh = () => {
         const currentDate = parameters.enableUtc ? new Date(new Date().toUTCString()) : new Date();
@@ -222,7 +226,7 @@ const createCountdownInstance = (targetElement: HTMLElement, parameters: Countdo
     }
 };
 
-export default (
+export const simplyCountdown = (
     element: CountdownSelector,
     args: Partial<CountdownParameters> = defaultParams
 ): void => {
