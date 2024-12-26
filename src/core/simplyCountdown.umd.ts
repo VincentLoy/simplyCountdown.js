@@ -14,5 +14,5 @@ if (typeof define === 'function' && define.amd) {
     (window as any).simplyCountdown = simplyCountdownCore;
 }
 
-// Export pour Vite/Rollup
+// Export for Vite/Rollup
 export default simplyCountdownCore;
