@@ -19,7 +19,7 @@ npm install simplycountdown
 # or
 yarn add simplycountdown
 # or
-bun add simplycountdown
+bun install simplycountdown
 ```
 
 ## Basic Usage
@@ -228,7 +228,7 @@ simplyCountdown(document.querySelectorAll('.countdown'));
 ## Development Commands
 
 ### Main Commands
-- `npm run dev`: Start development server for the documentation site (port 3000)
+- `npm run dev`: Start development server for the documentation site & Core library (port 3000)
 - `npm run build`: Build everything (library, themes, and documentation)
 - `npm run preview`: Preview the documentation site
 
