@@ -130,7 +130,7 @@ document.querySelectorAll('.sc-doc-block').forEach(block => {
 });
 
 // Dynamic navigation background
-const nav = document.querySelector('nav');
+const nav = document.querySelector('.nav-wrapper');
 
 // Add transition class to nav
 nav.classList.add('transition-colors', 'duration-300');
