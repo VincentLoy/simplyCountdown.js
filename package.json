@@ -1,5 +1,5 @@
 {
-  "name": "simplycountdown",
+  "name": "simplycountdown.js",
   "description": "A simple yet powerful countdown plugin, w/ no deps",
   "version": "3.0.0",
   "type": "module",
