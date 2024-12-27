@@ -315,3 +315,25 @@ document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
         }
     });
 });
+
+// Scroll to top button functionality
+const scrollTopBtn = document.getElementById('scrollTopBtn');
+
+function handleScroll() {
+    const scrollThreshold = document.documentElement.scrollHeight * 0.05;
+    
+    if (window.scrollY > scrollThreshold) {
+        scrollTopBtn.classList.remove('opacity-0', 'translate-y-10');
+    } else {
+        scrollTopBtn.classList.add('opacity-0', 'translate-y-10');
+    }
+}
+
+scrollTopBtn.addEventListener('click', () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+});
+
+window.addEventListener('scroll', handleScroll);
