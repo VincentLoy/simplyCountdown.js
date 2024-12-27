@@ -16,7 +16,7 @@ import '../../src/themes/dark.css'
 import '../../src/themes/cyber.css'
 import '../../src/themes/losange.css'
 import '../../src/themes/circle.css'
-import { simplyCountdown } from '../../src/core/simplyCountdown.ts'
+import simplyCountdown from '../../src/core/simplyCountdown.ts'
 
 // Configure highlight.js
 hljs.registerLanguage('javascript', javascript)

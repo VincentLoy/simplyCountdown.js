@@ -328,7 +328,7 @@ const createControllerArray = (controllers: CountdownController[]): CountdownCon
     return array;
 };
 
-export const simplyCountdown = (
+const simplyCountdown = (
     element: CountdownSelector,
     args: Partial<CountdownParameters> = defaultParams
 ): CountdownController | CountdownControllerArray => {
@@ -347,3 +347,5 @@ export const simplyCountdown = (
     
     return createCountdownInstance(element, parameters);
 };
+
+export default simplyCountdown;
