@@ -56,3 +56,17 @@ export interface CountdownSection {
 }
 
 export type CountdownSelector = string | HTMLElement | NodeListOf<HTMLElement>;
+
+export interface CountdownController {
+    stopCountdown: () => void;
+    resumeCountdown: () => void;
+    updateCountdown: (newParams: Partial<CountdownParameters>) => void;
+    getState: () => CountdownState;
+}
+
+export interface CountdownControllerArray extends Array<CountdownController> {
+    stopCountdown: () => void;
+    resumeCountdown: () => void;
+    updateCountdown: (newParams: Partial<CountdownParameters>) => void;
+    getState: () => CountdownState[];
+}

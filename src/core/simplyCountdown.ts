@@ -9,7 +9,7 @@
  *  - Nathan Smith <NathanS@harvest.org>
  */
 
-import type { CountdownParameters, CountdownSelector, CountdownState } from '../types';
+import type { CountdownParameters, CountdownSelector, CountdownState, CountdownController, CountdownControllerArray } from '../types';
 import { createCountdown, updateCountdownSection } from './dom';
 
 const defaultParams: CountdownParameters = {
@@ -142,7 +142,10 @@ function displayBlocks(timeUnits: TimeUnit[], params: CountdownParameters, count
     });
 }
 
-const createCountdownInstance = (targetElement: HTMLElement, parameters: CountdownParameters) => {
+const createCountdownInstance = (
+    targetElement: HTMLElement, 
+    parameters: CountdownParameters
+): CountdownController => {
     let state: CountdownState = {
         isPaused: false,
         interval: null,
@@ -284,13 +287,10 @@ const createCountdownInstance = (targetElement: HTMLElement, parameters: Countdo
         }
     };
 
-    // Replace interval initialization with startInterval
-    startInterval();
+    const getState = () => ({ ...state });
 
-    // Add control methods to the element
-    targetElement.stopCountdown = stopCountdown;
-    targetElement.resumeCountdown = resumeCountdown;
-    targetElement.updateCountdown = updateCountdown;
+    // Start the countdown
+    startInterval();
 
     // Cleanup on element removal
     const observer = new MutationObserver((mutations) => {
@@ -307,28 +307,43 @@ const createCountdownInstance = (targetElement: HTMLElement, parameters: Countdo
     if (targetElement.parentNode) {
         observer.observe(targetElement.parentNode, { childList: true });
     }
+
+    // Return controller object
+    return {
+        stopCountdown,
+        resumeCountdown,
+        updateCountdown,
+        getState
+    };
 };
 
-declare global {
-    interface HTMLElement {
-        stopCountdown?: () => void;
-        resumeCountdown?: () => void;
-        updateCountdown?: (newParams: Partial<CountdownParameters>) => void;
-    }
-}
+const createControllerArray = (controllers: CountdownController[]): CountdownControllerArray => {
+    const array = controllers as CountdownControllerArray;
+    
+    array.stopCountdown = () => controllers.forEach(c => c.stopCountdown());
+    array.resumeCountdown = () => controllers.forEach(c => c.resumeCountdown());
+    array.updateCountdown = (newParams) => controllers.forEach(c => c.updateCountdown(newParams));
+    array.getState = () => controllers.map(c => c.getState());
+    
+    return array;
+};
 
 export const simplyCountdown = (
     element: CountdownSelector,
     args: Partial<CountdownParameters> = defaultParams
-): void => {
+): CountdownController | CountdownControllerArray => {
     const parameters: CountdownParameters = { ...defaultParams, ...args };
 
     if (typeof element === 'string') {
         const elements = document.querySelectorAll<HTMLElement>(element);
-        elements.forEach((el) => createCountdownInstance(el, parameters));
-    } else if (isNodeList(element)) {
-        element.forEach((el) => createCountdownInstance(el, parameters));
-    } else {
-        createCountdownInstance(element, parameters);
+        const controllers = Array.from(elements).map(el => createCountdownInstance(el, parameters));
+        return controllers.length === 1 ? controllers[0] : createControllerArray(controllers);
     }
+    
+    if (isNodeList(element)) {
+        const controllers = Array.from(element).map(el => createCountdownInstance(el, parameters));
+        return controllers.length === 1 ? controllers[0] : createControllerArray(controllers);
+    }
+    
+    return createCountdownInstance(element, parameters);
 };
