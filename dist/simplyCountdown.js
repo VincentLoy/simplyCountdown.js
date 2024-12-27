@@ -1,11 +1,11 @@
-const createCountdownSection = (sectionClass, amount, word) => {
+const createCountdownSection = (sectionClass, amountClass, wordClass, amount, word, params) => {
   const section = document.createElement("div");
-  section.className = `simply-section ${sectionClass}`;
+  section.className = `${sectionClass} ${params.sectionClass}`;
   const wrap = document.createElement("div");
   const amount_elem = document.createElement("span");
   const word_elem = document.createElement("span");
-  amount_elem.className = "simply-amount";
-  word_elem.className = "simply-word";
+  amount_elem.className = `${amountClass} ${params.amountClass}`;
+  word_elem.className = `${wordClass} ${params.wordClass}`;
   amount_elem.textContent = String(amount);
   word_elem.textContent = word;
   wrap.appendChild(amount_elem);
@@ -23,11 +23,13 @@ const updateCountdownSection = (section, amount, word) => {
     wordElement.textContent = word;
   }
 };
-const createCountdown = (container) => {
-  const days = createCountdownSection("simply-days-section", 0, "day");
-  const hours = createCountdownSection("simply-hours-section", 0, "hour");
-  const minutes = createCountdownSection("simply-minutes-section", 0, "minute");
-  const seconds = createCountdownSection("simply-seconds-section", 0, "second");
+const createCountdown = (container, params) => {
+  const amountCls = "simply-amount";
+  const wordCls = "simply-word";
+  const days = createCountdownSection("simply-section simply-days-section", amountCls, wordCls, 0, "day", params);
+  const hours = createCountdownSection("simply-section simply-hours-section", amountCls, wordCls, 0, "hour", params);
+  const minutes = createCountdownSection("simply-section simply-minutes-section", amountCls, wordCls, 0, "minute", params);
+  const seconds = createCountdownSection("simply-section simply-seconds-section", amountCls, wordCls, 0, "second", params);
   container.appendChild(days);
   container.appendChild(hours);
   container.appendChild(minutes);
@@ -75,7 +77,13 @@ const defaultParams = {
   wordClass: "simply-word",
   zeroPad: false,
   countUp: false,
-  removeZeroUnits: false
+  removeZeroUnits: false,
+  onStop: () => {
+  },
+  onResume: () => {
+  },
+  onUpdate: () => {
+  }
 };
 const isNodeList = (element) => {
   return element instanceof NodeList;
@@ -108,26 +116,53 @@ function displayBlocks(timeUnits, params, countdown) {
   });
 }
 const createCountdownInstance = (targetElement, parameters) => {
-  const targetDate = new Date(
-    parameters.year,
-    parameters.month - 1,
-    parameters.day,
-    parameters.hours,
-    parameters.minutes,
-    parameters.seconds
-  );
+  let state = {
+    isPaused: false,
+    interval: null,
+    targetDate: /* @__PURE__ */ new Date()
+  };
+  const getTargetDate = (params) => {
+    return params.enableUtc ? new Date(Date.UTC(
+      params.year,
+      params.month - 1,
+      params.day,
+      params.hours,
+      params.minutes,
+      params.seconds
+    )) : new Date(
+      params.year,
+      params.month - 1,
+      params.day,
+      params.hours,
+      params.minutes,
+      params.seconds
+    );
+  };
+  state.targetDate = getTargetDate(parameters);
   let inlineElement = null;
   if (parameters.inline) {
     inlineElement = document.createElement("span");
     inlineElement.className = parameters.inlineClass;
     targetElement.appendChild(inlineElement);
   }
-  const countdown = parameters.inline ? null : createCountdown(targetElement);
+  const countdown = parameters.inline ? null : createCountdown(targetElement, {
+    sectionClass: parameters.sectionClass,
+    amountClass: parameters.amountClass,
+    wordClass: parameters.wordClass
+  });
   const refresh = () => {
-    const currentDate = parameters.enableUtc ? new Date((/* @__PURE__ */ new Date()).toUTCString()) : /* @__PURE__ */ new Date();
-    let diff = parameters.countUp ? currentDate.getTime() - targetDate.getTime() : targetDate.getTime() - currentDate.getTime();
+    const currentDate = parameters.enableUtc ? new Date(Date.UTC(
+      (/* @__PURE__ */ new Date()).getUTCFullYear(),
+      (/* @__PURE__ */ new Date()).getUTCMonth(),
+      (/* @__PURE__ */ new Date()).getUTCDate(),
+      (/* @__PURE__ */ new Date()).getUTCHours(),
+      (/* @__PURE__ */ new Date()).getUTCMinutes(),
+      (/* @__PURE__ */ new Date()).getUTCSeconds()
+    )) : /* @__PURE__ */ new Date();
+    let diff = parameters.countUp ? currentDate.getTime() - state.targetDate.getTime() : state.targetDate.getTime() - currentDate.getTime();
     if (diff <= 0 && !parameters.countUp) {
       diff = 0;
+      clearInterval(state.interval);
       if (parameters.onEnd) {
         parameters.onEnd();
       }
@@ -157,13 +192,48 @@ const createCountdownInstance = (targetElement, parameters) => {
       displayBlocks(timeUnits, parameters, countdown);
     }
   };
-  const interval = setInterval(refresh, parameters.refresh);
-  refresh();
+  const startInterval = () => {
+    state.interval = setInterval(refresh, parameters.refresh);
+    refresh();
+  };
+  const stopCountdown = () => {
+    var _a;
+    if (state.interval) {
+      clearInterval(state.interval);
+      state.interval = null;
+    }
+    state.isPaused = true;
+    (_a = parameters.onStop) == null ? void 0 : _a.call(parameters);
+  };
+  const resumeCountdown = () => {
+    var _a;
+    if (state.isPaused) {
+      startInterval();
+      state.isPaused = false;
+      (_a = parameters.onResume) == null ? void 0 : _a.call(parameters);
+    }
+  };
+  const updateCountdown = (newParams) => {
+    var _a;
+    Object.assign(parameters, newParams);
+    if (newParams.year !== void 0 || newParams.month !== void 0 || newParams.day !== void 0 || newParams.hours !== void 0 || newParams.minutes !== void 0 || newParams.seconds !== void 0) {
+      state.targetDate = getTargetDate(parameters);
+    }
+    (_a = parameters.onUpdate) == null ? void 0 : _a.call(parameters, newParams);
+    if (!state.isPaused) {
+      if (state.interval) {
+        clearInterval(state.interval);
+      }
+      startInterval();
+    }
+  };
+  const getState = () => ({ ...state });
+  startInterval();
   const observer = new MutationObserver((mutations) => {
     mutations.forEach((mutation) => {
       mutation.removedNodes.forEach((node) => {
         if (node === targetElement) {
-          clearInterval(interval);
+          clearInterval(state.interval);
           observer.disconnect();
         }
       });
@@ -172,17 +242,33 @@ const createCountdownInstance = (targetElement, parameters) => {
   if (targetElement.parentNode) {
     observer.observe(targetElement.parentNode, { childList: true });
   }
+  return {
+    stopCountdown,
+    resumeCountdown,
+    updateCountdown,
+    getState
+  };
+};
+const createControllerArray = (controllers) => {
+  const array = controllers;
+  array.stopCountdown = () => controllers.forEach((c) => c.stopCountdown());
+  array.resumeCountdown = () => controllers.forEach((c) => c.resumeCountdown());
+  array.updateCountdown = (newParams) => controllers.forEach((c) => c.updateCountdown(newParams));
+  array.getState = () => controllers.map((c) => c.getState());
+  return array;
 };
 const simplyCountdown = (element, args = defaultParams) => {
   const parameters = { ...defaultParams, ...args };
   if (typeof element === "string") {
     const elements = document.querySelectorAll(element);
-    elements.forEach((el) => createCountdownInstance(el, parameters));
-  } else if (isNodeList(element)) {
-    element.forEach((el) => createCountdownInstance(el, parameters));
-  } else {
-    createCountdownInstance(element, parameters);
+    const controllers = Array.from(elements).map((el) => createCountdownInstance(el, parameters));
+    return controllers.length === 1 ? controllers[0] : createControllerArray(controllers);
   }
+  if (isNodeList(element)) {
+    const controllers = Array.from(element).map((el) => createCountdownInstance(el, parameters));
+    return controllers.length === 1 ? controllers[0] : createControllerArray(controllers);
+  }
+  return createCountdownInstance(element, parameters);
 };
 export {
   simplyCountdown as default

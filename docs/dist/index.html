@@ -60,12 +60,6 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#why-simply-countdown" class="text-indigo-200 hover:text-white transition-colors duration-300 flex items-center gap-2 text-sm md:text-base">
-                            <span class="icon-[lucide--crown] w-4 h-4"></span>
-                            Why simplyCountdown
-                        </a>
-                    </li>
-                    <li>
                         <a href="#examples" class="text-indigo-200 hover:text-white transition-colors duration-300 flex items-center gap-2 text-sm md:text-base">
                             <span class="icon-[lucide--clock] w-4 h-4"></span>
                             Examples
@@ -75,6 +69,12 @@
                         <a href="#usage" class="text-indigo-200 hover:text-white transition-colors duration-300 flex items-center gap-2 text-sm md:text-base">
                             <span class="icon-[lucide--code] w-4 h-4"></span>
                             Usage
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#control" class="text-indigo-200 hover:text-white transition-colors duration-300 flex items-center gap-2 text-sm md:text-base">
+                            <span class="icon-[lucide--toggle-left] w-4 h-4"></span>
+                            Controls
                         </a>
                     </li>
                     <li>
@@ -97,7 +97,7 @@
     <main class="py-16">
         <div class="container mx-auto px-4">
             <section class="mb-20">
-                <div class="grid gap-8 md:grid-cols-2">
+                <div class="grid gap-8 grid-cols-1 md:grid-cols-2">
                     <div>
                         <h2 id="installation" class="text-3xl font-bold mb-8 flex items-center gap-2">
                             <span class="icon-[lucide--terminal] w-6 h-6 text-indigo-600"></span>
@@ -158,7 +158,7 @@
                     Examples
                 </h2>
                 
-                <div class="grid gap-8 md:grid-cols-2">
+                <div class="grid gap-8 grid-cols-1 md:grid-cols-2">
                     <div class="sc-doc-block">
                         <h3 class="text-lg lg:text-2xl text-center font-semibold mb-12">Default Theme</h3>
                         <div class="simply-countdown-one simply-countdown"></div>
@@ -171,6 +171,7 @@
 
                     <div class="sc-doc-block">
                         <h3 class="text-lg lg:text-2xl text-center font-semibold mb-12">Inline</h3>
+                        <div class="simply-countdown-inline text-xl font-bold text-center"></div>
                         <div class="simply-countdown-inline text-xl font-bold text-center"></div>
                     </div>
 
@@ -191,7 +192,108 @@
 
                     <div class="sc-doc-block">
                         <h3 class="text-lg lg:text-2xl text-center font-semibold mb-12">Complexe Pluralization - Russian Example</h3>
-                        <div id="custom-plural" class="simply-countdown"></div>
+                        <div id="custom-plural" class="simply-countdown simply-countdown-dark"></div>
+                        <div class="mt-10">
+                            <pre>
+<code class="language-javascript rounded-xl w-full">
+// Example 7: with custom Russian pluralization
+simplyCountdown('#custom-plural', {
+    // some parameters...
+    words: {
+        days: {
+            lambda: (root, n) => pluralizeRus(n, 'день', 'дня', 'дней'),
+            root: 'день'
+        },
+        hours: {
+            lambda: (root, n) => pluralizeRus(n, 'час', 'часа', 'часов'),
+            root: 'час'
+        },
+        minutes: {
+            lambda: (root, n) => pluralizeRus(n, 'минута', 'минуты', 'минут'),
+            root: 'минута'
+        },
+        seconds: {
+            lambda: (root, n) => pluralizeRus(n, 'секунда', 'секунды', 'секунд'),
+            root: 'секунда'
+        }
+    }
+});
+
+function pluralizeRus(number, singular, genitiveSingular, genitivePlural) {
+    const lastDigit = number % 10;
+    const lastTwoDigits = number % 100;
+
+    if (lastTwoDigits &gt;= 11 &amp;&amp; lastTwoDigits &lt;= 14) {
+        return `${genitivePlural}`; // Specific case for numbers 11-14
+    }
+
+    if (lastDigit === 1 &amp;&amp; lastTwoDigits !== 11) {
+        return `${singular}`; // Specific case for number (1, 21, 31...)
+    }
+
+    if (lastDigit &gt;= 2 &amp;&amp; lastDigit &lt;= 4 &amp;&amp; !(lastTwoDigits &gt;= 12 &amp;&amp; lastTwoDigits &lt;= 14)) {
+        return `${genitiveSingular}`; // Genetive singular (2, 3, 4...)
+    }
+
+    return `${genitivePlural}`; // Geenetive plural (0, 5, 6...)
+}
+</code>
+                            </pre>
+                        </div>
+                    </div>
+
+                    <div class="sc-doc-block">
+                        <h3 class="text-lg lg:text-2xl text-center font-semibold mb-12">Control Example</h3>
+                        <div class="simply-countdown-control simply-countdown"></div>
+                        <div class="flex justify-center flex-col sm:flex-row gap-4 mt-8">
+                            <button class="btn btn-indigo justify-center" onclick="window.controlDemo.stopCountdown()">
+                                <span class="icon-[lucide--circle-stop] w-5 h-5"></span>
+                                Stop
+                            </button>
+                            <button class="btn btn-indigo justify-center" onclick="window.controlDemo.resumeCountdown()">
+                                <span class="icon-[lucide--circle-play] w-5 h-5"></span>
+                                Resume
+                            </button>
+                            <button class="btn btn-indigo justify-center" onclick="window.controlDemo.updateCountdown({year: window.controlDemo.getState().targetDate.getFullYear() + 1})">
+                                <span class="icon-[lucide--alarm-clock-plus] w-5 h-5"></span>
+                                +1 Year
+                            </button>
+                        </div>
+
+                        <div class="mt-8">
+                            <pre><code class="language-javascript state-box rounded-xl w-full"></code></pre>
+                        </div>
+
+                        <div class="mt-8">
+                            <pre><code class="language-javascript rounded-xl w-full">
+// Example 8: With controls
+const controlDemo = simplyCountdown('.simply-countdown-control', {
+    year: nextYear,
+    month: nextMonth,
+    day: 27,
+    zeroPad: false,
+    enableUtc: true,
+    onUpdate: () => {
+        updateStateBox(controlDemo.getState());
+    },
+    onResume: () => {
+        updateStateBox(controlDemo.getState());
+    },
+    onStop: () => {
+        updateStateBox(controlDemo.getState());
+    }
+});
+
+const updateStateBox = (state) => {
+    let stateBox = document.querySelector('.state-box');
+    stateBox.innerHTML = JSON.stringify(state, null, 2);
+}
+
+updateStateBox(controlDemo.getState());
+// Not a conventional declaration, but it's useful for the demo
+window.controlDemo = controlDemo;
+</code></pre>
+                        </div>
                     </div>
                 </div>
 
@@ -210,44 +312,86 @@
                 </h3>
                 <div class="sc-doc-block">
                     <pre><code class="language-javascript bg-slate-900 rounded-xl">
-    import { simplyCountdown } from 'simplyCountdown'; // Not necessary if you use iife version
+import simplyCountdown from 'simplyCountdown'; // Not necessary if you use iife version
 
-    // This is an example with default parameters
-    simplyCountdown('[CSS-SELECTOR]', {
-        year: 2015, // Target year (required)
-        month: 6, // Target month [1-12] (required)
-        day: 28, // Target day [1-31] (required)
-        hours: 0, // Target hour [0-23], default: 0
-        minutes: 0, // Target minute [0-59], default: 0
-        seconds: 0, // Target second [0-59], default: 0
-        words: { // Custom labels, with lambda for plurals
-            days: { root: 'day', lambda: (root, n) => n > 1 ? root + 's' : root },
-            hours: { root: 'hour', lambda: (root, n) => n > 1 ? root + 's' : root },
-            minutes: { root: 'minute', lambda: (root, n) => n > 1 ? root + 's' : root },
-            seconds: { root: 'second', lambda: (root, n) => n > 1 ? root + 's' : root }
-        },
-        plural: true, // Use plurals for labels
-        inline: false, // Inline format: e.g., "24 days, 4 hours, 2 minutes"
-        inlineSeparator: ', ', // Separator for inline format, default: ", "
-        inlineClass: 'simply-countdown-inline', // CSS class for inline countdown
-        enableUtc: false, // Use UTC time if true
-        onEnd: function () {}, // Callback when countdown ends
-        refresh: 1000, // Refresh interval in ms, default: 1000
-        sectionClass: 'simply-section', // CSS class for each countdown section
-        amountClass: 'simply-amount', // CSS class for numeric values
-        wordClass: 'simply-word', // CSS class for unit labels
-        zeroPad: false, // Pad numbers with leading zero
-        removeZeroUnits: false, // Remove units with zero value
-        countUp: false // Count up after reaching zero
-    });    
+// This is an example with default parameters
+simplyCountdown('[CSS-SELECTOR]', {
+    year: 2015, // Target year (required)
+    month: 6, // Target month [1-12] (required)
+    day: 28, // Target day [1-31] (required)
+    hours: 0, // Target hour [0-23], default: 0
+    minutes: 0, // Target minute [0-59], default: 0
+    seconds: 0, // Target second [0-59], default: 0
+    words: { // Custom labels, with lambda for plurals
+        days: { root: 'day', lambda: (root, n) => n > 1 ? root + 's' : root },
+        hours: { root: 'hour', lambda: (root, n) => n > 1 ? root + 's' : root },
+        minutes: { root: 'minute', lambda: (root, n) => n > 1 ? root + 's' : root },
+        seconds: { root: 'second', lambda: (root, n) => n > 1 ? root + 's' : root }
+    },
+    plural: true, // Use plurals for labels
+    inline: false, // Inline format: e.g., "24 days, 4 hours, 2 minutes"
+    inlineSeparator: ', ', // Separator for inline format, default: ", "
+    inlineClass: 'simply-countdown-inline', // CSS class for inline countdown
+    enableUtc: false, // Use UTC time if true
+    refresh: 1000, // Refresh interval in ms, default: 1000
+    sectionClass: 'simply-section', // CSS class for each countdown section
+    amountClass: 'simply-amount', // CSS class for numeric values
+    wordClass: 'simply-word', // CSS class for unit labels
+    zeroPad: false, // Pad numbers with leading zero
+    removeZeroUnits: false, // Remove units with zero value
+    countUp: false, // Count up after reaching zero
+    onEnd: () => {}, // Callback when countdown ends
+    onStop: () => {}, // Callback when countdown is stopped
+    onResume: () => {}, // Callback when countdown is resumed
+    onUpdate: (params) => {} // Callback when countdown is updated
+});    
 
-    // Also, you can init with already existing Javascript Object.
-    let myElement = document.querySelector('.my-countdown');
-    simplyCountdown(myElement, { /* options */ });
+// Also, you can init with already existing Javascript Object.
+let myElement = document.querySelector('.my-countdown');
+simplyCountdown(myElement, { /* options */ });
 
-    let multipleElements = document.querySelectorAll('.my-countdown');
-    simplyCountdown(multipleElements, { /* options */ });
+let multipleElements = document.querySelectorAll('.my-countdown');
+simplyCountdown(multipleElements, { /* options */ });
                     </code></pre>
+                </div>
+            </section>
+
+            <section class="mb-20">
+                <h2 id="control" class="text-3xl font-bold mb-8 flex items-center gap-2">
+                    <span class="icon-[lucide--toggle-left] w-6 h-6 text-indigo-600"></span>
+                    Countdown Control
+                </h2>
+                <div class="sc-doc-block">
+                    <h3 class="text-xl font-bold mb-4">Control Methods</h3>
+                    <p class="mb-4">The countdown instance returns a controller object with methods to manipulate the countdown:</p>
+                    <pre><code class="language-javascript bg-slate-900 rounded-xl">
+// Initialize with control callbacks
+const countdown = simplyCountdown('#mycountdown', {
+    year: 2025,
+    month: 12,
+    day: 25,
+    onStop: () => console.log('Countdown stopped'),
+    onResume: () => console.log('Countdown resumed'),
+    onUpdate: (newParams) => console.log('Updated with:', newParams)
+});
+
+// Control the countdown
+countdown.stopCountdown();    // Pause
+countdown.resumeCountdown();  // Resume
+countdown.updateCountdown({   // Update parameters
+    year: 2026,
+    month: 1
+});
+
+// Get current state
+const state = countdown.getState();
+console.log('Is paused:', state.isPaused);
+
+// Multiple countdowns
+const countdowns = simplyCountdown('.countdown-class', options);
+countdowns.stopCountdown();  // Stops all countdowns
+countdowns.updateCountdown({ year: 2026 }); // Updates all
+    </code></pre>
                 </div>
             </section>
 
@@ -258,29 +402,29 @@
                 </h2>
                 <div class="sc-doc-block">
                     <pre><code class="language-css bg-slate-900 rounded-xl">
-    .simply-countdown {
-        /* The countdown */
-    }
-    .simply-countdown > .simply-section {
-        /* coutndown blocks */
-    }
-    
-    .simply-countdown > .simply-section > div {
-        /* countdown block inner div */
-    }
-    
-    .simply-countdown > .simply-section .simply-amount,
-    .simply-countdown > .simply-section .simply-word {
-        /* amounts and words */
-    }
-    
-    .simply-countdown > .simply-section .simply-amount {
-        /* amounts */
-    }
-    
-    .simply-countdown > .simply-section .simply-word {
-        /* words */
-    }
+.simply-countdown {
+    /* The countdown */
+}
+.simply-countdown > .simply-section {
+    /* coutndown blocks */
+}
+
+.simply-countdown > .simply-section > div {
+    /* countdown block inner div */
+}
+
+.simply-countdown > .simply-section .simply-amount,
+.simply-countdown > .simply-section .simply-word {
+    /* amounts and words */
+}
+
+.simply-countdown > .simply-section .simply-amount {
+    /* amounts */
+}
+
+.simply-countdown > .simply-section .simply-word {
+    /* words */
+}
                         
                     </code></pre>
                 </div>
