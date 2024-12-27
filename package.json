@@ -1,6 +1,6 @@
 {
   "name": "simplycountdown.js",
-  "description": "A simple yet powerful countdown plugin, w/ no deps",
+  "description": "A lightweight (<5KB) JavaScript countdown library with zero dependencies. Create customizable countdown timers with multiple themes, TypeScript support, and a modern API for websites and web applications.",
   "version": "3.0.0",
   "type": "module",
   "homepage": "http://vincentloy.github.io/simplyCountdown.js",
