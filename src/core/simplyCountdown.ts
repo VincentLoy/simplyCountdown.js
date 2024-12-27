@@ -250,7 +250,7 @@ const createCountdownInstance = (
     };
 
     const stopCountdown = () => {
-        if (state.interval) {
+        if (state.interval !== null) {
             clearInterval(state.interval);
             state.interval = null;
         }
@@ -297,7 +297,9 @@ const createCountdownInstance = (
         mutations.forEach((mutation) => {
             mutation.removedNodes.forEach((node) => {
                 if (node === targetElement) {
-                    clearInterval(state.interval);
+                    if (state.interval !== null) {
+                        clearInterval(state.interval);
+                    }
                     observer.disconnect();
                 }
             });

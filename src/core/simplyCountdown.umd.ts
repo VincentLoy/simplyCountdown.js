@@ -1,6 +1,10 @@
 import simplyCountdownCore from './simplyCountdown';
 
-// @ts-ignore
+declare const define: {
+    (factory: () => any): void;
+    amd: boolean;
+};
+
 if (typeof define === 'function' && define.amd) {
     // AMD
     define(function() {

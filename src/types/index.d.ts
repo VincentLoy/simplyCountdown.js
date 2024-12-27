@@ -38,7 +38,7 @@ export interface CountdownParameters {
 
 export type CountdownState = {
     isPaused: boolean;
-    interval: number | null;
+    interval: ReturnType<typeof setInterval> | null;
     targetDate: Date;
 };
 
