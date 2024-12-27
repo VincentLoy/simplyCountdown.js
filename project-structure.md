@@ -18,16 +18,7 @@
 │
 ├── dist
 │   ├── themes
-│   │   ├── circle.css
-│   │   ├── circle.min.css
-│   │   ├── cyber.css
-│   │   ├── cyber.min.css
-│   │   ├── dark.css
-│   │   ├── dark.min.css
-│   │   ├── default.css
-│   │   ├── default.min.css
-│   │   ├── losange.css
-│   │   └── losange.min.css
+│   │   ├── ALL BUILT THEMES, both minified and unminified
 │   ├── simplyCountdown.js
 │   ├── simplyCountdown.js.map
 │   ├── simplyCountdown.umd.js
