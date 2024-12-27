@@ -31,7 +31,16 @@ export interface CountdownParameters {
     zeroPad: boolean;
     removeZeroUnits: boolean;
     countUp: boolean;
+    onStop?: () => void;
+    onResume?: () => void;
+    onUpdate?: (newParams: Partial<CountdownParameters>) => void;
 }
+
+export type CountdownState = {
+    isPaused: boolean;
+    interval: number | null;
+    targetDate: Date;
+};
 
 export interface CountdownElements {
     days: HTMLElement;

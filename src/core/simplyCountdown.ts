@@ -9,7 +9,7 @@
  *  - Nathan Smith <NathanS@harvest.org>
  */
 
-import type { CountdownParameters, CountdownSelector } from '../types';
+import type { CountdownParameters, CountdownSelector, CountdownState } from '../types';
 import { createCountdown, updateCountdownSection } from './dom';
 
 const defaultParams: CountdownParameters = {
@@ -37,7 +37,10 @@ const defaultParams: CountdownParameters = {
     wordClass: 'simply-word',
     zeroPad: false,
     countUp: false,
-    removeZeroUnits: false
+    removeZeroUnits: false,
+    onStop: () => {},
+    onResume: () => {},
+    onUpdate: () => {},
 };
 
 const isNodeList = (element: CountdownSelector): element is NodeListOf<HTMLElement> => {
@@ -140,24 +143,33 @@ function displayBlocks(timeUnits: TimeUnit[], params: CountdownParameters, count
 }
 
 const createCountdownInstance = (targetElement: HTMLElement, parameters: CountdownParameters) => {
-    // Create target date with proper UTC handling
-    const targetDate = parameters.enableUtc 
-        ? new Date(Date.UTC(
-            parameters.year,
-            parameters.month - 1,
-            parameters.day,
-            parameters.hours,
-            parameters.minutes,
-            parameters.seconds
-        ))
-        : new Date(
-            parameters.year,
-            parameters.month - 1,
-            parameters.day,
-            parameters.hours,
-            parameters.minutes,
-            parameters.seconds
-        );
+    let state: CountdownState = {
+        isPaused: false,
+        interval: null,
+        targetDate: new Date()
+    };
+
+    const getTargetDate = (params: CountdownParameters): Date => {
+        return params.enableUtc 
+            ? new Date(Date.UTC(
+                params.year,
+                params.month - 1,
+                params.day,
+                params.hours,
+                params.minutes,
+                params.seconds
+            ))
+            : new Date(
+                params.year,
+                params.month - 1,
+                params.day,
+                params.hours,
+                params.minutes,
+                params.seconds
+            );
+    };
+
+    state.targetDate = getTargetDate(parameters);
 
     // Create span element for inline mode
     let inlineElement: HTMLElement | null = null;
@@ -187,13 +199,13 @@ const createCountdownInstance = (targetElement: HTMLElement, parameters: Countdo
             : new Date();
 
         let diff = parameters.countUp
-            ? currentDate.getTime() - targetDate.getTime()
-            : targetDate.getTime() - currentDate.getTime();
+            ? currentDate.getTime() - state.targetDate.getTime()
+            : state.targetDate.getTime() - currentDate.getTime();
 
         if (diff <= 0 && !parameters.countUp) {
             diff = 0;
             // Clear interval before calling onEnd to prevent multiple calls
-            clearInterval(interval);
+            clearInterval(state.interval);
             if (parameters.onEnd) {
                 parameters.onEnd();
             }
@@ -229,15 +241,63 @@ const createCountdownInstance = (targetElement: HTMLElement, parameters: Countdo
         }
     };
 
-    const interval = setInterval(refresh, parameters.refresh);
-    refresh();
+    const startInterval = () => {
+        state.interval = setInterval(refresh, parameters.refresh);
+        refresh();
+    };
+
+    const stopCountdown = () => {
+        if (state.interval) {
+            clearInterval(state.interval);
+            state.interval = null;
+        }
+        state.isPaused = true;
+        parameters.onStop?.();
+    };
+
+    const resumeCountdown = () => {
+        if (state.isPaused) {
+            startInterval();
+            state.isPaused = false;
+            parameters.onResume?.();
+        }
+    };
+
+    const updateCountdown = (newParams: Partial<CountdownParameters>) => {
+        Object.assign(parameters, newParams);
+        if (newParams.year !== undefined || 
+            newParams.month !== undefined || 
+            newParams.day !== undefined ||
+            newParams.hours !== undefined ||
+            newParams.minutes !== undefined ||
+            newParams.seconds !== undefined) {
+            state.targetDate = getTargetDate(parameters);
+        }
+        
+        parameters.onUpdate?.(newParams);
+        
+        if (!state.isPaused) {
+            if (state.interval) {
+                clearInterval(state.interval);
+            }
+            startInterval();
+        }
+    };
+
+    // Replace interval initialization with startInterval
+    startInterval();
+
+    // Add control methods to the element
+    targetElement.stopCountdown = stopCountdown;
+    targetElement.resumeCountdown = resumeCountdown;
+    targetElement.updateCountdown = updateCountdown;
 
     // Cleanup on element removal
     const observer = new MutationObserver((mutations) => {
         mutations.forEach((mutation) => {
             mutation.removedNodes.forEach((node) => {
                 if (node === targetElement) {
-                    clearInterval(interval);
+                    clearInterval(state.interval);
                     observer.disconnect();
                 }
             });
@@ -248,6 +308,14 @@ const createCountdownInstance = (targetElement: HTMLElement, parameters: Countdo
         observer.observe(targetElement.parentNode, { childList: true });
     }
 };
+
+declare global {
+    interface HTMLElement {
+        stopCountdown?: () => void;
+        resumeCountdown?: () => void;
+        updateCountdown?: (newParams: Partial<CountdownParameters>) => void;
+    }
+}
 
 export const simplyCountdown = (
     element: CountdownSelector,
