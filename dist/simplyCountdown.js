@@ -162,7 +162,9 @@ const createCountdownInstance = (targetElement, parameters) => {
     let diff = parameters.countUp ? currentDate.getTime() - state.targetDate.getTime() : state.targetDate.getTime() - currentDate.getTime();
     if (diff <= 0 && !parameters.countUp) {
       diff = 0;
-      clearInterval(state.interval);
+      if (state.interval !== null) {
+        clearInterval(state.interval);
+      }
       if (parameters.onEnd) {
         parameters.onEnd();
       }

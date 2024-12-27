@@ -245,7 +245,7 @@ function pluralizeRus(number, singular, genitiveSingular, genitivePlural) {
                     <div class="sc-doc-block">
                         <h3 class="text-lg lg:text-2xl text-center font-semibold mb-12">Control Example</h3>
                         <div class="simply-countdown-control simply-countdown"></div>
-                        <div class="flex justify-center flex-col sm:flex-row gap-4 mt-8">
+                        <div class="flex justify-center flex-col sm:flex-row md:flex-col lg:flex-row gap-4 mt-8">
                             <button class="btn btn-indigo justify-center" onclick="window.controlDemo.stopCountdown()">
                                 <span class="icon-[lucide--circle-stop] w-5 h-5"></span>
                                 Stop
@@ -386,6 +386,7 @@ countdown.updateCountdown({   // Update parameters
 // Get current state
 const state = countdown.getState();
 console.log('Is paused:', state.isPaused);
+console.log('Target date:', state.targetDate);
 
 // Multiple countdowns
 const countdowns = simplyCountdown('.countdown-class', options);
