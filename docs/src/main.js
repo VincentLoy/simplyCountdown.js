@@ -7,6 +7,7 @@ import javascript from 'highlight.js/lib/languages/javascript'
 import css from 'highlight.js/lib/languages/css'
 import elm from 'highlight.js/lib/languages/elm'
 import xml from 'highlight.js/lib/languages/xml'
+import json from 'highlight.js/lib/languages/json'
 import 'highlight.js/styles/atom-one-dark.css'
 
 // Import our countdown library and themes
@@ -22,6 +23,7 @@ hljs.registerLanguage('javascript', javascript)
 hljs.registerLanguage('css', css)
 hljs.registerLanguage('elm', elm)
 hljs.registerLanguage('html', xml)
+hljs.registerLanguage('json', json)
 hljs.highlightAll()
 
 // Package manager switcher
@@ -155,7 +157,7 @@ window.addEventListener('scroll', updateNavBackground);
 // Configuration des exemples
 const now = new Date();
 const nextYear = now.getFullYear() + 1
-const nextMonth = ((now.getMonth() + 2) % 12) + 1
+const nextMonth = ((now.getMonth() + 2) % 12)
 const tomorrow = new Date(now.getTime() + (24 * 60 * 60 * 1000))
 
 // Example 1: Default Theme
@@ -182,7 +184,8 @@ simplyCountdown('.simply-countdown-two', {
 });
 
 // Example 3: Inline
-simplyCountdown('.simply-countdown-inline', {
+const inlineCD = document.querySelector('.simply-countdown-inline');
+simplyCountdown(inlineCD, {
     year: nextYear,
     month: 6,
     day: 28,
@@ -213,7 +216,7 @@ simplyCountdown('.simply-countdown-circle-demo', {
     zeroPad: true,
 });
 
-// Example with custom Russian pluralization
+// Example 7: with custom Russian pluralization
 simplyCountdown('#custom-plural', {
     year: nextYear,
     month: 12,
@@ -241,6 +244,33 @@ simplyCountdown('#custom-plural', {
     },
     zeroPad: true
 });
+
+// Example 8: With controls
+// Not a conventional declaration, but it's useful for the demo
+const controlDemo = simplyCountdown('.simply-countdown-control', {
+    year: nextYear,
+    month: nextMonth,
+    day: 27,
+    zeroPad: false,
+    enableUtc: true,
+    onUpdate: () => {
+        updateStateBox(controlDemo.getState());
+    },
+    onResume: () => {
+        updateStateBox(controlDemo.getState());
+    },
+    onStop: () => {
+        updateStateBox(controlDemo.getState());
+    }
+});
+
+const updateStateBox = (state) => {
+    let stateBox = document.querySelector('.state-box');
+    stateBox.innerHTML = JSON.stringify(state, null, 2);
+}
+
+updateStateBox(controlDemo.getState());
+window.controlDemo = controlDemo;
 
 // Fonction de pluralisation pour le russe
 function pluralizeRus(number, singular, genitiveSingular, genitivePlural) {

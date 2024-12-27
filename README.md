@@ -113,6 +113,9 @@ simplyCountdown('#mycountdown', {
     onEnd: () => {           // Callback function when countdown ends
         console.log('Countdown finished!');
     }
+    onStop: () => {}, // Callback when countdown is stopped
+    onResume: () => {}, // Callback when countdown is resumed
+    onUpdate: (params) => {} // Callback when countdown is updated
 });
 ```
 
@@ -216,14 +219,18 @@ simplyCountdown('#inline', {
 The plugin accepts various selector types:
 ```javascript
 // CSS selector string
-simplyCountdown('#countdown');
+simplyCountdown('#countdown', parameters);
 
 // Single DOM element
-simplyCountdown(document.getElementById('countdown'));
+simplyCountdown(document.getElementById('countdown'), parameters);
 
 // Multiple elements
-simplyCountdown(document.querySelectorAll('.countdown'));
+simplyCountdown(document.querySelectorAll('.countdown'), parameters);
 ```
+
+## Control Features
+
+The countdown instance returns a controller object that allows you to manipulate the countdown:
 
 ## Development Commands
 
