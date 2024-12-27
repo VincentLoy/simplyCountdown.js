@@ -112,7 +112,7 @@ simplyCountdown('#mycountdown', {
     // Event handlers
     onEnd: () => {           // Callback function when countdown ends
         console.log('Countdown finished!');
-    }
+    },
     onStop: () => {}, // Callback when countdown is stopped
     onResume: () => {}, // Callback when countdown is resumed
     onUpdate: (params) => {} // Callback when countdown is updated
