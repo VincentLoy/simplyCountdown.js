@@ -142,6 +142,18 @@ function displayBlocks(timeUnits: TimeUnit[], params: CountdownParameters, count
     });
 }
 
+/**
+ * Creates a countdown instance that manages the countdown timer functionality.
+ * 
+ * @param targetElement - The HTML element where the countdown will be rendered
+ * @param parameters - Configuration parameters for the countdown
+ * 
+ * @returns A controller object with methods to control the countdown:
+ *  - stopCountdown: Pauses the countdown and triggers onStop callback
+ *  - resumeCountdown: Resumes a paused countdown and triggers onResume callback
+ *  - updateCountdown: Updates countdown parameters and triggers onUpdate callback
+ *  - getState: Returns current state of the countdown
+ */
 const createCountdownInstance = (
     targetElement: HTMLElement, 
     parameters: CountdownParameters
@@ -322,6 +334,16 @@ const createCountdownInstance = (
     };
 };
 
+/**
+ * Creates an enhanced array of countdown controllers with additional control methods.
+ * 
+ * @param controllers - Array of individual countdown controllers to be combined
+ * @returns An array of controllers enhanced with collective control methods:
+ *  - `stopCountdown()`: Stops all countdowns in the array
+ *  - `resumeCountdown()`: Resumes all countdowns in the array
+ *  - `updateCountdown(newParams)`: Updates all countdowns with new parameters
+ *  - `getState()`: Returns an array of states from all countdowns
+ */
 const createControllerArray = (controllers: CountdownController[]): CountdownControllerArray => {
     const array = controllers as CountdownControllerArray;
     
@@ -333,6 +355,12 @@ const createControllerArray = (controllers: CountdownController[]): CountdownCon
     return array;
 };
 
+/**
+ * Creates a countdown timer on specified HTML elements
+ * @param element - A CSS selector string, HTMLElement, or NodeList targeting the countdown container(s)
+ * @param args - Optional configuration parameters for the countdown
+ * @returns A CountdownController for single element or CountdownControllerArray for multiple elements
+ */
 const simplyCountdown = (
     element: CountdownSelector,
     args: Partial<CountdownParameters> = defaultParams
