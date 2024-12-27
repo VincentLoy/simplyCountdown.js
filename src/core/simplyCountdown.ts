@@ -208,7 +208,10 @@ const createCountdownInstance = (
         if (diff <= 0 && !parameters.countUp) {
             diff = 0;
             // Clear interval before calling onEnd to prevent multiple calls
-            clearInterval(state.interval);
+            if (state.interval !== null) {
+                clearInterval(state.interval);
+            }
+            
             if (parameters.onEnd) {
                 parameters.onEnd();
             }
