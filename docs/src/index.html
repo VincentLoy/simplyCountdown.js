@@ -7,6 +7,12 @@
     <meta name="author" content="Vincent Loy"/>
     <meta name="description" content="simplyCountdown.js is an easy to use Javascript Countdown Library. You can easily customize it with your own CSS and versatile parameters."/>
     
+    <meta property="og:title" content="simplyCountdown.js - A Tiny Javascript Countdown Library">
+    <meta property="og:description" content="A dead simple and lightweight countdown library for your web projects">
+    <meta property="og:image" content="[path-to-preview-image]">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="keywords" content="javascript countdown, countdown library, timer library, web countdown">
+    
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,8 +34,9 @@
             <div class="flex flex-col md:flex-row items-center gap-4">
                 <div class="md:flex gap-4 w-full md:w-auto">
                     <a href="https://github.com/VincentLoy/simplyCountdown.js" 
+                    target="_blank"
                        class="btn btn-light">
-                        <span class="icon-[lucide--github] w-5 h-5"></span>
+                        <span class="icon-[lucide--github]" title="GitHub" role="img" aria-label="GitHub"></span>
                         View on GitHub
                     </a>
                     <a href="https://github.com/VincentLoy/simplyCountdown.js/archive/master.zip"
@@ -42,11 +49,13 @@
                 <span class="inline-flex items-center px-3 py-1.5 text-xs font-medium text-indigo-300 bg-indigo-950/50 rounded-full border border-indigo-500/20 shadow-sm shadow-indigo-950/10">
                     v3.0.0
                 </span>
+
+                <span class="text-xs">MIT License</span>
             </div>
         </div>
 
-        <nav class="bg-indigo-950/50 backdrop-blur-sm fixed top-0 z-50 py-4 left-0 right-0">
-            <div class="container mx-auto px-4">
+        <div class="bg-indigo-950/50 backdrop-blur-sm fixed top-0 z-50 py-4 left-0 right-0">
+            <nav class="container mx-auto px-4">
                 <ul class="flex flex-wrap justify-center items-center gap-4 md:gap-6">
                     <li>
                         <a href="#top" class="text-indigo-200 hover:text-white transition-colors duration-300 flex items-center gap-2 text-sm md:text-base">
@@ -90,8 +99,8 @@
                         </a>
                     </li>
                 </ul>
-            </div>
-        </nav>
+            </nav>
+        </div>
     </header>
 
     <main class="py-16">
@@ -129,22 +138,49 @@
                                 <pre class="package-manager-content" data-manager="pnpm"><code class="language-elm bg-slate-900 text-slate-100 p-4 rounded-lg">pnpm install simplycountdown</code></pre>
                                 <pre class="package-manager-content" data-manager="bun"><code class="language-elm bg-slate-900 text-slate-100 p-4 rounded-lg">bun install simplycountdown</code></pre>
                             </div>
+
+                            <div class="mt-8">
+                                <h3 class="text-xl font-semibold mb-2">Download Options</h3>
+                                <p class="mb-4">
+                                    Install simplyCountdown.js using your preferred package manager (npm, yarn, pnpm, or bun) or download directly from our repository.
+                                </p>
+                                <p>
+                                    <a href="https://github.com/VincentLoy/simplyCountdown.js" 
+                                       class="text-indigo-400 hover:text-indigo-300 underline" 
+                                       target="_blank"
+                                       rel="noopener"
+                                       aria-label="Download simplyCountdown.js from GitHub repository">
+                                        Download simplyCountdown.js from GitHub
+                                    </a>
+                                    <span class="text-sm text-gray-400 ml-2">(Free, Open Source)</span>
+                                </p>
+                            </div>
                         </div>
                     </div>
 
                     <div>
                         <h2 id="why-simply-countdown" class="text-3xl font-bold mb-8 flex items-center gap-2">
                             <span class="icon-[lucide--crown] w-6 h-6 text-indigo-600"></span>
-                            Why simplyCountdown ?
+                            Why Choose simplyCountdown.js?
                         </h2>
                         <div class="sc-doc-block">
                             <div class="prose text-white">
-                                <p>
-                                    A lightweight countdown library born from the need for simplicity. Perfect for any kind of project.
+                                <h3 class="text-xl font-semibold mb-4 text-indigo-400">Key Benefits</h3>
+                                <ul class="list-disc pl-6 mb-6">
+                                    <li>Lightweight: Less than 5KB minified</li>
+                                    <li>Easy Integration: Works with any JavaScript project</li>
+                                    <li>Customizable: Multiple themes and styling options</li>
+                                    <li>Cross-browser Compatible: Works on all modern browsers</li>
+                                </ul>
+
+                                <p class="mb-4">
+                                    A lightweight JavaScript countdown library born from the need for simplicity. Perfect for websites, 
+                                    landing pages, events, and any web project requiring time-based countdowns.
                                 </p>
                                 
                                 <p>
-                                    No complexity, just add customizable countdown timers quickly.
+                                    No complexity or dependencies - just add customizable countdown timers quickly. Ideal for developers 
+                                    who need a reliable, performance-focused countdown solution.
                                 </p>
                             </div>
                         </div>
@@ -157,6 +193,12 @@
                     <span class="icon-[lucide--clock] w-6 h-6 text-indigo-600"></span>
                     Examples
                 </h2>
+
+                <p class="mb-8 text-lg text-gray-300">
+                    Explore various implementations of <strong class="font-bold text-indigo-500">simplyCountdown.js</strong> below. From basic countdowns to complex customizations, 
+                    these examples demonstrate the library's versatility. Some examples includes their configuration code and 
+                    features different themes and options available in simplyCountdown.js.
+                </p>
                 
                 <div class="grid gap-8 grid-cols-1 md:grid-cols-2">
                     <div class="sc-doc-block">
@@ -307,9 +349,12 @@ window.controlDemo = controlDemo;
                     <span class="icon-[lucide--code] w-6 h-6 text-indigo-600"></span>
                     Usage
                 </h2>
-                <h3 id="javascript-usage" class="text-xl font-bold mb-8 flex items-center gap-2">
+                <h3 id="javascript-usage" class="text-xl font-bold mb-4 flex items-center gap-2">
                     Javascript - common usage
                 </h3>
+                <p class="mb-8 text-lg text-gray-300">
+                    simplyCountdown.js offers seamless integration for creating dynamic countdown timers in your web projects. Whether you're using ES modules or traditional JavaScript, the library provides a straightforward API to implement countdowns for events, launches, or deadlines. Below are complete examples showing how to initialize and customize your countdown timer with various options and configurations.
+                </p>
                 <div class="sc-doc-block">
                     <pre><code class="language-javascript bg-slate-900 rounded-xl">
 import simplyCountdown from 'simplyCountdown'; // Not necessary if you use iife version
@@ -359,11 +404,20 @@ simplyCountdown(multipleElements, { /* options */ });
             <section class="mb-20">
                 <h2 id="control" class="text-3xl font-bold mb-8 flex items-center gap-2">
                     <span class="icon-[lucide--toggle-left] w-6 h-6 text-indigo-600"></span>
-                    Countdown Control
+                    Countdown Controller
                 </h2>
+                <h3 class="text-xl font-bold mb-4">Control Methods</h3>
+                <p class="mb-2 text-lg">
+                    Control your countdown timers with precision using the returned controller object. 
+                    <strong class="font-bold text-indigo-500">simplyCountdown's</strong> API lets you stop, resume, and update countdowns dynamically. 
+                    Perfect for event scheduling, real-time updates, and interactive applications.
+                </p>
+
+                <p class="mb-8 text-lg">
+                    The following methods are available for complete countdown management:
+                </p>
+
                 <div class="sc-doc-block">
-                    <h3 class="text-xl font-bold mb-4">Control Methods</h3>
-                    <p class="mb-4">The countdown instance returns a controller object with methods to manipulate the countdown:</p>
                     <pre><code class="language-javascript bg-slate-900 rounded-xl">
 // Initialize with control callbacks
 const countdown = simplyCountdown('#mycountdown', {
@@ -401,6 +455,18 @@ countdowns.updateCountdown({ year: 2026 }); // Updates all
                     <span class="icon-[lucide--braces] w-6 h-6 text-indigo-600"></span>
                     Customize
                 </h2>
+                <h3 id="customize-styles" class="text-xl font-bold mb-4">Create your fully customized Countdowns</h3>
+                <p class="mb-2 text-lg">
+                    Customize your countdown timers with CSS to match your website's design perfectly.
+                </p>
+                <p class="mb-2 text-lg">
+                    <strong class="font-bold text-indigo-500">simplyCountdown.js</strong> provides a flexible HTML structure that's easy to style. 
+                    Whether you want minimal designs or elaborate displays, the library's modular structure lets you modify individual elements like numbers, labels, 
+                    and containers. <br>
+                </p>
+                <p class="mb-8 text-lg">
+                    Below is the base CSS structure you can customize:
+                </p>
                 <div class="sc-doc-block">
                     <pre><code class="language-css bg-slate-900 rounded-xl">
 .simply-countdown {
@@ -436,8 +502,17 @@ countdowns.updateCountdown({ year: 2026 }); // Updates all
                     <span class="icon-[lucide--palette] w-6 h-6 text-indigo-600"></span>
                     Available Themes
                 </h2>
+                <h3 id="themes-import" class="text-xl font-bold mb-4">Countdown Ready-to-use Themes: Default, Dark, Cyberpunk, Circle & Losange Styles</h3>
+                <p class="text-lg mb-2">
+                    <strong class="text-indigo-500 font-bold">simplyCountdown</strong> offers multiple visually appealing themes to enhance your countdown timer's appearance. Each theme is carefully designed to suit different website styles and aesthetics, from minimal to modern designs.
+                </p>
+                <p class="text-lg mb-2">
+                    The theme collection includes a clean default style, a sleek dark mode, a futuristic cyberpunk variation, an elegant losange theme, and a modern circle design. These themes are implemented through separate CSS files for optimal performance and easy customization.
+                </p>
+                <p class="text-lg mb-8">
+                    To implement any theme, simply include the corresponding CSS file in your HTML document's head section. Each theme maintains the countdown's functionality while providing unique visual presentations that can match your website's design language.
+                </p>
                 <div class="sc-doc-block">
-                    <h3 id="themes-import" class="text-xl font-bold mb-4">Available Themes Import</h3>
                     <pre><code class="language-html bg-slate-900 rounded-xl">
 &lt;!-- Default theme --&gt;
 &lt;link rel="stylesheet" href="dist/themes/default.css"&gt;
@@ -487,5 +562,22 @@ countdowns.updateCountdown({ year: 2026 }); // Updates all
 
     <!-- Scripts -->
     <script type="module" src="main.js"></script>
+
+    <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "SoftwareApplication",
+          "name": "simplyCountdown.js",
+          "applicationCategory": "WebApplication",
+          "operatingSystem": "Any",
+          "softwareVersion": "3.0.0",
+          "description": "A lightweight JavaScript countdown library for creating customizable timers",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          }
+        }
+        </script>
 </body>
 </html>
