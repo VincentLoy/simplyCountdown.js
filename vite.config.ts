@@ -69,13 +69,14 @@ const umdConfig = defineConfig({
 // Configuration pour la documentation
 const docsConfig = defineConfig({
     root: 'docs/src',
+    publicDir: resolve(__dirname, 'docs/src/public'),
     build: {
         outDir: '../dist',
         emptyOutDir: true,
         sourcemap: true,
         rollupOptions: {
             input: {
-                main: resolve(__dirname, 'docs/src/index.html')
+                main: resolve(__dirname, 'docs/src/index.html'),
             },
             output: {
                 entryFileNames: 'assets/[name].min.js',

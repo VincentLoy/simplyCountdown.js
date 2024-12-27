@@ -1,5 +1,5 @@
 // Import styles
-import './style.css'
+import '../styles/main.css'
 
 // Import highlight.js
 import hljs from 'highlight.js/lib/core'
@@ -11,12 +11,12 @@ import json from 'highlight.js/lib/languages/json'
 import 'highlight.js/styles/atom-one-dark.css'
 
 // Import our countdown library and themes
-import '../../src/themes/default.css'
-import '../../src/themes/dark.css'
-import '../../src/themes/cyber.css'
-import '../../src/themes/losange.css'
-import '../../src/themes/circle.css'
-import simplyCountdown from '../../src/core/simplyCountdown.ts'
+import '../../../../src/themes/default.css'
+import '../../../../src/themes/dark.css'
+import '../../../../src/themes/cyber.css'
+import '../../../../src/themes/losange.css'
+import '../../../../src/themes/circle.css'
+import simplyCountdown from '../../../../src/core/simplyCountdown.ts'
 
 // Configure highlight.js
 hljs.registerLanguage('javascript', javascript)
@@ -51,6 +51,7 @@ document.querySelectorAll('pre').forEach(pre => {
     // Create the copy button
     const copyButton = document.createElement('button');
     copyButton.className = 'copy-button absolute top-3 right-3 p-2 text-slate-400 hover:text-slate-300 bg-slate-800/50 rounded-lg opacity-0 transition-opacity group';
+    copyButton.title = 'Copy code to clipboard';
     
     // Create copy icon
     const copyIcon = document.createElement('span');

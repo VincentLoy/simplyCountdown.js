@@ -1,4 +1,26 @@
 /* Package manager buttons */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold hover:-translate-y-[3px] transition-transform duration-200;
+  }
+
+  .btn-light {
+    @apply bg-white text-indigo-600;
+  }
+
+  .btn-indigo {
+    @apply bg-indigo-800 text-white;
+  }
+
+  .sc-doc-block {
+    @apply bg-gray-800 p-6 rounded-xl shadow-sm;
+  }
+}
+
 .package-manager-btn {
     @apply px-3 py-1.5 rounded-lg text-xs lg:text-sm font-medium 
            flex items-center gap-1.5
@@ -8,7 +30,7 @@
 }
 
 .package-manager-btn.active {
-    @apply bg-indigo-500/20 text-indigo-400
+    @apply bg-indigo-500/20 text-indigo-300
            hover:bg-indigo-500/30 hover:text-indigo-300;
 }
 
