@@ -1,12 +1,14 @@
 /*!
- * Project : simplyCountdown
- * Date : 2024-12-24
+ * Project : simplyCountdown.js
+ * Date : 2024-12-27
  * License : MIT
  * Version : 3.0.0
- * Author : Vincent Loy-Serre <vincent.loy1@gmail.com>
+ * Author : Vincent Loy-Serre
  * Contributors :
- *  - Justin Beasley <JustinB@harvest.org>
- *  - Nathan Smith <NathanS@harvest.org>
+ *  - Justin Beasley
+ *  - Nathan Smith
+ *  - Mehdi Rezaei
+ *  - mira01
  */
 
 import type { CountdownParameters, CountdownSelector, CountdownState, CountdownController, CountdownControllerArray } from '../types';

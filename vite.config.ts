@@ -4,12 +4,6 @@ import { resolve } from 'path';
 // Configuration commune
 const commonConfig = {
     sourcemap: true,
-    minify: 'terser',
-    terserOptions: {
-        compress: {
-            drop_console: true
-        }
-    }
 };
 
 // Configuration pour le build ES
@@ -17,6 +11,7 @@ const esConfig = defineConfig({
     build: {
         outDir: 'dist',
         emptyOutDir: true,
+        minify: true,
         ...commonConfig,
         lib: {
             entry: resolve(__dirname, 'src/core/simplyCountdown.ts'),
@@ -41,6 +36,12 @@ const umdConfig = defineConfig({
     build: {
         outDir: 'dist',
         emptyOutDir: false,
+        minify: 'terser',
+        terserOptions: {
+            compress: {
+                drop_console: true
+            }
+        },
         ...commonConfig,
         lib: {
             entry: resolve(__dirname, 'src/core/simplyCountdown.umd.ts'),
