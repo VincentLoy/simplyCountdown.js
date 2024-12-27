@@ -386,6 +386,7 @@ countdown.updateCountdown({   // Update parameters
 // Get current state
 const state = countdown.getState();
 console.log('Is paused:', state.isPaused);
+console.log('Target date:', state.targetDate);
 
 // Multiple countdowns
 const countdowns = simplyCountdown('.countdown-class', options);

@@ -5,12 +5,15 @@ A simple yet powerful countdown plugin, with no dependencies. Create beautiful c
 ## Features
 
 - Zero dependencies
+- TypeScript support
 - Multiple module formats (ES, UMD, CommonJS)
 - Multiple themes included
 - Lightweight and performant
-- Count up or down
+- Count up or down functionality
 - UTC support
 - Highly customizable
+- Control API (stop, resume, update)
+- Comprehensive event callbacks
 
 ## Installation
 
@@ -110,7 +113,7 @@ simplyCountdown('#mycountdown', {
     refresh: 1000,            // Update interval in milliseconds (1 second = 1000)
     
     // Event handlers
-    onEnd: () => {           // Callback function when countdown ends
+    onEnd: () => { // Callback function when countdown ends
         console.log('Countdown finished!');
     },
     onStop: () => {}, // Callback when countdown is stopped
@@ -231,6 +234,30 @@ simplyCountdown(document.querySelectorAll('.countdown'), parameters);
 ## Control Features
 
 The countdown instance returns a controller object that allows you to manipulate the countdown:
+
+// here add some examples
+```javascript
+// Initialize countdown
+const countdown = simplyCountdown('#mycountdown', parameters);
+
+// Stop the countdown
+countdown.pause();
+
+// Resume countdown
+countdown.resume();
+
+// Update countdown parameters
+countdown.update({
+    year: 2026,
+    month: 1,
+    day: 1
+});
+
+// Chain control methods
+countdown.pause();
+countdown.resume();
+countdown.update({ year: 2026, hours: 12, minutes: 51 });
+```
 
 ## Development Commands
 
