@@ -207,7 +207,7 @@ simplyCountdown('#simply-countdown-losange', {
 
 // Example 6: Circle Theme
 simplyCountdown('.simply-countdown-circle-demo', {
-    year: now.getFullYear(),
+    year: nextYear,
     month: nextMonth,
     day: 28,
     zeroPad: true,
@@ -215,7 +215,7 @@ simplyCountdown('.simply-countdown-circle-demo', {
 
 // Example with custom Russian pluralization
 simplyCountdown('#custom-plural', {
-    year: 2024,
+    year: nextYear,
     month: 12,
     day: 31,
     hours: 23,
