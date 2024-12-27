@@ -304,7 +304,7 @@ document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
         if (targetElement) {
             // Calculate the offset (nav height + 20px)
             const navHeight = document.querySelector('nav').offsetHeight;
-            const offset = navHeight + 20;
+            const offset = navHeight + 40;
             
             // Scroll to the element with an offset
             window.scrollTo({
