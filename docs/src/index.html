@@ -20,7 +20,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300..900&display=swap" rel="stylesheet">
 
     <!-- Added Schema.org markup -->
     <script type="application/ld+json">
@@ -55,11 +55,12 @@
 <body class="bg-slate-900 p-0 font-sans text-white" id="top">
     <header class="bg-gradient-to-br from-indigo-600 to-violet-600 text-white pt-40 pb-20">
         <div class="container text-center md:text-left mx-auto px-4" itemscope itemtype="https://schema.org/WebApplication">
-            <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4" itemprop="name">
+            <h1 class="text-3xl sm:text-4xl md:text-6xl font-bold mb-4" itemprop="name">
                 <span>simplyCountdown.js</span>
             </h1>
-            <p class="text-sm md:text-xl text-indigo-100 mb-8" itemprop="description">
-                A lightweight (&lt;5KB) JavaScript countdown library with zero dependencies
+            <p class="flex text-sm md:text-xl text-indigo-100 mb-8 justify-center md:justify-start" itemprop="description">
+                <span class="icon-[lucide--timer-reset] w-7 h-7" title="Timer" role="img" aria-label="Timer"></span>
+                <span class="transform translate-y-3px">&nbsp;A lightweight (&lt;5KB) JavaScript countdown library with zero dependencies</span>
             </p>
             <div class="flex flex-col md:flex-row items-center gap-4">
                 <div class="md:flex gap-4 w-full md:w-auto">
@@ -203,7 +204,7 @@
                             </h2>
                             <div class="sc-doc-block">
                                 <div class="prose text-white">
-                                    <h3 class="text-xl font-semibold mb-4 text-indigo-400">Key Benefits</h3>
+                                    <h3 class="text-xl font-bold mb-4 text-indigo-400">Key Benefits</h3>
                                     <ul class="list-disc pl-6 mb-6">
                                         <li>Lightweight: Less than 5KB minified</li>
                                         <li>Easy Integration: Works with any JavaScript project</li>
@@ -672,7 +673,7 @@
 
     <!-- Add before closing body tag -->
     <button id="scrollTopBtn"
-            class="fixed bottom-10 right-10 z-50 bg-indigo-600 hover:bg-indigo-700 text-white w-12 h-12 rounded-full shadow-lg transition-all duration-300 opacity-0 translate-y-10 flex items-center justify-center"
+            class="fixed bottom-8 right-8 z-50 bg-indigo-600 hover:bg-indigo-700 text-white w-12 h-12 rounded-full shadow-lg transition-all duration-300 opacity-0 translate-y-10 flex items-center justify-center"
             aria-label="Scroll to top">
         <span class="icon-[lucide--chevron-up] w-5 h-5"></span>
     </button>
