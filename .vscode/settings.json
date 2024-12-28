@@ -1,7 +1,7 @@
 {
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
+    "source.fixAll.eslint": "never"
   },
   "editor.defaultFormatter": null,
   "[javascript]": {
@@ -23,5 +23,7 @@
   "editor.insertSpaces": true,
   "files.eol": "\n",
   "files.trimTrailingWhitespace": true,
-  "files.insertFinalNewline": true
+  "files.insertFinalNewline": true,
+  "editor.rulers": [150],
+  "editor.wordWrapColumn": 150
 }
