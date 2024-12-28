@@ -1,7 +1,8 @@
 {
   "name": "simplycountdown.js",
-  "description": "Tiny Javascript Countdown",
-  "version": "2.0.1",
+  "description": "A lightweight (<5KB) JavaScript countdown library with zero dependencies. Create customizable countdown timers with multiple themes, TypeScript support, and a modern API for websites and web applications.",
+  "version": "3.0.0",
+  "type": "module",
   "homepage": "http://vincentloy.github.io/simplyCountdown.js",
   "author": {
     "name": "Vincent Loy",
@@ -13,9 +14,10 @@
     "countdown",
     "countup",
     "clock",
-    "jquery",
     "vanilla",
-    "plugin"
+    "plugin",
+    "vue",
+    "react"
   ],
   "repository": {
     "type": "git",
@@ -28,24 +30,47 @@
   "browserslist": [
     "defaults"
   ],
+  "main": "dist/simplyCountdown.umd.js",
+  "module": "./dist/simplyCountdown.js",
+  "types": "./dist/types/simplyCountdown.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/simplyCountdown.js",
+      "require": "./dist/simplyCountdown.umd.js",
+      "types": "./dist/types/simplyCountdown.d.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "dev": "vite serve docs/src --port 3000 --open",
+    "build": "bun run build:lib && bun run build:themes && bun run build:docs",
+    "build:lib": "vite build --mode es && vite build --mode umd",
+    "build:themes": "node scripts/build-themes.js",
+    "build:docs": "vite build --mode docs",
+    "preview": "vite preview --outDir docs/dist",
+    "dist:test": "rimraf dist_tests && mkdir dist_tests && node scripts/generate-dist-tests.js",
+    "dist:test:serve": "bun run dist:test && node scripts/server.test.js"
+  },
   "devDependencies": {
-    "@babel/core": "^7.1.6",
-    "@babel/polyfill": "^7.0.0",
-    "@babel/preset-env": "^7.1.6",
-    "browser-sync": "^3.0.3",
-    "core-js": "^2.5.7",
-    "eslint-config-airbnb-base": "^13.1.0",
-    "gulp": "^5.0.0",
-    "gulp-autoprefixer": "^9.0.0",
-    "gulp-babel": "^8.0.0",
-    "gulp-concat": "^2.6.1",
-    "gulp-csso": "^3.0.1",
-    "gulp-eslint": "^5.0.0",
-    "gulp-sass": "^6.0.0",
-    "gulp-terser": "^1.1.5",
-    "gulp-uglify": "^3.0.1",
-    "prismjs": "^1.15.0",
-    "sass": "^1.82.0",
-    "uglify-save-license": "^0.4.1"
+    "@iconify-json/lucide": "^1.2.20",
+    "@iconify-json/vscode-icons": "^1.1.33",
+    "@iconify/tailwind": "^0.1.4",
+    "@tailwindcss/typography": "^0.5.10",
+    "autoprefixer": "^10.4.20",
+    "clean-css": "^5.3.3",
+    "fs-extra": "^11.2.0",
+    "highlight.js": "^11.11.0",
+    "postcss": "^8.4.49",
+    "rimraf": "^6.0.1",
+    "serve-handler": "^6.1.6",
+    "tailwindcss": "^3.4.17",
+    "terser": "^5.26.0",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.0"
   }
 }

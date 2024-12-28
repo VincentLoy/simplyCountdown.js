@@ -1,0 +1,155 @@
+/**
+* Project : simply-countdown
+* File : simplyCountdown.theme.cyberpunk
+* Author : Vincent Loy <vincent.loy1@gmail.com>
+* Theme : Modern Cyberpunk
+*/
+
+.simply-countdown-cyber {
+  overflow: visible;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.75rem;
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  perspective: 1000px;
+}
+
+.simply-countdown-cyber > .simply-section {
+  width: 70px;
+  height: 70px;
+  padding: 1.5rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(23, 25, 35, 0.9), rgba(15, 17, 25, 0.95));
+  border-radius: 0.5rem;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  backdrop-filter: blur(12px);
+  transform-style: preserve-3d;
+}
+
+.simply-countdown-cyber > .simply-section::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  background: linear-gradient(135deg, rgba(120, 240, 255, 0.2), rgba(255, 90, 220, 0.2));
+  border-radius: 0.5rem;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.simply-countdown-cyber > .simply-section::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(135deg, #78f0ff, #ff5adc);
+  border-radius: 0.5rem;
+  z-index: -2;
+  opacity: 0.15;
+  filter: blur(4px);
+  animation: pulse 4s ease-in-out infinite;
+}
+
+.simply-countdown-cyber > .simply-section .glass-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+  border-radius: 0.5rem;
+}
+
+.simply-countdown-cyber > .simply-section:hover {
+  transform: translateY(-4px) translateZ(10px) rotateX(5deg);
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5), 0 0 20px rgba(120, 240, 255, 0.2), 0 0 0 1px rgba(120, 240, 255, 0.1);
+}
+
+.simply-countdown-cyber > .simply-section:hover::before {
+  opacity: 1;
+}
+
+.simply-countdown-cyber > .simply-section > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  align-items: center;
+  transform-style: preserve-3d;
+}
+
+.simply-countdown-cyber > .simply-section .simply-amount {
+  font-size: 1.75rem;
+  font-weight: 700;
+  background: linear-gradient(to bottom right, #78f0ff, #ff5adc);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 20px rgba(120, 240, 255, 0.3), 0 0 40px rgba(120, 240, 255, 0.2);
+  letter-spacing: -0.02em;
+  transform: translateZ(10px);
+}
+
+.simply-countdown-cyber > .simply-section .simply-word {
+  font-size: 0.6rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: rgba(255, 255, 255, 0.7);
+  transform: translateZ(5px);
+  position: relative;
+}
+
+.simply-countdown-cyber > .simply-section .simply-word::after {
+  content: "";
+  position: absolute;
+  left: -10%;
+  bottom: -4px;
+  width: 120%;
+  height: 1px;
+  background: linear-gradient(to right, rgba(120, 240, 255, 0), rgba(120, 240, 255, 0.5), rgba(255, 90, 220, 0.5), rgba(255, 90, 220, 0));
+}
+
+@media (min-width: 640px) {
+  .simply-countdown-cyber > .simply-section {
+    width: 80px;
+    height: 80px;
+    padding: 1.75rem;
+  }
+
+  .simply-countdown-cyber > .simply-section .simply-amount {
+    font-size: 2rem;
+  }
+
+  .simply-countdown-cyber > .simply-section .simply-word {
+    font-size: 0.75rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .simply-countdown-cyber > .simply-section {
+    width: 100px;
+    height: 100px;
+    padding: 2rem;
+  }
+
+  .simply-countdown-cyber > .simply-section .simply-amount {
+    font-size: 2.5rem;
+  }
+
+  .simply-countdown-cyber > .simply-section .simply-word {
+    font-size: 0.8rem;
+  }
+}
+
+/* Add subtle animation for extra futuristic feel */
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.15;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.25;
+    transform: scale(1.05);
+  }
+}
