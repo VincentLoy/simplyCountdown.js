@@ -296,6 +296,30 @@ Available test files:
 
 The library supports all modern browsers (Chrome, Firefox, Safari, Edge) and IE11+.
 
+## Key Changes from v1.x to v2.x
+
+### Removal of jQuery Support
+jQuery is no longer supported in simplyCountdown to reduce dependencies and improve performance. This change ensures a more lightweight and modern library.
+
+**Note:** You can still use simplyCountdown in your jQuery projects by using the vanilla JavaScript syntax instead of the jQuery-specific one:
+- Old jQuery-compatible syntax: `$('.some-countdowns').simplyCountdown(options)`
+- New vanilla JavaScript syntax: `simplyCountdown('.some-countdowns', options)`
+
+### Transition from Gulp to Vite
+The build process has been migrated from Gulp to Vite. Vite offers faster builds, better development server capabilities, and improved support for modern JavaScript features.
+
+### Migration from ES6 JavaScript to TypeScript
+The source code has been rewritten in TypeScript to enhance code quality, provide better type checking, and improve developer experience.
+
+### New Documentation Website
+A new documentation website has been launched to provide comprehensive guides, examples, and API references. This site aims to make it easier for developers to integrate and use simplyCountdown.
+
+### Updated Distribution Files
+The distribution files have been reorganized to include multiple module formats (ES, UMD, CommonJS) and themes. This change ensures compatibility with various development environments and build tools.
+
+### Transition from npm to Bun
+The package manager has been switched from npm to Bun for faster installs and improved performance. Bun offers a more efficient and modern package management experience.
+
 ## License
 
 MIT © 2015-present - Vincent Loy-Serre
