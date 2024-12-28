@@ -247,8 +247,6 @@ simplyCountdown(document.querySelectorAll(".countdown"), parameters);
 
 The countdown instance returns a controller object that allows you to manipulate the countdown:
 
-// here add some examples
-
 ```javascript
 // Initialize countdown
 const countdown = simplyCountdown("#mycountdown", parameters);
@@ -295,7 +293,7 @@ countdown.update({ year: 2026, hours: 12, minutes: 51 });
 
 ## Module Format Testing
 
-Test different module formats using:
+Test different usecases using:
 
 ```bash
 npm run dist:test:serve
