@@ -1,6 +1,6 @@
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -9,15 +9,6 @@ const targetYear = new Date().getFullYear() + 1;
 
 // Configuration commune pour tous les tests
 const commonHtml = (type, content) => {
-    // Map des types vers les noms de fichiers
-    const typeToFile = {
-        'ES Module': 'index.es.html',
-        'UMD (Global)': 'index.umd-global.html',
-        'UMD (AMD/RequireJS)': 'index.umd-amd.html',
-        'CommonJS (Node.js-like)': 'index.umd-commonjs.html',
-        'Dynamic Loading': 'index.umd-dynamic.html'
-    };
-
     return `
 <!DOCTYPE html>
 <html lang="en">
@@ -89,11 +80,11 @@ const commonHtml = (type, content) => {
     <hr>
     <nav>
         <ul>
-            <li><a href="index.es.html" ${type === 'ES Module' ? 'class="active"' : ''}>ES Module version</a></li>
-            <li><a href="index.umd-global.html" ${type === 'UMD (Global)' ? 'class="active"' : ''}>UMD (global)</a></li>
-            <li><a href="index.umd-amd.html" ${type === 'UMD (AMD/RequireJS)' ? 'class="active"' : ''}>UMD (AMD/RequireJS)</a></li>
-            <li><a href="index.umd-commonjs.html" ${type === 'CommonJS (Node.js-like)' ? 'class="active"' : ''}>UMD (CommonJS/Node.js-like)</a></li>
-            <li><a href="index.umd-dynamic.html" ${type === 'Dynamic Loading' ? 'class="active"' : ''}>UMD (Dynamic Loading)</a></li>
+            <li><a href="index.es.html" ${type === "ES Module" ? 'class="active"' : ""}>ES Module version</a></li>
+            <li><a href="index.umd-global.html" ${type === "UMD (Global)" ? 'class="active"' : ""}>UMD (global)</a></li>
+            <li><a href="index.umd-amd.html" ${type === "UMD (AMD/RequireJS)" ? 'class="active"' : ""}>UMD (AMD/RequireJS)</a></li>
+            <li><a href="index.umd-commonjs.html" ${type === "CommonJS (Node.js-like)" ? 'class="active"' : ""}>UMD (CommonJS/Node.js-like)</a></li>
+            <li><a href="index.umd-dynamic.html" ${type === "Dynamic Loading" ? 'class="active"' : ""}>UMD (Dynamic Loading)</a></li>
         </ul>
     </nav>
     <div id="countdown" class="simply-countdown"></div>
@@ -103,7 +94,9 @@ const commonHtml = (type, content) => {
 };
 
 // Test ES Module natif
-const esTest = commonHtml('ES Module', `
+const esTest = commonHtml(
+    "ES Module",
+    `
     <script type="module">
         import simplyCountdown from '../dist/simplyCountdown.js';
         simplyCountdown('#countdown', {
@@ -112,10 +105,13 @@ const esTest = commonHtml('ES Module', `
             day: 25
         });
     </script>
-`);
+`
+);
 
 // Test UMD Global
-const umdGlobalTest = commonHtml('UMD (Global)', `
+const umdGlobalTest = commonHtml(
+    "UMD (Global)",
+    `
     <script src="../dist/simplyCountdown.umd.js"></script>
     <script>
         simplyCountdown('#countdown', {
@@ -124,10 +120,13 @@ const umdGlobalTest = commonHtml('UMD (Global)', `
             day: 25
         });
     </script>
-`);
+`
+);
 
 // Test UMD avec AMD (RequireJS)
-const umdAmdTest = commonHtml('UMD (AMD/RequireJS)', `
+const umdAmdTest = commonHtml(
+    "UMD (AMD/RequireJS)",
+    `
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.7/require.min.js"></script>
     <script>
         // Configuration de RequireJS
@@ -137,7 +136,7 @@ const umdAmdTest = commonHtml('UMD (AMD/RequireJS)', `
                 'simplyCountdown': 'simplyCountdown.umd'
             }
         });
-        
+
         // module usecase
         requirejs(['simplyCountdown'], function(simplyCountdown) {
             console.log('Module Loaded:', simplyCountdown);
@@ -152,10 +151,13 @@ const umdAmdTest = commonHtml('UMD (AMD/RequireJS)', `
             }
         });
     </script>
-`);
+`
+);
 
 // Test CommonJS (Node.js)
-const commonJsTest = commonHtml('CommonJS (Node.js-like)', `
+const commonJsTest = commonHtml(
+    "CommonJS (Node.js-like)",
+    `
     <script>
         // Simulate CommonJS/Node.js environment
         var require = function(modulePath) {
@@ -173,7 +175,7 @@ const commonJsTest = commonHtml('CommonJS (Node.js-like)', `
             // Use require syntax as shown in README
             var simplyCountdown = require('simplycountdown');
             console.log('Module loaded via require():', simplyCountdown);
-            
+
             if (typeof simplyCountdown === 'function') {
                 simplyCountdown('#countdown', {
                     year: ${targetYear},
@@ -188,19 +190,22 @@ const commonJsTest = commonHtml('CommonJS (Node.js-like)', `
             console.error('❌ Error loading module:', error);
         }
     </script>
-`);
+`
+);
 
 // Test Dynamic Loading
-const dynamicLoadingTest = commonHtml('Dynamic Loading', `
+const dynamicLoadingTest = commonHtml(
+    "Dynamic Loading",
+    `
     <script>
         // Create script element
         var script = document.createElement('script');
         script.src = '../dist/simplyCountdown.umd.js';
-        
+
         // Handle script load event
         script.onload = function() {
             console.log('Script loaded dynamically');
-            
+
             // Use the global simplyCountdown
             if (typeof simplyCountdown === 'function') {
                 simplyCountdown('#countdown', {
@@ -212,36 +217,34 @@ const dynamicLoadingTest = commonHtml('Dynamic Loading', `
                 console.error("simplyCountdown is not a function:", simplyCountdown);
             }
         };
-        
+
         // Handle loading error
         script.onerror = function() {
             console.error('Failed to load script');
         };
-        
+
         // Append script to document
         document.head.appendChild(script);
     </script>
-`);
+`
+);
 
 // Générer tous les fichiers de test
 const tests = {
-    'index.es.html': esTest,
-    'index.umd-global.html': umdGlobalTest,
-    'index.umd-amd.html': umdAmdTest,
-    'index.umd-commonjs.html': commonJsTest,
-    'index.umd-dynamic.html': dynamicLoadingTest
+    "index.es.html": esTest,
+    "index.umd-global.html": umdGlobalTest,
+    "index.umd-amd.html": umdAmdTest,
+    "index.umd-commonjs.html": commonJsTest,
+    "index.umd-dynamic.html": dynamicLoadingTest,
 };
 
 // Créer le dossier dist_tests s'il n'existe pas
-const testDir = path.join(__dirname, '..', 'dist_tests');
+const testDir = path.join(__dirname, "..", "dist_tests");
 if (!fs.existsSync(testDir)) {
     fs.mkdirSync(testDir);
 }
 
 // Générer tous les fichiers
 Object.entries(tests).forEach(([filename, content]) => {
-    fs.writeFileSync(
-        path.join(testDir, filename),
-        content
-    );
+    fs.writeFileSync(path.join(testDir, filename), content);
 });

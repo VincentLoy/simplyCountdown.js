@@ -1,16 +1,16 @@
-import simplyCountdownCore from './simplyCountdown';
+import simplyCountdownCore from "./simplyCountdown";
 
 declare const define: {
     (factory: () => any): void;
     amd: boolean;
 };
 
-if (typeof define === 'function' && define.amd) {
+if (typeof define === "function" && define.amd) {
     // AMD
-    define(function() {
+    define(function () {
         return simplyCountdownCore;
     });
-} else if (typeof module === 'object' && module.exports) {
+} else if (typeof module === "object" && module.exports) {
     // Node
     module.exports = simplyCountdownCore;
 } else {

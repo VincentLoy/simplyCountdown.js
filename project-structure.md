@@ -67,11 +67,13 @@
 ## Build Outputs
 
 ### Library Build (/dist)
-- ES module and UMD formats with source maps
-- Minified and unminified theme CSS files
-- Zero dependencies
+
+-   ES module and UMD formats with source maps
+-   Minified and unminified theme CSS files
+-   Zero dependencies
 
 ### Documentation Build (/docs/dist)
-- Static documentation site
-- Minified assets (CSS/JS)
-- Source maps for debugging
+
+-   Static documentation site
+-   Minified assets (CSS/JS)
+-   Source maps for debugging

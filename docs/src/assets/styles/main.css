@@ -5,7 +5,9 @@
 
 @layer components {
   .btn {
-    @apply inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold hover:-translate-y-[3px] transition-transform duration-200;
+    @apply inline-flex items-center gap-2 px-6 py-3 rounded-lg
+      font-semibold hover:-translate-y-[3px]
+      transition-transform duration-200;
   }
 
   .btn-light {
@@ -22,16 +24,16 @@
 }
 
 .package-manager-btn {
-  @apply px-3 py-1.5 rounded-lg text-xs lg:text-sm font-medium 
-           flex items-center gap-1.5
-           bg-slate-700/50 text-slate-400
-           hover:bg-slate-700 hover:text-slate-300
-           transition-colors duration-200;
+  @apply px-3 py-1.5 rounded-lg text-xs lg:text-sm font-medium
+    flex items-center gap-1.5
+    bg-slate-700/50 text-slate-400
+    hover:bg-slate-700 hover:text-slate-300
+    transition-colors duration-200;
 }
 
 .package-manager-btn.active {
   @apply bg-indigo-500/20 text-indigo-300
-           hover:bg-indigo-500/30 hover:text-indigo-300;
+    hover:bg-indigo-500/30 hover:text-indigo-300;
 }
 
 /* Package manager content */
@@ -61,11 +63,7 @@ pre {
   position: fixed;
   width: 600px;
   height: 600px;
-  background: radial-gradient(
-    circle at center,
-    rgba(99, 102, 241, 0.06),
-    transparent 40%
-  );
+  background: radial-gradient(circle at center, rgba(99, 102, 241, 0.06), transparent 40%);
   border-radius: 50%;
   pointer-events: none;
   z-index: 0;

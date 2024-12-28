@@ -13,12 +13,12 @@ export const createCountdownSection = (
         wordClass: string;
     }
 ): HTMLElement => {
-    const section = document.createElement('div');
+    const section = document.createElement("div");
     section.className = `${sectionClass} ${params.sectionClass}`;
 
-    const wrap = document.createElement('div');
-    const amount_elem = document.createElement('span');
-    const word_elem = document.createElement('span');
+    const wrap = document.createElement("div");
+    const amount_elem = document.createElement("span");
+    const word_elem = document.createElement("span");
 
     amount_elem.className = `${amountClass} ${params.amountClass}`;
     word_elem.className = `${wordClass} ${params.wordClass}`;
@@ -36,23 +36,16 @@ export const createCountdownSection = (
 /**
  * Retrieves a countdown section element from a container
  */
-export const getCountdownSection = (
-    sectionClass: string,
-    container: HTMLElement
-): HTMLElement | null => {
+export const getCountdownSection = (sectionClass: string, container: HTMLElement): HTMLElement | null => {
     return container.querySelector(`.simply-section.${sectionClass}`);
 };
 
 /**
  * Updates a countdown section element
  */
-export const updateCountdownSection = (
-    section: HTMLElement,
-    amount: number | string,
-    word: string
-): void => {
-    const amountElement = section.querySelector('.simply-amount');
-    const wordElement = section.querySelector('.simply-word');
+export const updateCountdownSection = (section: HTMLElement, amount: number | string, word: string): void => {
+    const amountElement = section.querySelector(".simply-amount");
+    const wordElement = section.querySelector(".simply-word");
 
     if (amountElement) {
         amountElement.textContent = String(amount);
@@ -78,14 +71,13 @@ export const createCountdown = (
     minutes: HTMLElement;
     seconds: HTMLElement;
 } => {
+    const amountCls = "simply-amount";
+    const wordCls = "simply-word";
 
-    const amountCls = 'simply-amount';
-    const wordCls = 'simply-word';
-    
-    const days = createCountdownSection('simply-section simply-days-section', amountCls, wordCls, 0, 'day', params);
-    const hours = createCountdownSection('simply-section simply-hours-section', amountCls, wordCls, 0, 'hour', params);
-    const minutes = createCountdownSection('simply-section simply-minutes-section', amountCls, wordCls, 0, 'minute', params);
-    const seconds = createCountdownSection('simply-section simply-seconds-section', amountCls, wordCls, 0, 'second', params);
+    const days = createCountdownSection("simply-section simply-days-section", amountCls, wordCls, 0, "day", params);
+    const hours = createCountdownSection("simply-section simply-hours-section", amountCls, wordCls, 0, "hour", params);
+    const minutes = createCountdownSection("simply-section simply-minutes-section", amountCls, wordCls, 0, "minute", params);
+    const seconds = createCountdownSection("simply-section simply-seconds-section", amountCls, wordCls, 0, "second", params);
 
     container.appendChild(days);
     container.appendChild(hours);
@@ -96,6 +88,6 @@ export const createCountdown = (
         days,
         hours,
         minutes,
-        seconds
+        seconds,
     };
 };

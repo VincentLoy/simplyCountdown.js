@@ -86,21 +86,7 @@ const y = (n, e) => {
     interval: null,
     targetDate: /* @__PURE__ */ new Date()
   };
-  const t = (s) => s.enableUtc ? new Date(Date.UTC(
-    s.year,
-    s.month - 1,
-    s.day,
-    s.hours,
-    s.minutes,
-    s.seconds
-  )) : new Date(
-    s.year,
-    s.month - 1,
-    s.day,
-    s.hours,
-    s.minutes,
-    s.seconds
-  );
+  const t = (s) => s.enableUtc ? new Date(Date.UTC(s.year, s.month - 1, s.day, s.hours, s.minutes, s.seconds)) : new Date(s.year, s.month - 1, s.day, s.hours, s.minutes, s.seconds);
   o.targetDate = t(e);
   let l = null;
   e.inline && (l = document.createElement("span"), l.className = e.inlineClass, n.appendChild(l));
@@ -109,14 +95,16 @@ const y = (n, e) => {
     amountClass: e.amountClass,
     wordClass: e.wordClass
   }), u = () => {
-    const s = e.enableUtc ? new Date(Date.UTC(
-      (/* @__PURE__ */ new Date()).getUTCFullYear(),
-      (/* @__PURE__ */ new Date()).getUTCMonth(),
-      (/* @__PURE__ */ new Date()).getUTCDate(),
-      (/* @__PURE__ */ new Date()).getUTCHours(),
-      (/* @__PURE__ */ new Date()).getUTCMinutes(),
-      (/* @__PURE__ */ new Date()).getUTCSeconds()
-    )) : /* @__PURE__ */ new Date();
+    const s = e.enableUtc ? new Date(
+      Date.UTC(
+        (/* @__PURE__ */ new Date()).getUTCFullYear(),
+        (/* @__PURE__ */ new Date()).getUTCMonth(),
+        (/* @__PURE__ */ new Date()).getUTCDate(),
+        (/* @__PURE__ */ new Date()).getUTCHours(),
+        (/* @__PURE__ */ new Date()).getUTCMinutes(),
+        (/* @__PURE__ */ new Date()).getUTCSeconds()
+      )
+    ) : /* @__PURE__ */ new Date();
     let i = e.countUp ? s.getTime() - o.targetDate.getTime() : o.targetDate.getTime() - s.getTime();
     i <= 0 && !e.countUp && (i = 0, o.interval !== null && clearInterval(o.interval), e.onEnd && e.onEnd());
     const f = Math.floor(i / (1e3 * 60 * 60 * 24));
@@ -128,14 +116,32 @@ const y = (n, e) => {
     const g = Math.floor(i / 1e3);
     e.inline && l ? M([
       { value: f, word: "days" },
-      { value: C, word: "hours" },
-      { value: v, word: "minutes" },
-      { value: g, word: "seconds" }
+      {
+        value: C,
+        word: "hours"
+      },
+      {
+        value: v,
+        word: "minutes"
+      },
+      {
+        value: g,
+        word: "seconds"
+      }
     ], e, l) : d && $([
       { value: f, word: "days" },
-      { value: C, word: "hours" },
-      { value: v, word: "minutes" },
-      { value: g, word: "seconds" }
+      {
+        value: C,
+        word: "hours"
+      },
+      {
+        value: v,
+        word: "minutes"
+      },
+      {
+        value: g,
+        word: "seconds"
+      }
     ], e, d);
   }, c = () => {
     o.interval = setInterval(u, e.refresh), u();
