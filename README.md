@@ -1,3 +1,5 @@
+![SimplyCountdown.js](docs/src/assets/images/simplyCountdown_banner.webp)
+
 # SimplyCountdown.js
 
 A simple yet powerful countdown plugin, with no dependencies. Create beautiful countdowns with ease!
