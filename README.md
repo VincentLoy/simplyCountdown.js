@@ -32,7 +32,7 @@ bun install simplycountdown
 ### ES Module
 
 ```javascript
-import simplyCountdown from "simplycountdown";
+import simplyCountdown from "simplycountdown.js";
 
 simplyCountdown("#mycountdown", {
     year: 2025,
