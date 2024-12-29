@@ -397,8 +397,9 @@
                         simplyCountdown.js offers seamless integration for creating dynamic countdown timers in your web projects. Whether you're using ES modules or traditional JavaScript, the library provides a straightforward API to implement countdowns for events, launches, or deadlines. Below are complete examples showing how to initialize and customize your countdown timer with various options and configurations.
                     </p>
                     <div class="sc-doc-block">
+                        <h3 class="mt-8 mb-4 font-bold text-lg">ES module usage:</h3>
                         <pre><code class="language-javascript bg-slate-900 rounded-xl">
-    import simplyCountdown from 'simplyCountdown'; // Not necessary if you use iife version
+    import simplyCountdown from 'simplycountdown.js';
 
     // This is an example with default parameters
     simplyCountdown('[CSS-SELECTOR]', {
@@ -438,6 +439,34 @@
 
     let multipleElements = document.querySelectorAll('.my-countdown');
     simplyCountdown(multipleElements, { /* options */ });
+                        </code></pre>
+
+                        <h3 class="mt-8 mb-4 font-bold text-lg">Accessing TypeScript Source Files:</h3>
+                        <pre><code class="language-javascript bg-slate-900 rounded-xl">
+    import simplyCountdown from "simplycountdown.js/src/core/simplyCountdown";
+                        </code></pre>
+
+                        <h3 class="mt-8 font-bold mb-4 text-lg">CommonJS:</h3>
+                        <pre><code class="language-javascript bg-slate-900 rounded-xl">
+    const simplyCountdown = require("simplycountdown.js");
+
+    simplyCountdown("#mycountdown", {
+        year: 2025,
+        month: 12,
+        day: 25,
+    });
+                        </code></pre>
+
+                        <h3 class="mt-8 font-bold mb-4 text-lg">Browser (UMD):</h3>
+                        <pre><code class="language-html bg-slate-900 rounded-xl">
+    &lt;script src="path/to/simplyCountdown.umd.js"&gt;&lt;/script&gt;
+    &lt;script&gt;
+        simplyCountdown("#mycountdown", {
+            year: 2025,
+            month: 12,
+            day: 25,
+        });
+    &lt;/script&gt;
                         </code></pre>
                     </div>
                 </section>

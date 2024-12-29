@@ -41,6 +41,14 @@ simplyCountdown("#mycountdown", {
 });
 ```
 
+## Accessing Source Files
+
+If you want to import and compile the TypeScript source files directly, you can include the source files in your project:
+
+```typescript
+import simplyCountdown from "simplycountdown.js/src/core/simplyCountdown";
+```
+
 ### CommonJS
 
 ```javascript
