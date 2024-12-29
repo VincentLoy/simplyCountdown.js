@@ -1,7 +1,7 @@
 {
   "name": "simplycountdown.js",
   "description": "A lightweight (<5KB) JavaScript countdown library with zero dependencies. Create customizable countdown timers with multiple themes, TypeScript support, and a modern API for websites and web applications.",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "type": "module",
   "homepage": "http://vincentloy.github.io/simplyCountdown.js",
   "author": {
@@ -71,6 +71,7 @@
     "tailwindcss": "^3.4.17",
     "terser": "^5.26.0",
     "typescript": "^5.3.3",
-    "vite": "^5.0.0"
+    "vite": "^5.0.0",
+    "vite-plugin-replace": "^0.1.1"
   }
 }

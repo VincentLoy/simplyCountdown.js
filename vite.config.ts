@@ -1,10 +1,27 @@
 import { defineConfig } from "vite";
 import { resolve } from "path";
+import pkg from "./package.json";
+import { replaceCodePlugin } from "vite-plugin-replace";
 
 // Configuration commune
 const commonConfig = {
     sourcemap: true,
 };
+
+const commonPlugins = [
+    replaceCodePlugin({
+        replacements: [
+            {
+                from: /__SCD_BUILD_DATE__/g,
+                to: new Date().toISOString().split("T")[0],
+            },
+            {
+                from: /__SCD_VERSION__/g,
+                to: pkg.version,
+            },
+        ],
+    }),
+];
 
 // Configuration pour le build ES
 const esConfig = defineConfig({
@@ -29,6 +46,7 @@ const esConfig = defineConfig({
             },
         },
     },
+    plugins: commonPlugins,
 });
 
 // Configuration pour le build UMD
@@ -65,6 +83,7 @@ const umdConfig = defineConfig({
             },
         },
     },
+    plugins: commonPlugins,
 });
 
 // Configuration pour la documentation
@@ -95,6 +114,7 @@ const docsConfig = defineConfig({
             },
         },
     },
+    plugins: commonPlugins,
 });
 
 // Export la configuration en fonction du mode
