@@ -70,6 +70,7 @@ const umdConfig = defineConfig({
 // Configuration pour la documentation
 const docsConfig = defineConfig({
     root: "docs/src",
+    base: "./",
     publicDir: resolve(__dirname, "docs/src/public"),
     build: {
         outDir: "../dist",
