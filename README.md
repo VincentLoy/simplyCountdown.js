@@ -1,4 +1,4 @@
-![SimplyCountdown.js](docs/src/assets/images/simplyCountdown_banner.webp)
+![SimplyCountdown.js](docs/src/public/images/simplyCountdown_banner.webp)
 
 # SimplyCountdown.js
 

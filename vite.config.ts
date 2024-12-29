@@ -83,7 +83,15 @@ const docsConfig = defineConfig({
             output: {
                 entryFileNames: "assets/[name].min.js",
                 chunkFileNames: "assets/[name].min.js",
-                assetFileNames: "assets/[name].min.[ext]",
+                assetFileNames: (assetInfo) => {
+                    // here deprecated stuff, should improve later, maybe I misunderstood something
+                    if (assetInfo.originalFileName?.includes("public/favicon")) {
+                        return "favicon/[name][extname]";
+                    } else if (assetInfo.name?.includes(".css")) {
+                        return "assets/[name].min.[extname]";
+                    }
+                    return "ssssss/[name][extname]";
+                },
             },
         },
     },
