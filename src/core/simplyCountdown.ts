@@ -1,8 +1,8 @@
 /*!
  * Project : simplyCountdown.js
- * Date : 2024-12-27
+ * Date : __SCD_BUILD_DATE__
  * License : MIT
- * Version : 3.0.0
+ * Version : __SCD_VERSION__
  * Author : Vincent Loy-Serre
  * Contributors :
  *  - Justin Beasley
