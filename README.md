@@ -1,222 +1,355 @@
-# simplyCountdown.js
+![SimplyCountdown.js](docs/src/assets/images/simplyCountdown_banner.webp)
 
-## Why another countdown ?
+# SimplyCountdown.js
 
-I developed this little library in a boring day. I regularly use this kind of Javascript's libraries to display countdowns on websites and this one exactly meets the needs that I have. It is perfect to make 'under construction' pages, etc.
+A simple yet powerful countdown plugin, with no dependencies. Create beautiful countdowns with ease!
 
-This is a very (very) basic Javascript CountDown.
+## Features
 
-## Getting Started
+-   Zero dependencies
+-   TypeScript support
+-   Multiple module formats (ES, UMD, CommonJS)
+-   Multiple themes included
+-   Lightweight and performant
+-   Count up or down functionality
+-   UTC support
+-   Highly customizable
+-   Control API (stop, resume, update)
+-   Comprehensive event callbacks
 
-install via npm or bower
+## Installation
 
-```
-$ yarn add simplycountdown.js
-
-// or
-
-$ npm install simplycountdown.js
-```
-
-### Insert simplyCountdown to your HTML
-
-```html
-<link rel="stylesheet" href="css/simplyCountdown.theme.default.css"/>
-<script src="dist/simplyCountdown.min.js"></script>
-```
-```javascript
-    // This is an example with default parameters
-
-    simplyCountdown('[CSS-SELECTOR]', {
-        year: 2015, // Target year (required)
-        month: 6, // Target month [1-12] (required)
-        day: 28, // Target day [1-31] (required)
-        hours: 0, // Target hour [0-23], default: 0
-        minutes: 0, // Target minute [0-59], default: 0
-        seconds: 0, // Target second [0-59], default: 0
-        words: { // Custom labels, with lambda for plurals
-            days: { root: 'day', lambda: (root, n) => n > 1 ? root + 's' : root },
-            hours: { root: 'hour', lambda: (root, n) => n > 1 ? root + 's' : root },
-            minutes: { root: 'minute', lambda: (root, n) => n > 1 ? root + 's' : root },
-            seconds: { root: 'second', lambda: (root, n) => n > 1 ? root + 's' : root }
-        },
-        plural: true, // Use plurals for labels
-        inline: false, // Inline format: e.g., "24 days, 4 hours, 2 minutes"
-        inlineSeparator: ', ', // Separator for inline format, default: ", "
-        inlineClass: 'simply-countdown-inline', // CSS class for inline countdown
-        enableUtc: false, // Use UTC time if true
-        onEnd: function () {}, // Callback when countdown ends
-        refresh: 1000, // Refresh interval in ms, default: 1000
-        sectionClass: 'simply-section', // CSS class for each countdown section
-        amountClass: 'simply-amount', // CSS class for numeric values
-        wordClass: 'simply-word', // CSS class for unit labels
-        zeroPad: false, // Pad numbers with leading zero
-        removeZeroUnits: false, // Remove units with zero value
-        countUp: false // Count up after reaching zero
-    });
-
-    // Also, you can init with already existing Javascript Object.
-    let myElement = document.querySelector('.my-countdown');
-    simplyCountdown(myElement, { /* options */ });
-
-    let multipleElements = document.querySelectorAll('.my-countdown');
-    simplyCountdown(multipleElements, { /* options */ });
+```bash
+npm install simplycountdown
+# or
+yarn add simplycountdown
+# or
+bun install simplycountdown
 ```
 
-### You can use it with jQuery too (not required)
+## Basic Usage
+
+### ES Module
 
 ```javascript
-// jQuery Example
-$('[CSS-SELECTOR]').simplyCountdown({
-    year: 2019, // required
-    month: 6, // required
-    day: 28, // required
-    ...
+import simplyCountdown from "simplycountdown.js";
+
+simplyCountdown("#mycountdown", {
+    year: 2025,
+    month: 12,
+    day: 25,
 });
 ```
 
-## Parameters
-| Parameter          | Type            | Description                                                                                 | Default                     |
-|--------------------|-----------------|---------------------------------------------------------------------------------------------|-----------------------------|
-| `year`             | Number (required) | The target year for the countdown.                                                          | -                           |
-| `month`            | Number (required) | The target month [1-12] for the countdown.                                                  | -                           |
-| `day`              | Number (required) | The target day [1-31] for the countdown.                                                    | -                           |
-| `hours`            | Number           | The target hour [0-23].                                                                     | 0                           |
-| `minutes`          | Number           | The target minute [0-59].                                                                   | 0                           |
-| `seconds`          | Number           | The target second [0-59].                                                                   | 0                           |
-| `words`            | Object           | Custom labels for the units (days, hours, minutes, seconds) with optional lambda for pluralization. | `{ days: { root: 'day', lambda: (root, n) => n > 1 ? root + 's' : root }, ... }` |
-| `plural`           | Boolean          | Whether to use plural forms for the unit labels.                                            | `true`                      |
-| `inline`           | Boolean          | Set to `true` for a simple inline countdown (e.g., "24 days, 4 hours, 2 minutes").          | `false`                     |
-| `inlineSeparator`  | String           | Separator used in the inline countdown format.                                              | `, `                        |
-| `inlineClass`      | String           | CSS class applied to the inline countdown container.                                        | `"simply-countdown-inline"` |
-| `enableUtc`        | Boolean          | Set to `true` to use UTC time for the countdown calculations.                               | `false`                     |
-| `onEnd`            | Function         | Callback function executed when the countdown ends.                                         | `() => {}`                  |
-| `refresh`          | Number           | The countdown refresh interval in milliseconds.                                             | `1000`                      |
-| `sectionClass`     | String           | CSS class applied to each countdown section (days, hours, minutes, seconds).                | `"simply-section"`          |
-| `amountClass`      | String           | CSS class applied to the numeric value of each countdown section.                           | `"simply-amount"`           |
-| `wordClass`        | String           | CSS class applied to the unit label of each countdown section.                              | `"simply-word"`             |
-| `zeroPad`          | Boolean          | Whether to pad the numeric values with leading zeros (e.g., "05").                         | `false`                     |
-| `removeZeroUnits`  | Boolean          | Remove units with zero value (e.g., remove "0 days" if days are zero).                     | `false`                     |
-| `countUp`          | Boolean          | Count up after reaching zero if set to `true`.                                              | `false`                     |
+## Accessing Source Files
 
-## Easy to customize
+If you want to import and compile the TypeScript source files directly, you can include the source files in your project:
 
-You can easly customize the countdown using the css theme starter file or create your own like so :
-
-/!\ The following theme template works with default class in parameters.
-
- ```css
-    /*
-    * Project : simply-countdown
-    * File : simplyCountdown.theme.custom
-    * Author : Your Name <your-mail[at]example.com>
-    */
-
-    .simply-countdown {
-        /* The countdown */
-    }
-    .simply-countdown > .simply-section {
-        /* coutndown blocks */
-    }
-
-    .simply-countdown > .simply-section > div {
-        /* countdown block inner div */
-    }
-
-    .simply-countdown > .simply-section .simply-amount,
-    .simply-countdown > .simply-section .simply-word {
-        /* amounts and words */
-    }
-
-    .simply-countdown > .simply-section .simply-amount {
-        /* amounts */
-    }
-
-    .simply-countdown > .simply-section .simply-word {
-        /* words */
-   }
+```typescript
+import simplyCountdown from "simplycountdown.js/src/core/simplyCountdown";
 ```
 
-### Contributing
-- Give it a [star](https://github.com/VincentLoy/simplyCountdown.js/stargazers) !
-- [Report a bug](https://github.com/VincentLoy/simplyCountdown.js/issues)
-- Tweet about it :)
+### CommonJS
 
-#### Pull Requests
-- **Solve a problem**
-- For code enhancement, use [ESLint](https://eslint.org/) as a code quality tool.
-- Small is better than Big.
-
-### Changelog
-
-#### 2.0.1
-Update all 2015 npm dependencies and rebuild the plugin with new deps.
-
-#### 2.0.0
-This version may have breaking changes, if your website is working well with 1.7.0, you may want to stay on the previous version.
-- fix plurals in a generic way [#52](https://github.com/VincentLoy/simplyCountdown.js/pull/52)
-    - Thumbs up to [mira01](https://github.com/mira01) that fixed [#51](https://github.com/VincentLoy/simplyCountdown.js/issues/51), [#23](https://github.com/VincentLoy/simplyCountdown.js/issues/23) & [#42](https://github.com/VincentLoy/simplyCountdown.js/issues/42) !
-- Added the `inlineSeparator` parameter. Previously, the inline mode only supported a comma-separated countdown. Now, you can customize the separator, using options like |, /, -, or any character that suits your needs.
-- Fix potential UTC-related issues (fingers crossed!).
-
-
-#### 1.7.0
-- Countdowns can be initialized directly with HTML elements with variables like
-    - document.getElementById
-    - document.querySelector
-    - document.querySelectorAll
-    - etc...
-
-##### 1.6.0
-- Compatibility with languages like german for plurals ([PR #15](https://github.com/VincentLoy/simplyCountdown.js/pull/15)), thanks to [q30t](https://github.com/q30t)
-
-##### 1.5.0
-- Resolve #10 - Add countup support
-- Upgrade yarn dev dependencies
-- Some minor code reformatting
-
-##### 1.4.0
-- Remove bower support
-- migrate from LESS to SASS (scss) / for demo and themes
-- migrate lib from ES5 to a really basic ES6
-    - Remove JSLint support
-    - Add ESLint support based on customized [airbnb rules](https://www.npmjs.com/package/eslint-config-airbnb-base)
-
-##### 1.3.2
-- add zeroPad parameter
 ```javascript
-zeroPad: false //default
-```
-- fixed Flash of Unstyled Content
+const simplyCountdown = require("simplycountdown");
 
-##### 1.3.1
-- clean some code
-- add refresh parameter
+simplyCountdown("#mycountdown", {
+    year: 2025,
+    month: 12,
+    day: 25,
+});
+```
+
+### Browser (UMD)
+
+```html
+<script src="path/to/simplyCountdown.umd.js"></script>
+<script>
+    simplyCountdown("#mycountdown", {
+        year: 2025,
+        month: 12,
+        day: 25,
+    });
+</script>
+```
+
+## Configuration Options
+
 ```javascript
-refresh: 1000 //default
+simplyCountdown("#mycountdown", {
+    // Target date (Required)
+    year: 2025, // Target year [YYYY]
+    month: 12, // Target month [1-12]
+    day: 25, // Target day [1-31]
+    hours: 0, // Target hours [0-23]
+    minutes: 0, // Target minutes [0-59]
+    seconds: 0, // Target seconds [0-59]
+
+    // Words customization
+    words: {
+        days: {
+            // Function to handle pluralization
+            lambda: (root, count) => (count > 1 ? root + "s" : root),
+            root: "day", // Base word for days
+        },
+        hours: {
+            lambda: (root, count) => (count > 1 ? root + "s" : root),
+            root: "hour",
+        },
+        minutes: {
+            lambda: (root, count) => (count > 1 ? root + "s" : root),
+            root: "minute",
+        },
+        seconds: {
+            lambda: (root, count) => (count > 1 ? root + "s" : root),
+            root: "second",
+        },
+    },
+
+    // Display options
+    plural: true, // Enable/disable pluralization
+    inline: false, // Display inline (true) or in blocks (false)
+    inlineSeparator: ", ", // Separator for inline display
+    enableUtc: false, // Use UTC time instead of local time
+
+    // Styling classes
+    inlineClass: "simply-countdown-inline", // Class for inline display
+    sectionClass: "simply-section", // Class for each time unit section
+    amountClass: "simply-amount", // Class for number display
+    wordClass: "simply-word", // Class for word display
+
+    // Formatting options
+    zeroPad: false, // Add leading zeros to numbers (e.g., 05 instead of 5)
+    countUp: false, // Count up from target date instead of down to it
+    removeZeroUnits: false, // Hide time units when they reach zero
+    refresh: 1000, // Update interval in milliseconds (1 second = 1000)
+
+    // Event handlers
+    onEnd: () => {
+        // Callback function when countdown ends
+        console.log("Countdown finished!");
+    },
+    onStop: () => {}, // Callback when countdown is stopped
+    onResume: () => {}, // Callback when countdown is resumed
+    onUpdate: (params) => {}, // Callback when countdown is updated
+});
 ```
 
-##### 1.3.0
-- Add onEnd callback
+## HTML Structure
+
+The plugin generates the following HTML structure:
+
+### Block Display (default)
+
+```html
+<div class="simply-countdown">
+    <div class="simply-section">
+        <div>
+            <span class="simply-amount">24</span>
+            <span class="simply-word">days</span>
+        </div>
+    </div>
+    <!-- Similar sections for hours, minutes, seconds -->
+</div>
+```
+
+### Inline Display
+
+```html
+<div class="simply-countdown simply-countdown-inline">24 days, 3 hours, 45 minutes, 12 seconds</div>
+```
+
+## Themes
+
+The library comes with several built-in themes:
+
+-   `default.css` - Classic theme with clean, modern design
+-   `dark.css` - Dark mode theme
+-   `circle.css` - Circular display with modern aesthetics
+-   `cyber.css` - Cyberpunk-inspired design
+-   `losange.css` - Diamond-shaped display
+
+To use a theme, include its CSS file:
+
+```html
+<link rel="stylesheet" href="path/to/themes/default.css" />
+```
+
+## Examples
+
+### New Year Countdown with UTC
+
 ```javascript
-onEnd: function () {
-    // some code
-}
+simplyCountdown("#newyear", {
+    year: 2025,
+    month: 1,
+    day: 1,
+    enableUtc: true,
+    zeroPad: true,
+    onEnd: () => {
+        alert("Happy New Year!");
+    },
+});
 ```
 
-##### 1.2.0
-- Resolve #4 - Add UTC support adding enableUtc parameter
+### Event Timer (Count Up) with Zero Padding
+
 ```javascript
-enableUtc: true //true is default
+simplyCountdown("#timer", {
+    year: 2024,
+    month: 1,
+    day: 1,
+    countUp: true,
+    zeroPad: true,
+    removeZeroUnits: true,
+});
 ```
-##### 1.1.1
-- Resolve #3 - Remove ID Only compatibility
 
-##### 1.1.0
-- Add hours, minutes, seconds in available settings to set the target Date
+### Custom Words with Inline Display
 
-##### 1.0.1
-- Fix console error when not using jQuery
+```javascript
+simplyCountdown("#inline", {
+    year: 2025,
+    month: 12,
+    day: 25,
+    inline: true,
+    inlineSeparator: " | ",
+    words: {
+        days: {
+            lambda: (root, count) => (count === 1 ? "day" : "days"),
+            root: "day",
+        },
+        hours: {
+            lambda: (root, count) => (count === 1 ? "hour" : "hours"),
+            root: "hour",
+        },
+        minutes: {
+            lambda: (root, count) => (count === 1 ? "minute" : "minutes"),
+            root: "minute",
+        },
+        seconds: {
+            lambda: (root, count) => (count === 1 ? "second" : "seconds"),
+            root: "second",
+        },
+    },
+});
+```
 
-##### 1.0.0
-- initial release
+## Selector Support
+
+The plugin accepts various selector types:
+
+```javascript
+// CSS selector string
+simplyCountdown("#countdown", parameters);
+
+// Single DOM element
+simplyCountdown(document.getElementById("countdown"), parameters);
+
+// Multiple elements
+simplyCountdown(document.querySelectorAll(".countdown"), parameters);
+```
+
+## Control Features
+
+The countdown instance returns a controller object that allows you to manipulate the countdown:
+
+```javascript
+// Initialize countdown
+const countdown = simplyCountdown("#mycountdown", parameters);
+
+// Stop the countdown
+countdown.pause();
+
+// Resume countdown
+countdown.resume();
+
+// Update countdown parameters
+countdown.update({
+    year: 2026,
+    month: 1,
+    day: 1,
+});
+
+// Chain control methods
+countdown.pause();
+countdown.resume();
+countdown.update({ year: 2026, hours: 12, minutes: 51 });
+```
+
+## Development Commands
+
+### Main Commands
+
+-   `npm run dev`: Start development server for the documentation site & Core library (port 3000)
+-   `npm run build`: Build everything (library, themes, and documentation)
+-   `npm run preview`: Preview the documentation site
+
+### Build Commands
+
+-   `npm run build:lib`: Build the library (ES and UMD formats)
+-   `npm run build:themes`: Build CSS themes
+-   `npm run build:docs`: Build the documentation site
+
+### Test Commands
+
+-   `npm run test`: Run tests
+-   `npm run test:watch`: Run tests in watch mode
+-   `npm run dist:test`: Generate test files for different module formats
+-   `npm run dist:test:serve`: Generate and serve test files locally
+
+## Module Format Testing
+
+Test different usecases using:
+
+```bash
+npm run dist:test:serve
+```
+
+Available test files:
+
+1. ES Module (`index.es.html`)
+2. UMD Global (`index.umd-global.html`)
+3. UMD AMD/RequireJS (`index.umd-amd.html`)
+4. UMD CommonJS (`index.umd-commonjs.html`)
+5. UMD Dynamic Loading (`index.umd-dynamic.html`)
+
+## Browser Support
+
+The library supports all modern browsers (Chrome, Firefox, Safari, Edge) and IE11+.
+
+## Key Changes from v1.x/v2.x to v3.x 🚀
+
+### 🔌 Removal of jQuery Support
+
+jQuery is no longer supported in simplyCountdown to reduce dependencies and improve performance. This change ensures a more lightweight and modern library.
+
+**Note:** You can still use simplyCountdown in your jQuery projects by using the vanilla JavaScript syntax instead of the jQuery-specific one:
+
+-   Old jQuery-compatible syntax: `$('.some-countdowns').simplyCountdown(options)`
+-   New vanilla JavaScript syntax: `simplyCountdown('.some-countdowns', options)`
+
+### ⚡ Transition from Gulp to Vite
+
+The build process has been migrated from Gulp to Vite. Vite offers faster builds, better development server capabilities, and improved support for modern JavaScript features.
+
+### 📝 Migration from ES6 JavaScript to TypeScript
+
+The source code has been rewritten in TypeScript to enhance code quality, provide better type checking, and improve developer experience.
+
+### 📚 New Documentation Website
+
+A new documentation website has been launched to provide comprehensive guides, examples, and API references. This site aims to make it easier for developers to integrate and use simplyCountdown.
+
+### 📦 Updated Distribution Files
+
+The distribution files have been reorganized to include multiple module formats (ES, UMD, CommonJS) and themes. This change ensures compatibility with various development environments and build tools.
+
+### 🏃‍♂️ Transition from npm to Bun
+
+The package manager has been switched from npm to Bun for faster installs and improved performance. Bun offers a more efficient and modern package management experience.
+
+## License
+
+MIT © 2015-present - Vincent Loy-Serre

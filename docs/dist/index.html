@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>simplyCountdown.js | A Tiny and dead simple Javascript Countdown Library</title>
+    <meta name="author" content="Vincent Loy">
+    <meta name="description" content="simplyCountdown.js is an easy to use Javascript Countdown Library. You can easily customize it with your own CSS and versatile parameters.">
+
+    <meta property="og:title" content="simplyCountdown.js - A Tiny Javascript Countdown Library">
+    <meta property="og:description" content="A dead simple and lightweight countdown library for your web projects">
+    <meta property="og:image" content="[path-to-preview-image]">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://vincentloy.github.io/simplyCountdown.js/">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="keywords" content="javascript countdown, countdown library, timer library, web countdown">
+
+    <link rel="canonical" href="https://vincentloy.github.io/simplyCountdown.js/">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300..900&display=swap" rel="stylesheet">
+
+    <!-- Added Schema.org markup -->
+    <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "SoftwareSourceCode",
+          "name": "simplyCountdown.js",
+          "version": "3.0.0",
+          "programmingLanguage": "JavaScript",
+          "author": {
+            "@type": "Person",
+            "name": "Vincent Loy-Serre",
+            "url": "https://vincent-loy.fr"
+          },
+          "codeRepository": "https://github.com/VincentLoy/simplyCountdown.js",
+          "description": "A lightweight (<5KB) JavaScript countdown library with multiple themes and zero dependencies.",
+          "keywords": "javascript, countdown, timer, library, countdown widget, web countdown",
+          "license": "https://opensource.org/licenses/MIT",
+          "applicationCategory": "WebApplication",
+          "operatingSystem": "All",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          },
+          "sameAs": [
+            "https://github.com/VincentLoy/simplyCountdown.js"
+          ]
+        }
+    </script>
+  <script type="module" crossorigin src="/assets/main.min.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/main.min.css">
+</head>
+<body class="bg-slate-900 p-0 font-sans text-white" id="top">
+    <header class="bg-gradient-to-br from-indigo-600 to-violet-600 text-white pt-40 pb-20">
+        <div class="container text-center md:text-left mx-auto px-4" itemscope itemtype="https://schema.org/WebApplication">
+            <h1 class="text-3xl sm:text-4xl md:text-6xl font-bold mb-4" itemprop="name">
+                <span>simplyCountdown.js</span>
+            </h1>
+            <p class="flex text-sm md:text-xl text-indigo-100 mb-8 justify-center md:justify-start" itemprop="description">
+                <span class="icon-[lucide--timer-reset] w-7 h-7" title="Timer" role="img" aria-label="Timer"></span>
+                <span class="transform translate-y-3px">&nbsp;A lightweight (&lt;5KB) JavaScript countdown library with zero dependencies</span>
+            </p>
+            <div class="flex flex-col md:flex-row items-center gap-4">
+                <div class="md:flex gap-4 w-full md:w-auto">
+                    <a href="https://github.com/VincentLoy/simplyCountdown.js"
+                    target="_blank"
+                       class="btn btn-light">
+                        <span class="icon-[lucide--github]" title="GitHub" role="img" aria-label="GitHub"></span>
+                        View on GitHub
+                    </a>
+                    <a href="https://github.com/VincentLoy/simplyCountdown.js/archive/master.zip"
+                       class="btn btn-indigo">
+                        <span class="icon-[lucide--download] w-5 h-5"></span>
+                        Download
+                    </a>
+                </div>
+
+                <span class="inline-flex items-center px-3 py-1.5 text-xs font-medium text-indigo-300 bg-indigo-950/50 rounded-full border border-indigo-500/20 shadow-sm shadow-indigo-950/10">
+                    v3.0.0
+                </span>
+
+                <span class="text-xs">MIT License</span>
+
+                <meta itemprop="applicationCategory" content="WebApplication">
+                <div itemscope itemtype="https://schema.org/Offer" itemprop="offers">
+                    <meta itemprop="price" content="0">
+                    <meta itemprop="priceCurrency" content="USD">
+                    <link itemprop="url" href="https://github.com/VincentLoy/simplyCountdown.js">
+                </div>
+            </div>
+        </div>
+
+        <div class="nav-wrapper bg-indigo-950/50 backdrop-blur-sm fixed top-0 z-50 py-4 left-0 right-0">
+            <nav class="container mx-auto px-4">
+                <ul class="flex flex-wrap justify-center items-center gap-4 md:gap-6">
+                    <li>
+                        <a href="#top" class="text-indigo-200 hover:text-white transition-colors duration-300 flex items-center gap-2 text-sm md:text-base">
+                            <span class="font-black">SimplyCountdown</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#installation" class="text-indigo-200 hover:text-white transition-colors duration-300 flex items-center gap-2 text-sm md:text-base">
+                            <span class="icon-[lucide--terminal] w-4 h-4"></span>
+                            Installation
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#examples" class="text-indigo-200 hover:text-white transition-colors duration-300 flex items-center gap-2 text-sm md:text-base">
+                            <span class="icon-[lucide--clock] w-4 h-4"></span>
+                            Examples
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#usage" class="text-indigo-200 hover:text-white transition-colors duration-300 flex items-center gap-2 text-sm md:text-base">
+                            <span class="icon-[lucide--code] w-4 h-4"></span>
+                            Usage
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#control" class="text-indigo-200 hover:text-white transition-colors duration-300 flex items-center gap-2 text-sm md:text-base">
+                            <span class="icon-[lucide--toggle-left] w-4 h-4"></span>
+                            Controls
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#customize" class="text-indigo-200 hover:text-white transition-colors duration-300 flex items-center gap-2 text-sm md:text-base">
+                            <span class="icon-[lucide--braces] w-4 h-4"></span>
+                            Customize
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#themes" class="text-indigo-200 hover:text-white transition-colors duration-300 flex items-center gap-2 text-sm md:text-base">
+                            <span class="icon-[lucide--palette] w-4 h-4"></span>
+                            Themes
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="py-16" role="main">
+        <div class="container mx-auto px-4">
+            <article>
+                <section class="mb-20">
+                    <div class="grid gap-8 grid-cols-1 md:grid-cols-2">
+                        <div>
+                            <h2 id="installation" class="text-3xl font-bold mb-8 flex items-center gap-2">
+                                <span class="icon-[lucide--terminal] w-6 h-6 text-indigo-600"></span>
+                                Installation
+                            </h2>
+                            <div class="sc-doc-block">
+                                <div class="flex gap-2 mb-6">
+                                    <button class="package-manager-btn active" data-manager="npm">
+                                        <span class="icon-[vscode-icons--file-type-npm] w-3 h-3 lg:w-5 lg:h-5"></span>
+                                        npm
+                                    </button>
+                                    <button class="package-manager-btn" data-manager="yarn">
+                                        <span class="icon-[vscode-icons--file-type-yarn] w-3 h-3 lg:w-5 lg:h-5"></span>
+                                        yarn
+                                    </button>
+                                    <button class="package-manager-btn" data-manager="pnpm">
+                                        <span class="icon-[vscode-icons--file-type-pnpm] w-3 h-3 lg:w-5 lg:h-5"></span>
+                                        pnpm
+                                    </button>
+                                    <button class="package-manager-btn" data-manager="bun">
+                                        <span class="icon-[vscode-icons--file-type-bun] w-3 h-3 lg:w-5 lg:h-5"></span>
+                                        bun
+                                    </button>
+                                </div>
+
+                                <div class="relative">
+                                    <pre class="package-manager-content active" data-manager="npm"><code class="language-elm bg-slate-900 text-slate-100 p-4 rounded-lg">npm install simplycountdown.js</code></pre>
+                                    <pre class="package-manager-content" data-manager="yarn"><code class="language-elm bg-slate-900 text-slate-100 p-4 rounded-lg">yarn add simplycountdown.js</code></pre>
+                                    <pre class="package-manager-content" data-manager="pnpm"><code class="language-elm bg-slate-900 text-slate-100 p-4 rounded-lg">pnpm install simplycountdown.js</code></pre>
+                                    <pre class="package-manager-content" data-manager="bun"><code class="language-elm bg-slate-900 text-slate-100 p-4 rounded-lg">bun install simplycountdown.js</code></pre>
+                                </div>
+
+                                <div class="mt-8">
+                                    <h3 class="text-xl font-semibold mb-2">Download Options</h3>
+                                    <p class="mb-4">
+                                        Install simplyCountdown.js using your preferred package manager (npm, yarn, pnpm, or bun) or download directly from our repository.
+                                    </p>
+                                    <p>
+                                        <a href="https://github.com/VincentLoy/simplyCountdown.js"
+                                           class="text-indigo-400 hover:text-indigo-300 underline"
+                                           target="_blank"
+                                           rel="noopener"
+                                           aria-label="Download simplyCountdown.js from GitHub repository">
+                                            Download simplyCountdown.js from GitHub
+                                        </a>
+                                        <span class="text-sm text-gray-400 ml-2">(Free, Open Source)</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h2 id="why-simply-countdown" class="text-3xl font-bold mb-8 flex items-center gap-2">
+                                <span class="icon-[lucide--crown] w-6 h-6 text-indigo-600"></span>
+                                Why Choose simplyCountdown.js?
+                            </h2>
+                            <div class="sc-doc-block">
+                                <div class="prose text-white">
+                                    <h3 class="text-xl font-bold mb-4 text-indigo-400">Key Benefits</h3>
+                                    <ul class="list-disc pl-6 mb-6">
+                                        <li>Lightweight: Less than 5KB minified</li>
+                                        <li>Easy Integration: Works with any JavaScript project</li>
+                                        <li>Customizable: Multiple themes and styling options</li>
+                                        <li>Cross-browser Compatible: Works on all modern browsers</li>
+                                    </ul>
+
+                                    <p class="mb-4">
+                                        A lightweight JavaScript countdown library born from the need for simplicity. Perfect for websites,
+                                        landing pages, events, and any web project requiring time-based countdowns.
+                                    </p>
+
+                                    <p>
+                                        No complexity or dependencies - just add customizable countdown timers quickly. Ideal for developers
+                                        who need a reliable, performance-focused countdown solution.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="mb-20">
+                    <h2 id="examples" class="text-3xl font-bold mb-8 flex items-center gap-2">
+                        <span class="icon-[lucide--clock] w-6 h-6 text-indigo-600"></span>
+                        Examples
+                    </h2>
+
+                    <p class="mb-8 text-lg text-gray-300">
+                        Explore various implementations of <strong class="font-bold text-indigo-400">simplyCountdown.js</strong> below. From basic countdowns to complex customizations,
+                        these examples demonstrate the library's versatility. Some examples includes their configuration code and
+                        features different themes and options available in simplyCountdown.js.
+                    </p>
+
+                    <div class="grid gap-8 grid-cols-1 md:grid-cols-2">
+                        <div class="sc-doc-block">
+                            <h3 class="text-lg lg:text-2xl text-center font-semibold mb-12">Default Theme</h3>
+                            <div class="simply-countdown-one simply-countdown"></div>
+                        </div>
+
+                        <div class="sc-doc-block">
+                            <h3 class="text-lg lg:text-2xl text-center font-semibold mb-12">Without Zero Units - Dark Theme</h3>
+                            <div class="simply-countdown-two simply-countdown-dark"></div>
+                        </div>
+
+                        <div class="sc-doc-block">
+                            <h3 class="text-lg lg:text-2xl text-center font-semibold mb-12">Inline</h3>
+                            <div class="simply-countdown-inline text-xl font-bold text-center"></div>
+                            <div class="simply-countdown-inline text-xl font-bold text-center"></div>
+                        </div>
+
+                        <div class="sc-doc-block">
+                            <h3 class="text-lg lg:text-2xl text-center font-semibold mb-12">Count Up - Cyberpunk Theme</h3>
+                            <div class="simply-countdown-countup simply-countdown-cyber"></div>
+                        </div>
+
+                        <div class="sc-doc-block">
+                            <h3 class="text-lg lg:text-2xl text-center font-semibold mb-12">Circle Theme</h3>
+                            <div class="simply-countdown-circle-demo simply-countdown-circle"></div>
+                        </div>
+
+                        <div class="sc-doc-block">
+                            <h3 class="text-lg lg:text-2xl text-center font-semibold mb-12">Losange Theme</h3>
+                            <div id="simply-countdown-losange" class="simply-countdown-losange"></div>
+                        </div>
+
+                        <div class="sc-doc-block">
+                            <h3 class="text-lg lg:text-2xl text-center font-semibold mb-12">Complexe Pluralization - Russian Example</h3>
+                            <div id="custom-plural" class="simply-countdown simply-countdown-dark"></div>
+                            <div class="mt-10">
+                                <pre>
+    <code class="language-javascript rounded-xl w-full">
+    // Example 7: with custom Russian pluralization
+    simplyCountdown('#custom-plural', {
+        // some parameters...
+        words: {
+            days: {
+                lambda: (root, n) => pluralizeRus(n, 'день', 'дня', 'дней'),
+                root: 'день'
+            },
+            hours: {
+                lambda: (root, n) => pluralizeRus(n, 'час', 'часа', 'часов'),
+                root: 'час'
+            },
+            minutes: {
+                lambda: (root, n) => pluralizeRus(n, 'минута', 'минуты', 'минут'),
+                root: 'минута'
+            },
+            seconds: {
+                lambda: (root, n) => pluralizeRus(n, 'секунда', 'секунды', 'секунд'),
+                root: 'секунда'
+            }
+        }
+    });
+
+    function pluralizeRus(number, singular, genitiveSingular, genitivePlural) {
+        const lastDigit = number % 10;
+        const lastTwoDigits = number % 100;
+
+        if (lastTwoDigits &gt;= 11 &amp;&amp; lastTwoDigits &lt;= 14) {
+            return `${genitivePlural}`; // Specific case for numbers 11-14
+        }
+
+        if (lastDigit === 1 &amp;&amp; lastTwoDigits !== 11) {
+            return `${singular}`; // Specific case for number (1, 21, 31...)
+        }
+
+        if (lastDigit &gt;= 2 &amp;&amp; lastDigit &lt;= 4 &amp;&amp; !(lastTwoDigits &gt;= 12 &amp;&amp; lastTwoDigits &lt;= 14)) {
+            return `${genitiveSingular}`; // Genetive singular (2, 3, 4...)
+        }
+
+        return `${genitivePlural}`; // Geenetive plural (0, 5, 6...)
+    }
+    </code>
+                                </pre>
+                            </div>
+                        </div>
+
+                        <div class="sc-doc-block">
+                            <h3 class="text-lg lg:text-2xl text-center font-semibold mb-12">Control Example</h3>
+                            <div class="simply-countdown-control simply-countdown"></div>
+                            <div class="flex justify-center flex-col sm:flex-row md:flex-col lg:flex-row gap-4 mt-8">
+                                <button class="btn btn-indigo justify-center" onclick="window.controlDemo.stopCountdown()">
+                                    <span class="icon-[lucide--circle-stop] w-5 h-5"></span>
+                                    Stop
+                                </button>
+                                <button class="btn btn-indigo justify-center" onclick="window.controlDemo.resumeCountdown()">
+                                    <span class="icon-[lucide--circle-play] w-5 h-5"></span>
+                                    Resume
+                                </button>
+                                <button class="btn btn-indigo justify-center" onclick="window.controlDemo.updateCountdown({year: window.controlDemo.getState().targetDate.getFullYear() + 1})">
+                                    <span class="icon-[lucide--alarm-clock-plus] w-5 h-5"></span>
+                                    +1 Year
+                                </button>
+                            </div>
+
+                            <div class="mt-8">
+                                <pre><code class="language-javascript state-box rounded-xl w-full"></code></pre>
+                            </div>
+
+                            <div class="mt-8">
+                                <pre><code class="language-javascript rounded-xl w-full">
+    // Example 8: With controls
+    const controlDemo = simplyCountdown('.simply-countdown-control', {
+        year: nextYear,
+        month: nextMonth,
+        day: 27,
+        zeroPad: false,
+        enableUtc: true,
+        onUpdate: () => {
+            updateStateBox(controlDemo.getState());
+        },
+        onResume: () => {
+            updateStateBox(controlDemo.getState());
+        },
+        onStop: () => {
+            updateStateBox(controlDemo.getState());
+        }
+    });
+
+    const updateStateBox = (state) => {
+        let stateBox = document.querySelector('.state-box');
+        stateBox.innerHTML = JSON.stringify(state, null, 2);
+    }
+
+    updateStateBox(controlDemo.getState());
+    // Not a conventional declaration, but it's useful for the demo
+    window.controlDemo = controlDemo;
+    </code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid mt-8 md:grid-cols-1">
+
+                    </div>
+                </section>
+
+                <section class="mb-20">
+                    <h2 id="usage" class="text-3xl font-bold mb-8 flex items-center gap-2">
+                        <span class="icon-[lucide--code] w-6 h-6 text-indigo-600"></span>
+                        Usage
+                    </h2>
+                    <h3 id="javascript-usage" class="text-xl font-bold mb-4 flex items-center gap-2">
+                        Javascript - common usage
+                    </h3>
+                    <p class="mb-8 text-lg text-gray-300">
+                        <strong class="font-bold text-indigo-400">simplyCountdown.js</strong> offers seamless integration for creating dynamic countdown timers in your web projects. Whether you're using ES modules or traditional JavaScript, the library provides a straightforward API to implement countdowns for events, launches, or deadlines. Below are complete examples showing how to initialize and customize your countdown timer with various options and configurations.
+                    </p>
+                    <div class="sc-doc-block">
+                        <h3 class="mt-8 mb-4 font-bold text-lg">ES module usage:</h3>
+                        <pre><code class="language-javascript bg-slate-900 rounded-xl">
+    import simplyCountdown from 'simplycountdown.js';
+
+    // This is an example with default parameters
+    simplyCountdown('[CSS-SELECTOR]', {
+        year: 2015, // Target year (required)
+        month: 6, // Target month [1-12] (required)
+        day: 28, // Target day [1-31] (required)
+        hours: 0, // Target hour [0-23], default: 0
+        minutes: 0, // Target minute [0-59], default: 0
+        seconds: 0, // Target second [0-59], default: 0
+        words: { // Custom labels, with lambda for plurals
+            days: { root: 'day', lambda: (root, n) => n > 1 ? root + 's' : root },
+            hours: { root: 'hour', lambda: (root, n) => n > 1 ? root + 's' : root },
+            minutes: { root: 'minute', lambda: (root, n) => n > 1 ? root + 's' : root },
+            seconds: { root: 'second', lambda: (root, n) => n > 1 ? root + 's' : root }
+        },
+        plural: true, // Use plurals for labels
+        inline: false, // Inline format: e.g., "24 days, 4 hours, 2 minutes"
+        inlineSeparator: ', ', // Separator for inline format, default: ", "
+        inlineClass: 'simply-countdown-inline', // CSS class for inline countdown
+        enableUtc: false, // Use UTC time if true
+        refresh: 1000, // Refresh interval in ms, default: 1000
+        sectionClass: 'simply-section', // CSS class for each countdown section
+        amountClass: 'simply-amount', // CSS class for numeric values
+        wordClass: 'simply-word', // CSS class for unit labels
+        zeroPad: false, // Pad numbers with leading zero
+        removeZeroUnits: false, // Remove units with zero value
+        countUp: false, // Count up after reaching zero
+        onEnd: () => {}, // Callback when countdown ends
+        onStop: () => {}, // Callback when countdown is stopped
+        onResume: () => {}, // Callback when countdown is resumed
+        onUpdate: (params) => {} // Callback when countdown is updated
+    });
+
+    // Also, you can init with already existing Javascript Object.
+    let myElement = document.querySelector('.my-countdown');
+    simplyCountdown(myElement, { /* options */ });
+
+    let multipleElements = document.querySelectorAll('.my-countdown');
+    simplyCountdown(multipleElements, { /* options */ });
+                        </code></pre>
+
+                        <h3 class="mt-8 mb-4 font-bold text-lg">Accessing TypeScript Source Files:</h3>
+                        <pre><code class="language-javascript bg-slate-900 rounded-xl">
+    import simplyCountdown from "simplycountdown.js/src/core/simplyCountdown";
+                        </code></pre>
+
+                        <h3 class="mt-8 font-bold mb-4 text-lg">CommonJS:</h3>
+                        <pre><code class="language-javascript bg-slate-900 rounded-xl">
+    const simplyCountdown = require("simplycountdown.js");
+
+    simplyCountdown("#mycountdown", {
+        year: 2025,
+        month: 12,
+        day: 25,
+    });
+                        </code></pre>
+
+                        <h3 class="mt-8 font-bold mb-4 text-lg">Browser (UMD):</h3>
+                        <pre><code class="language-html bg-slate-900 rounded-xl">
+    &lt;script src="path/to/simplyCountdown.umd.js"&gt;&lt;/script&gt;
+    &lt;script&gt;
+        simplyCountdown("#mycountdown", {
+            year: 2025,
+            month: 12,
+            day: 25,
+        });
+    &lt;/script&gt;
+                        </code></pre>
+                    </div>
+                </section>
+
+                <section class="mb-20">
+                    <h2 id="control" class="text-3xl font-bold mb-8 flex items-center gap-2">
+                        <span class="icon-[lucide--toggle-left] w-6 h-6 text-indigo-600"></span>
+                        Countdown Controller
+                    </h2>
+                    <h3 class="text-xl font-bold mb-4">Control Methods API</h3>
+                    <p class="mb-2 text-lg">
+                        Control your countdown timers with precision using the returned controller object.
+                        <strong class="font-bold text-indigo-400">simplyCountdown's</strong> API lets you stop, resume, and update countdowns dynamically.
+                        Perfect for event scheduling, real-time updates, and interactive applications.
+                    </p>
+
+                    <p class="mb-8 text-lg">
+                        The following methods are available for complete countdown management:
+                    </p>
+
+                    <div class="sc-doc-block">
+                        <pre><code class="language-javascript bg-slate-900 rounded-xl">
+    // Initialize with control callbacks
+    const countdown = simplyCountdown('#mycountdown', {
+        year: 2025,
+        month: 12,
+        day: 25,
+        onStop: () => console.log('Countdown stopped'),
+        onResume: () => console.log('Countdown resumed'),
+        onUpdate: (newParams) => console.log('Updated with:', newParams)
+    });
+
+    // Control the countdown
+    countdown.stopCountdown();    // Pause
+    countdown.resumeCountdown();  // Resume
+    countdown.updateCountdown({   // Update parameters
+        year: 2026,
+        month: 1
+    });
+
+    // Get current state
+    const state = countdown.getState();
+    console.log('Is paused:', state.isPaused);
+    console.log('Target date:', state.targetDate);
+
+    // Multiple countdowns
+    const countdowns = simplyCountdown('.countdown-class', options);
+    countdowns.stopCountdown();  // Stops all countdowns
+    countdowns.updateCountdown({ year: 2026 }); // Updates all
+        </code></pre>
+                    </div>
+                </section>
+
+                <section class="mb-20">
+                    <h2 id="customize" class="text-3xl font-bold mb-8 flex items-center gap-2">
+                        <span class="icon-[lucide--braces] w-6 h-6 text-indigo-600"></span>
+                        Customize
+                    </h2>
+                    <h3 id="customize-styles" class="text-xl font-bold mb-4">Create your fully customized Countdowns</h3>
+                    <p class="mb-2 text-lg">
+                        Customize your countdown timers with CSS to match your website's design perfectly.
+                    </p>
+                    <p class="mb-2 text-lg">
+                        <strong class="font-bold text-indigo-400">simplyCountdown.js</strong> provides a flexible HTML structure that's easy to style.
+                        Whether you want minimal designs or elaborate displays, the library's modular structure lets you modify individual elements like numbers, labels,
+                        and containers. <br>
+                    </p>
+                    <p class="mb-8 text-lg">
+                        Below is the base CSS structure you can customize:
+                    </p>
+                    <div class="sc-doc-block">
+                        <pre><code class="language-css bg-slate-900 rounded-xl">
+    .simply-countdown {
+        /* The countdown */
+    }
+    .simply-countdown > .simply-section {
+        /* coutndown blocks */
+    }
+
+    .simply-countdown > .simply-section > div {
+        /* countdown block inner div */
+    }
+
+    .simply-countdown > .simply-section .simply-amount,
+    .simply-countdown > .simply-section .simply-word {
+        /* amounts and words */
+    }
+
+    .simply-countdown > .simply-section .simply-amount {
+        /* amounts */
+    }
+
+    .simply-countdown > .simply-section .simply-word {
+        /* words */
+    }
+
+                        </code></pre>
+                    </div>
+                </section>
+
+                <section class="mb-20">
+                    <h2 id="themes" class="text-3xl font-bold mb-8 flex items-center gap-2">
+                        <span class="icon-[lucide--palette] w-6 h-6 text-indigo-600"></span>
+                        Available Themes
+                    </h2>
+                    <h3 id="themes-import" class="text-xl font-bold mb-4">Countdown Ready-to-use Themes: Default, Dark, Cyberpunk, Circle & Losange Styles</h3>
+                    <p class="text-lg mb-2">
+                        <strong class="text-indigo-500 font-bold">simplyCountdown</strong> offers multiple visually appealing themes to enhance your countdown timer's appearance. Each theme is carefully designed to suit different website styles and aesthetics, from minimal to modern designs.
+                    </p>
+                    <p class="text-lg mb-2">
+                        The theme collection includes a clean default style, a sleek dark mode, a futuristic cyberpunk variation, an elegant losange theme, and a modern circle design. These themes are implemented through separate CSS files for optimal performance and easy customization.
+                    </p>
+                    <p class="text-lg mb-8">
+                        To implement any theme, simply include the corresponding CSS file in your HTML document's head section. Each theme maintains the countdown's functionality while providing unique visual presentations that can match your website's design language.
+                    </p>
+                    <div class="sc-doc-block">
+                        <pre><code class="language-html bg-slate-900 rounded-xl">
+    &lt;!-- Default theme --&gt;
+    &lt;link rel="stylesheet" href="dist/themes/default.css"&gt;
+
+    &lt;!-- Dark theme --&gt;
+    &lt;link rel="stylesheet" href="dist/themes/dark.css"&gt;
+
+    &lt;!-- Cyberpunk theme --&gt;
+    &lt;link rel="stylesheet" href="dist/themes/cyber.css"&gt;
+
+    &lt;!-- Losange theme --&gt;
+    &lt;link rel="stylesheet" href="dist/themes/losange.css"&gt;
+
+    &lt;!-- Circle theme --&gt;
+    &lt;link rel="stylesheet" href="dist/themes/circle.css"&gt;</code></pre>
+                    </div>
+                </section>
+            </article>
+        </div>
+    </main>
+
+    <section class="bg-slate-800/50 py-16 mb-0">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-8 flex items-center gap-2">
+                <span class="icon-[lucide--git-branch] w-6 h-6 text-indigo-600"></span>
+                What's new? v1.x/v2.x to v3.x
+            </h2>
+
+            <div class="grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+                <div class="sc-doc-block">
+                    <h3 class="text-xl font-semibold mb-4 text-indigo-400 flex items-center">
+                        <span class="icon-[lucide--plug-zap] w-5 h-5 flex-shrink-0"></span>
+                        <span class="ml-2">jQuery Support Removed</span>
+                    </h3>
+                    <p class="text-gray-300">
+                        jQuery is no longer supported to reduce dependencies and improve performance. This change ensures a more lightweight and modern library.
+                    </p>
+                </div>
+
+                <div class="sc-doc-block">
+                    <h3 class="text-xl font-semibold mb-4 text-indigo-400 flex items-center">
+                        <span class="icon-[vscode-icons--file-type-vite] w-5 h-5 flex-shrink-0"></span>
+                        <span class="ml-2">Gulp to Vite Migration</span>
+                    </h3>
+                    <p class="text-gray-300">
+                        The build process has been migrated from Gulp to Vite, offering faster builds, better development server capabilities, and improved support for modern JavaScript features.
+                    </p>
+                </div>
+
+                <div class="sc-doc-block">
+                    <h3 class="text-xl font-semibold mb-4 text-indigo-400 flex items-center">
+                        <span class="icon-[vscode-icons--file-type-typescript] w-5 h-5 flex-shrink-0"></span>
+                        <span class="ml-2">TypeScript Implementation</span>
+                    </h3>
+                    <p class="text-gray-300"></p>
+                        The source code has been rewritten in TypeScript to enhance code quality, provide better type checking, and improve developer experience.
+                    </p>
+                </div>
+
+                <div class="sc-doc-block">
+                    <h3 class="text-xl font-semibold mb-4 text-indigo-400 flex items-center">
+                        <span class="icon-[lucide--book-open] w-5 h-5 flex-shrink-0"></span>
+                        <span class="ml-2">New Documentation</span>
+                    </h3>
+                    <p class="text-gray-300">
+                        A new documentation website has been launched to provide comprehensive guides, examples, and API references, making it easier for developers to integrate and use simplyCountdown.
+                    </p>
+                </div>
+
+                <div class="sc-doc-block">
+                    <h3 class="text-xl font-semibold mb-4 text-indigo-400 flex items-center">
+                        <span class="icon-[lucide--package] w-5 h-5 flex-shrink-0"></span>
+                        <span class="ml-2">Distribution Updates</span>
+                    </h3>
+                    <p class="text-gray-300">
+                        The distribution files have been reorganized to include multiple module formats (ES, UMD - CommonJS) and themes, ensuring compatibility with various development environments and build tools.
+                    </p>
+                </div>
+
+                <div class="sc-doc-block">
+                    <h3 class="text-xl font-semibold mb-4 text-indigo-400 flex items-center">
+                        <span class="icon-[vscode-icons--file-type-bun] w-5 h-5 flex-shrink-0"></span>
+                        <span class="ml-2">Package Manager Update</span>
+                    </h3>
+                    <p class="text-gray-300">
+                        The package manager has been switched from npm to Bun for faster installs and improved performance, offering a more efficient and modern package management experience.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-slate-800 text-slate-200 py-16">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col items-center justify-center space-y-6">
+                <div class="flex items-center space-x-2">
+                    <span>Made with</span>
+                    <span class="icon-[lucide--heart] w-5 h-5 text-red-500 animate-bounce"></span>
+                    <span>by</span>
+                    <a href="https://vincent-loy.fr"
+                       target="_blank"
+                       class="text-indigo-300 hover:text-indigo-200 transition-colors duration-200 font-medium border-b border-indigo-400/30 hover:border-indigo-300">
+                        Vincent Loy-Serre
+                    </a>
+                </div>
+
+                <div class="flex items-center space-x-2">
+                    <span>Like simplyCountdown?</span>
+                    <a href="https://github.com/VincentLoy/simplyCountdown.js"
+                    target="_parent"
+                       class="group flex items-center space-x-2 px-4 py-2 bg-indigo-500/10 hover:bg-indigo-500/20 rounded-full transition-all duration-200">
+                        <span class="text-indigo-300 group-hover:text-indigo-200">Give it a star on Github!</span>
+                        <span class="icon-[lucide--star] w-5 h-5 text-yellow-400 group-hover:scale-110 transition-transform duration-200"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Add before closing body tag -->
+    <button id="scrollTopBtn"
+            class="fixed bottom-8 right-8 z-50 bg-indigo-600 hover:bg-indigo-700 text-white w-12 h-12 rounded-full shadow-lg transition-all duration-300 opacity-0 translate-y-10 flex items-center justify-center"
+            aria-label="Scroll to top">
+        <span class="icon-[lucide--chevron-up] w-5 h-5"></span>
+    </button>
+
+    <!-- Scripts -->
+</body>
+</html>

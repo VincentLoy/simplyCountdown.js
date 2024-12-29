@@ -1,0 +1,40 @@
+# EditorConfig is awesome: https://EditorConfig.org
+
+# top-most EditorConfig file
+root = true
+
+# All files
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+# TypeScript, JavaScript, CSS, HTML, JSON, Markdown
+[*.{ts,js,css,html,md}]
+indent_style = space
+indent_size = 4
+max_line_length = 150
+
+# Markdown files
+[*.md]
+trim_trailing_whitespace = false
+max_line_length = off
+
+# CSS files specific
+[*.{css,postcss}]
+indent_style = space
+indent_size = 2
+block_comment_start = /*
+block_comment = *
+block_comment_end = */
+
+# Package files
+[*.json]
+indent_style = space
+indent_size = 2
+
+# Config files
+[*.{yml,yaml,conf}]
+indent_style = space
+indent_size = 2

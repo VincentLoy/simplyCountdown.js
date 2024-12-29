@@ -1,0 +1,78 @@
+/* Package manager buttons */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center gap-2 px-6 py-3 rounded-lg
+      font-semibold hover:-translate-y-[3px]
+      transition-transform duration-200;
+  }
+
+  .btn-light {
+    @apply bg-white text-indigo-600;
+  }
+
+  .btn-indigo {
+    @apply bg-indigo-800 text-white;
+  }
+
+  .sc-doc-block {
+    @apply bg-gray-800 p-6 rounded-xl shadow-sm;
+  }
+}
+
+.package-manager-btn {
+  @apply px-3 py-1.5 rounded-lg text-xs lg:text-sm font-medium
+    flex items-center gap-1.5
+    bg-slate-700/50 text-slate-400
+    hover:bg-slate-700 hover:text-slate-300
+    transition-colors duration-200;
+}
+
+.package-manager-btn.active {
+  @apply bg-indigo-500/20 text-indigo-300
+    hover:bg-indigo-500/30 hover:text-indigo-300;
+}
+
+/* Package manager content */
+.package-manager-content {
+  @apply hidden;
+}
+
+.package-manager-content.active {
+  @apply block;
+}
+
+/* Copy button */
+.relative:hover .copy-button {
+  @apply opacity-100;
+}
+
+pre {
+  @apply overflow-x-auto;
+}
+
+/* Glow effect */
+.sc-doc-block {
+  @apply relative;
+}
+
+.sc-doc-block-glow {
+  position: fixed;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle at center, rgba(99, 102, 241, 0.06), transparent 40%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  will-change: left, top, opacity;
+  transition: opacity 0.2s ease-out;
+}
+
+.sc-doc-block:hover .sc-doc-block-glow {
+  opacity: 1;
+}
