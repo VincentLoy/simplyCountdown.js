@@ -1,0 +1,80 @@
+/**
+* Project : simply-countdown
+* File : simplyCountdown.theme.full-width
+* Author : Vincent Loy <vincent.loy1@gmail.com>
+* Theme : Full Width Modern
+*/
+
+.simply-countdown-full-width {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: clamp(0.25rem, 2vw, 1rem);
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  padding: 0.5rem;
+}
+
+.simply-countdown-full-width > .simply-section {
+  flex: 1;
+  min-width: 0;
+  aspect-ratio: 1.2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  border-radius: clamp(0.5rem, 1.5vw, 1rem);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(10px);
+  position: relative;
+}
+
+.simply-countdown-full-width > .simply-section::after {
+  content: ":";
+  position: absolute;
+  right: -0.6em;
+  color: #1e293b;
+  font-weight: bold;
+  font-size: clamp(0.875rem, 2.5vw, 1.5rem);
+}
+
+.simply-countdown-full-width > .simply-section:last-child::after {
+  display: none;
+}
+
+.simply-countdown-full-width > .simply-section > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25em;
+  width: 100%;
+}
+
+.simply-countdown-full-width > .simply-section .simply-amount {
+  font-size: clamp(1rem, 3vw, 2rem);
+  font-weight: 700;
+  color: #1e293b;
+  line-height: 1;
+  letter-spacing: -0.025em;
+}
+
+.simply-countdown-full-width > .simply-section .simply-word {
+  font-size: clamp(0.5rem, 1vw, 0.75rem);
+  font-weight: 500;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  line-height: 1;
+}
+
+@media (max-width: 480px) {
+  .simply-countdown-full-width {
+    gap: 0.25rem;
+    padding: 0.25rem;
+  }
+
+  .simply-countdown-full-width > .simply-section::after {
+    right: -0.4em;
+  }
+}

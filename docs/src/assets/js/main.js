@@ -16,6 +16,8 @@ import "../../../../src/themes/dark.css";
 import "../../../../src/themes/cyber.css";
 import "../../../../src/themes/losange.css";
 import "../../../../src/themes/circle.css";
+import "../../../../src/themes/tiny.css";
+import "../../../../src/themes/full-width.css";
 import simplyCountdown from "../../../../src/core/simplyCountdown.ts";
 
 // Configure highlight.js

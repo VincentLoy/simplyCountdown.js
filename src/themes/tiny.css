@@ -1,0 +1,85 @@
+/**
+* Project : simply-countdown
+* File : simplyCountdown.theme.default
+* Author : Vincent Loy <vincent.loy1@gmail.com>
+* Theme : Light Modern
+*/
+
+.simply-countdown-tiny {
+  overflow: hidden;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.625rem;
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+}
+
+.simply-countdown-tiny > .simply-section {
+  width: 40px;
+  height: 40px;
+  padding: 0.625rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03), 0 0 0 1px rgba(0, 0, 0, 0.02);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
+}
+
+.simply-countdown-tiny > .simply-section > div {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+  align-items: center;
+}
+
+.simply-countdown-tiny > .simply-section .simply-amount {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1e293b;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+}
+
+.simply-countdown-tiny > .simply-section .simply-word {
+  font-size: 0.45rem;
+  font-weight: 500;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+@media (min-width: 640px) {
+  .simply-countdown-tiny > .simply-section {
+    width: 48px;
+    height: 48px;
+    padding: 0.875rem;
+  }
+
+  .simply-countdown-tiny > .simply-section .simply-amount {
+    font-size: 1.125rem;
+  }
+
+  .simply-countdown-tiny > .simply-section .simply-word {
+    font-size: 0.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .simply-countdown-tiny > .simply-section {
+    width: 55px;
+    height: 55px;
+    padding: 1rem;
+  }
+
+  .simply-countdown-tiny > .simply-section .simply-amount {
+    font-size: 1.25rem;
+  }
+
+  .simply-countdown-tiny > .simply-section .simply-word {
+    font-size: 0.55rem;
+  }
+}
