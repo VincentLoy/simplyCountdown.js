@@ -20,11 +20,11 @@ A simple yet powerful countdown plugin, with no dependencies. Create beautiful c
 ## Installation
 
 ```bash
-npm install simplycountdown
+npm install simplycountdown.js
 # or
-yarn add simplycountdown
+yarn add simplycountdown.js
 # or
-bun install simplycountdown
+bun install simplycountdown.js
 ```
 
 ## Basic Usage
