@@ -11,7 +11,6 @@
   justify-content: space-between;
   width: 100%;
   gap: clamp(0.25rem, 2vw, 1rem);
-  font-family: "Inter", system-ui, -apple-system, sans-serif;
   padding: 0.5rem;
 }
 
