@@ -1,10 +1,12 @@
 ![SimplyCountdown.js](docs/src/public/images/simplyCountdown_banner.webp)
 
-![NPM Downloads](https://img.shields.io/npm/dm/simplycountdown.js.svg?color=449824)
-![GitHub package.json dynamic](https://img.shields.io/github/package-json/version/VincentLoy/simplycountdown.js)
-![NPM License](https://img.shields.io/npm/l/simplycountdown.js.svg?color=4f46e5)
-![GitHub Issues or Pull Requests](https://img.shields.io/github/issues/VincentLoy/simplyCountdown.js.svg)
-![GitHub Issues or Pull Requests](https://img.shields.io/github/issues-pr/VincentLoy/simplyCountdown.js.svg)
+<p align="center">
+    <img src="https://img.shields.io/npm/dm/simplycountdown.js.svg?color=449824" alt="NPM Downloads">
+    <img src="https://img.shields.io/github/package-json/version/VincentLoy/simplycountdown.js" alt="GitHub package.json dynamic">
+    <img src="https://img.shields.io/npm/l/simplycountdown.js.svg?color=4f46e5" alt="NPM License">
+    <img src="https://img.shields.io/github/issues/VincentLoy/simplyCountdown.js.svg" alt="GitHub Issues">
+    <img src="https://img.shields.io/github/issues-pr/VincentLoy/simplyCountdown.js.svg" alt="GitHub PRs">
+</p>
 
 # SimplyCountdown.js
 
