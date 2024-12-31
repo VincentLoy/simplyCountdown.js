@@ -139,15 +139,15 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#customize" class="text-indigo-200 hover:text-white transition-colors duration-300 flex items-center gap-2 text-sm md:text-base">
-                            <span class="icon-[lucide--braces] w-4 h-4"></span>
-                            Customize
-                        </a>
-                    </li>
-                    <li>
                         <a href="#themes" class="text-indigo-200 hover:text-white transition-colors duration-300 flex items-center gap-2 text-sm md:text-base">
                             <span class="icon-[lucide--palette] w-4 h-4"></span>
                             Themes
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#customize" class="text-indigo-200 hover:text-white transition-colors duration-300 flex items-center gap-2 text-sm md:text-base">
+                            <span class="icon-[lucide--braces] w-4 h-4"></span>
+                            Customize
                         </a>
                     </li>
                 </ul>
@@ -533,53 +533,6 @@
                 </section>
 
                 <section class="mb-20">
-                    <h2 id="customize" class="text-3xl font-bold mb-8 flex items-center gap-2">
-                        <span class="icon-[lucide--braces] w-6 h-6 text-indigo-600"></span>
-                        Customize
-                    </h2>
-                    <h3 id="customize-styles" class="text-xl font-bold mb-4">Create your fully customized Countdowns</h3>
-                    <p class="mb-2 text-lg">
-                        Customize your countdown timers with CSS to match your website's design perfectly.
-                    </p>
-                    <p class="mb-2 text-lg">
-                        <strong class="font-bold text-indigo-400">simplyCountdown.js</strong> provides a flexible HTML structure that's easy to style.
-                        Whether you want minimal designs or elaborate displays, the library's modular structure lets you modify individual elements like numbers, labels,
-                        and containers. <br>
-                    </p>
-                    <p class="mb-8 text-lg">
-                        Below is the base CSS structure you can customize:
-                    </p>
-                    <div class="sc-doc-block">
-                        <pre><code class="language-css bg-slate-900 rounded-xl">
-    .simply-countdown {
-        /* The countdown */
-    }
-    .simply-countdown > .simply-section {
-        /* coutndown blocks */
-    }
-
-    .simply-countdown > .simply-section > div {
-        /* countdown block inner div */
-    }
-
-    .simply-countdown > .simply-section .simply-amount,
-    .simply-countdown > .simply-section .simply-word {
-        /* amounts and words */
-    }
-
-    .simply-countdown > .simply-section .simply-amount {
-        /* amounts */
-    }
-
-    .simply-countdown > .simply-section .simply-word {
-        /* words */
-    }
-
-                        </code></pre>
-                    </div>
-                </section>
-
-                <section class="mb-20">
                     <h2 id="themes" class="text-3xl font-bold mb-8 flex items-center gap-2">
                         <span class="icon-[lucide--palette] w-6 h-6 text-indigo-600"></span>
                         Available Themes
@@ -594,22 +547,93 @@
                     <p class="text-lg mb-8">
                         To implement any theme, simply include the corresponding CSS file in your HTML document's head section. Each theme maintains the countdown's functionality while providing unique visual presentations that can match your website's design language.
                     </p>
+                    <div class="sc-doc-block mb-8 bg-indigo-500/10 border border-indigo-500/30 rounded-xl">
+                        <div class="flex items-start gap-3 p-4">
+                            <span class="icon-[lucide--badge-alert] w-6 h-6 text-indigo-400 flex-shrink-0"></span>
+                            <div>
+                                <h4 class="font-bold text-indigo-400 mb-2">Important Note About Themes</h4>
+                                <p class="text-indigo-100">
+                                    Each theme requires its specific CSS class to be applied. Make sure to use the correct class name when implementing a theme:
+                                </p>
+                                <ul class="list-disc ml-6 mt-2 text-indigo-200">
+                                    <li>Default theme: <code class="bg-indigo-500/20 px-2 py-1 rounded">simply-countdown</code></li>
+                                    <li>Dark theme: <code class="bg-indigo-500/20 px-2 py-1 rounded">simply-countdown-dark</code></li>
+                                    <li>Cyberpunk theme: <code class="bg-indigo-500/20 px-2 py-1 rounded">simply-countdown-cyber</code></li>
+                                    <li>Losange theme: <code class="bg-indigo-500/20 px-2 py-1 rounded">simply-countdown-losange</code></li>
+                                    <li>Circle theme: <code class="bg-indigo-500/20 px-2 py-1 rounded">simply-countdown-circle</code></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                     <div class="sc-doc-block">
                         <pre><code class="language-html bg-slate-900 rounded-xl">
-    &lt;!-- Default theme --&gt;
+    &lt;!-- Choose one or more themes: --&gt;
     &lt;link rel="stylesheet" href="dist/themes/default.css"&gt;
-
-    &lt;!-- Dark theme --&gt;
     &lt;link rel="stylesheet" href="dist/themes/dark.css"&gt;
-
-    &lt;!-- Cyberpunk theme --&gt;
     &lt;link rel="stylesheet" href="dist/themes/cyber.css"&gt;
-
-    &lt;!-- Losange theme --&gt;
     &lt;link rel="stylesheet" href="dist/themes/losange.css"&gt;
+    &lt;link rel="stylesheet" href="dist/themes/circle.css"&gt;
 
-    &lt;!-- Circle theme --&gt;
-    &lt;link rel="stylesheet" href="dist/themes/circle.css"&gt;</code></pre>
+    &lt;div class="my-countdown simply-countdown"&gt;&lt;/div&gt;
+    &lt;div class="my-countdown simply-countdown-dark"&gt;&lt;/div&gt;
+    &lt;div class="my-countdown simply-countdown-cyber"&gt;&lt;/div&gt;
+    &lt;div class="my-countdown simply-countdown-losange"&gt;&lt;/div&gt;
+    &lt;div class="my-countdown simply-countdown-circle"&gt;&lt;/div&gt;
+
+    &lt;script&gt;
+    // This will init all countdowns with the same options, but different themes
+    simplyCountdown('.my-countdown', {
+        year: 2024,
+        month: 12,
+        day: 25
+    });</code></pre>
+                    </div>
+                </section>
+
+                <section class="mb-5">
+                    <h2 id="customize" class="text-3xl font-bold mb-8 flex items-center gap-2">
+                        <span class="icon-[lucide--braces] w-6 h-6 text-indigo-600"></span>
+                        Customize
+                    </h2>
+                    <h3 id="customize-styles" class="text-xl font-bold mb-4">Create your fully customized Countdowns Themes</h3>
+                    <p class="mb-2 text-lg">
+                        Customize your countdown timers with CSS to match your website's design perfectly.
+                    </p>
+                    <p class="mb-2 text-lg">
+                        <strong class="font-bold text-indigo-400">simplyCountdown.js</strong> provides a flexible HTML structure that's easy to style.
+                        Whether you want minimal designs or elaborate displays, the library's modular structure lets you modify individual elements like numbers, labels,
+                        and containers. <br>
+                    </p>
+                    <p class="mb-8 text-lg">
+                        Below is the base CSS structure you can customize:
+                    </p>
+                    <div class="sc-doc-block">
+                        <pre><code class="language-css bg-slate-900 rounded-xl">
+    .custom-countdown-theme {
+        /* Main countdown container */
+    }
+
+    .custom-countdown-theme > .simply-section {
+        /* Individual time unit blocks */
+    }
+
+    .custom-countdown-theme > .simply-section > div {
+        /* Inner container for amount and word */
+    }
+
+    .custom-countdown-theme > .simply-section .simply-amount,
+    .custom-countdown-theme > .simply-section .simply-word {
+        /* Common styles for numbers and labels */
+    }
+
+    .custom-countdown-theme > .simply-section .simply-amount {
+        /* Number display */
+    }
+
+    .custom-countdown-theme > .simply-section .simply-word {
+        /* Label text */
+    }
+                        </code></pre>
                     </div>
                 </section>
             </article>

@@ -32,14 +32,24 @@ yarn add simplycountdown.js
 bun install simplycountdown.js
 ```
 
-## Basic Usage
+## 1. Prepare your HTML
+
+```html
+<!-- ...YOUR HTML CODE -->
+<div class="my-super-countdown simply-countdown-circle"></div>
+<!-- YOUR HTML CODE... -->
+```
+
+_In this example you will have to target `.my-super-countdown` and will apply the circle theme._
+
+## 2. Basic Usage
 
 ### ES Module
 
 ```javascript
 import simplyCountdown from "simplycountdown.js";
 
-simplyCountdown("#mycountdown", {
+simplyCountdown(".my-super-countdown", {
     year: 2025,
     month: 12,
     day: 25,
@@ -59,7 +69,7 @@ import simplyCountdown from "simplycountdown.js/src/core/simplyCountdown";
 ```javascript
 const simplyCountdown = require("simplycountdown");
 
-simplyCountdown("#mycountdown", {
+simplyCountdown(".my-super-countdown", {
     year: 2025,
     month: 12,
     day: 25,
@@ -71,7 +81,7 @@ simplyCountdown("#mycountdown", {
 ```html
 <script src="path/to/simplyCountdown.umd.js"></script>
 <script>
-    simplyCountdown("#mycountdown", {
+    simplyCountdown(".my-super-countdown", {
         year: 2025,
         month: 12,
         day: 25,
@@ -82,7 +92,9 @@ simplyCountdown("#mycountdown", {
 ## Configuration Options
 
 ```javascript
-simplyCountdown("#mycountdown", {
+// .my-super-countdown is an example
+// you can target any HTML element with any CSS selector
+simplyCountdown(".my-super-countdown", {
     // Target date (Required)
     year: 2025, // Target year [YYYY]
     month: 12, // Target month [1-12]
@@ -180,6 +192,81 @@ To use a theme, include its CSS file:
 ```html
 <link rel="stylesheet" href="path/to/themes/default.css" />
 ```
+
+SimplyCountdown.js includes several pre-built themes to enhance your countdown's appearance. Each theme is designed for different visual styles and use cases.
+
+### Available Themes
+
+> **Note**: All themes are available in both standard (`.css`) and minified (`.min.css`) formats for production use.
+
+1. **Default Theme** (`dist/themes/default.css`)
+
+    - Apply class: `simply-countdown`
+    - Clean, modern design with flat colors
+
+2. **Dark Theme** (`dist/themes/dark.css`)
+
+    - Apply class: `simply-countdown-dark`
+    - Sleek dark mode appearance with light text
+
+3. **Cyberpunk Theme** (`dist/themes/cyber.css`)
+
+    - Apply class: `simply-countdown-cyber`
+    - Futuristic, neon-inspired design with glowing effects
+
+4. **Circle Theme** (`dist/themes/circle.css`)
+
+    - Apply class: `simply-countdown-circle`
+    - Modern circular display with rounded sections
+
+5. **Losange Theme** (`dist/themes/losange.css`)
+    - Apply class: `simply-countdown-losange`
+    - losange display with rotated sections
+
+### Theme Implementation
+
+1. **Import Theme CSS**
+
+```html
+<link rel="stylesheet" href="path/to/themes/default.css" />
+```
+
+2. **Apply Theme**
+
+Simply include the CSS file in your HTML document, and the theme will be applied automatically to your countdown elements.
+
+### Customizing Themes
+
+You can customize any theme by overriding the CSS classes. The base structure for customization is:
+
+```css
+.custom-countdown-theme {
+    /* Main countdown container */
+}
+
+.custom-countdown-theme > .simply-section {
+    /* Individual time unit blocks */
+}
+
+.custom-countdown-theme > .simply-section > div {
+    /* Inner container for amount and word */
+}
+
+.custom-countdown-theme > .simply-section .simply-amount,
+.custom-countdown-theme > .simply-section .simply-word {
+    /* Common styles for numbers and labels */
+}
+
+.custom-countdown-theme > .simply-section .simply-amount {
+    /* Number display */
+}
+
+.custom-countdown-theme > .simply-section .simply-word {
+    /* Label text */
+}
+```
+
+These base classes provide a foundation for creating your own custom themes or modifying existing ones.
 
 ## Examples
 
