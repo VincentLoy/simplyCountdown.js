@@ -137,16 +137,18 @@ const nav = document.querySelector(".nav-wrapper");
 nav.classList.add("transition-colors", "duration-300");
 
 function updateNavBackground() {
-    const scrollPosition = window.scrollY;
+    if (window.matchMedia("(min-width: 768px)").matches) {
+        const scrollPosition = window.scrollY;
 
-    if (scrollPosition === 0) {
-        // When page is at the very top
-        nav.classList.remove("bg-indigo-950/50", "backdrop-blur-sm");
-        nav.classList.add("bg-transparent");
-    } else {
-        // After scrolling even slightly
-        nav.classList.remove("bg-transparent");
-        nav.classList.add("bg-indigo-950/50", "backdrop-blur-sm");
+        if (scrollPosition === 0) {
+            // When page is at the very top
+            nav.classList.remove("bg-indigo-950/50", "backdrop-blur-sm");
+            nav.classList.add("bg-transparent");
+        } else {
+            // After scrolling even slightly
+            nav.classList.remove("bg-transparent");
+            nav.classList.add("bg-indigo-950/50", "backdrop-blur-sm");
+        }
     }
 }
 
@@ -338,3 +340,46 @@ scrollTopBtn.addEventListener("click", () => {
 });
 
 window.addEventListener("scroll", handleScroll);
+
+document.addEventListener("DOMContentLoaded", () => {
+    if (window.matchMedia("(max-width: 767px)").matches) {
+        const button = document.getElementById("mobile-menu-button");
+        const navWrapper = document.querySelector(".nav-wrapper");
+        const menu = document.getElementById("nav-menu");
+        let isOpen = false;
+
+        const toggleMenu = () => {
+            isOpen = !isOpen;
+            // Use transform for performance and opacity for fade effect
+            menu.classList.toggle("nav-list-open");
+            button.setAttribute("aria-expanded", isOpen);
+
+            // Toggle navigation background styles
+            navWrapper.classList.toggle("--active");
+            navWrapper.classList.toggle("bg-indigo-950");
+            navWrapper.classList.toggle("backdrop-blur-sm");
+            navWrapper.classList.toggle("bg-indigo-950/50");
+        };
+
+        button.addEventListener("click", toggleMenu);
+
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape" && isOpen) {
+                toggleMenu();
+            }
+        });
+
+        document.addEventListener("click", (e) => {
+            if (isOpen && !menu.contains(e.target) && !button.contains(e.target)) {
+                toggleMenu();
+            }
+        });
+
+        const mobileNavLinks = menu.querySelectorAll('a[href^="#"]');
+        mobileNavLinks.forEach((link) => {
+            link.addEventListener("click", () => {
+                toggleMenu();
+            });
+        });
+    }
+});

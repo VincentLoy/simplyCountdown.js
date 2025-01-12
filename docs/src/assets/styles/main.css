@@ -21,6 +21,33 @@
   .sc-doc-block {
     @apply bg-gray-800 p-6 rounded-xl shadow-sm;
   }
+
+  .section-title {
+    @apply text-2xl sm:text-3xl lg:text-4xl font-bold mb-6 sm:mb-8 flex items-center gap-2 sm:gap-3;
+  }
+
+  .section-title__icon {
+    @apply hidden sm:inline-block w-4 h-4 sm:w-6 sm:h-6 lg:w-7 lg:h-7 text-indigo-600;
+  }
+
+  .nav-list {
+    @apply absolute flex-col translate-y-[-100%] opacity-0 pointer-events-none
+    inset-x-0 top-[60px] bg-indigo-950/90 backdrop-blur-md p-4
+    space-y-4 gap-4 transition-all duration-300 ease-in-out;
+  }
+
+  .nav-list-open {
+    @apply translate-y-0 opacity-100 pointer-events-auto;
+  }
+
+  /* Desktop overrides */
+  @screen md {
+    .nav-list {
+      @apply flex relative flex-row translate-y-0 opacity-100 pointer-events-auto
+        inset-x-auto top-0 bg-transparent backdrop-blur-none p-0
+        space-y-0 items-center gap-6;
+    }
+  }
 }
 
 .package-manager-btn {
