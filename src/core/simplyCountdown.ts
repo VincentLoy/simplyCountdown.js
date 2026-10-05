@@ -49,6 +49,12 @@ const isNodeList = (element: CountdownSelector): element is NodeListOf<HTMLEleme
     return element instanceof NodeList;
 };
 
+const isEmptyObject = (obj: unknown): boolean =>
+    obj !== null &&
+    typeof obj === 'object' &&
+    !Array.isArray(obj) &&
+    Object.keys(obj).length === 0;
+
 interface TimeUnit {
     value: number;
     word: keyof CountdownParameters["words"];
@@ -68,6 +74,9 @@ interface TimeUnit {
  */
 function formatTimeUnit(unit: TimeUnit, params: CountdownParameters): string {
     const value = params.zeroPad ? String(unit.value).padStart(2, "0") : unit.value;
+
+    if (!params.words || isEmptyObject(params.words)) return `${value}`;
+    if (!params.words[unit.word].lambda) return `${value}`;
     return `${value} ${params.words[unit.word].lambda(params.words[unit.word].root, unit.value)}`;
 }
 
