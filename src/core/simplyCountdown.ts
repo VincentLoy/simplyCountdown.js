@@ -58,6 +58,7 @@ const isEmptyObject = (obj: unknown): boolean =>
 interface TimeUnit {
     value: number;
     word: keyof CountdownParameters["words"];
+    customInlineSeparator?: string;
     element?: HTMLElement;
 }
 
@@ -109,10 +110,14 @@ function shouldDisplay(unit: TimeUnit, previousUnits: TimeUnit[], params: Countd
  * the specified separator from params.inlineSeparator before setting the element's innerHTML.
  */
 function displayInline(timeUnits: TimeUnit[], params: CountdownParameters, element: HTMLElement): void {
-    const displayStr = timeUnits
-        .filter((unit, index) => shouldDisplay(unit, timeUnits.slice(0, index), params))
-        .map((unit) => formatTimeUnit(unit as { value: number; word: keyof typeof params.words }, params))
-        .join(params.inlineSeparator);
+    const displayStrArr = timeUnits.filter((unit, index) => shouldDisplay(unit, timeUnits.slice(0, index), params));
+    let displayStr = '';
+    for (let i = 0; i < displayStrArr.length; i++) {
+        const displayStrArrItem = displayStrArr[i];
+        const formattedUnit = formatTimeUnit(displayStrArrItem as { value: number; word: keyof typeof params.words }, params);
+        if (i === displayStrArr.length - 1) displayStr += formattedUnit;
+        else displayStr += formattedUnit + (displayStrArrItem.customInlineSeparator ?? params.inlineSeparator);
+    }
 
     element.innerHTML = displayStr;
 }
@@ -238,18 +243,25 @@ const createCountdownInstance = (targetElement: HTMLElement, parameters: Countdo
 
         if (parameters.inline && inlineElement) {
             const timeUnits: TimeUnit[] = [
-                { value: days, word: "days" as keyof CountdownParameters["words"] },
+                {
+                    value: days,
+                    word: "days" as keyof CountdownParameters["words"],
+                    ...(parameters.words?.days?.customInlineSeparator !== undefined && {customInlineSeparator: parameters.words.days.customInlineSeparator}),
+                },
                 {
                     value: hours,
                     word: "hours" as keyof CountdownParameters["words"],
+                    ...(parameters.words?.hours?.customInlineSeparator !== undefined && {customInlineSeparator: parameters.words.hours.customInlineSeparator}),
                 },
                 {
                     value: minutes,
                     word: "minutes" as keyof CountdownParameters["words"],
+                    ...(parameters.words?.minutes?.customInlineSeparator !== undefined && {customInlineSeparator: parameters.words.minutes.customInlineSeparator}),
                 },
                 {
                     value: seconds,
                     word: "seconds" as keyof CountdownParameters["words"],
+                    ...(parameters.words?.seconds?.customInlineSeparator !== undefined && {customInlineSeparator: parameters.words.seconds.customInlineSeparator}),
                 },
             ];
             displayInline(timeUnits, parameters, inlineElement);

@@ -1,6 +1,7 @@
 export interface WordConfig {
     lambda: (root: string, n: number) => string;
     root: string;
+    customInlineSeparator?: string;
 }
 
 export interface Words {
